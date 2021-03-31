@@ -82,3 +82,55 @@
   border: 1px solid black;
   font-size: 20px;
 }
+
+.homeBody {
+  position: relative;
+  background-image: url(images/home-background.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* opacity: 0.50; */
+  height: 100vh;
+  width: 100%;
+}
+
+.homeHeadingText {
+  font-size: 50px;
+  padding-top: 40px;
+}
+
+.serviceCategoriesContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 75px;
+}
+
+.serviceCategoryBox {
+
+}
+
+.serviceCategoryIcon {
+
+}
+
+.serviceCategoryName {
+  font-size: 20px;
+  color: #F2C70F;
+}
+
+.companyCategoriesContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 75px;
+}
+
+.companyCategoryBox {
+
+}
+
+.companyLogo {
+
+}
+
+.companyCategoryName {
+  font-size: 30px;
+}
