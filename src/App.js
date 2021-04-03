@@ -1,20 +1,15 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Switch, Route, Link } from "react-router-dom";
 import './App.css';
+import Main from "./Main.js"
 
+function App() {
+  return (
+    <div className="App">
+      <Main />
+    </div>
+  );
+}
 
-import AuthService from "./services/auth.service";
-
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Provider from "./components/provider.component"
-import Home from "./components/home.component";
-import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
-
+/*
 class App extends Component {
   constructor(props) {
     super(props);
@@ -137,5 +132,5 @@ class App extends Component {
   }
 }
 
-
+*/
 export default App;

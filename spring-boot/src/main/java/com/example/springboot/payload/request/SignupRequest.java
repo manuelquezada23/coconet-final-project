@@ -45,7 +45,6 @@ public class SignupRequest {
     }
 
     public Set<String> getRole() {
-        System.out.println(this.role);
         return this.role;
     }
 

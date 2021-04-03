@@ -14,6 +14,8 @@ import com.example.springboot.models.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String name);
 
+    Optional<User> findByEmail(String email);
+
     Boolean existsByUsername(String name);
 
     Boolean existsByEmail(String email);

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import jdk.nashorn.internal.runtime.logging.DebugLogger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,9 +34,11 @@ import com.example.springboot.repository.UserRepository;
 import com.example.springboot.security.jwt.JwtUtils;
 import com.example.springboot.security.services.UserDetailsImpl;
 
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@Slf4j
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -50,13 +54,13 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+    private DebugLogger log;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
