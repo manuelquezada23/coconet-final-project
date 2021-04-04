@@ -1,4 +1,5 @@
 import React from "react";
+import NavigationBar from "./NavigationBar.js"
 import './App.css';
 // import Design from "./images/design-icon.jpeg";
 // import Construction from "./images/construction-icon.jpeg";
@@ -9,6 +10,7 @@ import './App.css';
 function Home() {
     return (
         <React.Fragment>
+            <NavigationBar />
             <div className="homeBody">
                 <h1 className="homeHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
                 
