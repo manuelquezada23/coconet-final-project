@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Logo from "./images/coconet-logo.png"
+import LogoImage from "./images/coconet-logo-image.png"
+import SearchIcon from "./images/searchIcon.png"
 
 function NavigationBar() {
     function sendToPage(link) {
@@ -9,15 +10,19 @@ function NavigationBar() {
     return (
         <React.Fragment>
             <div className="navigationBar">
-                <div className="leftHeader">
-                    <img id="navigationBarLogo" alt="coconetLogo" src={Logo}></img>
+                <img id="navigationBarLogo" src={LogoImage}></img>
+                <div id="navigationBarLogoText"></div>
+                <div id="searchBar">
+                        <select name="searchValue" id="searchBarDropdown">
+                            <option value="serviceProviders">Service Providers</option>
+                            <option value="projects">Projects</option>
+                        </select>
+                    <div id="line"></div>
+                    <input id="searchInputText" type="text" name="email" />
+                    <div id="line2"></div>
+                    <img id="searchIcon" alt="searchIcon" src={SearchIcon}></img>
                 </div>
-                <div className="middleHeader">
-                    <div className="searchBar">
-                    
-                    </div>
-                </div>
-                <div className="rightHeader">
+                <div id="navBarButtons">
                     <div className="userButtons">
                         <button className="logInButton" onClick={() => {sendToPage("/login")}}>Log In</button>
                         <button className="registerButton" onClick={() => {sendToPage("/signup")}}>Register</button>
