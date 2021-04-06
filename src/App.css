@@ -14,7 +14,7 @@
 }
 
 .navigationBar {
-  background-color: #E5E5E5;
+  background-color: #D8D4D3;
   height: 100px;
   width: 100%;
   display: flex;
@@ -66,9 +66,10 @@
   position: relative;
   height: 20px;
   top: 15px;
-  margin-left: 30px;
+  margin-left: 25px;
   background-color: transparent;
   border: none;
+  font-weight: bold;
 }
 
 #searchBarDropdown:focus {
@@ -312,4 +313,102 @@
 
 .companyCategoryName {
   font-size: 30px;
+}
+
+.SPHeader {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.SPLogo {
+  margin-left: 30px;
+  border: 1px solid black;
+}
+
+.SPInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.SPName {
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.SPLocation {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.SPType {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #F2C70F;
+}
+
+.SPCredentials {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.SPBadge {
+  height: 40px;
+}
+
+.SPBadgeText {
+  text-align: center;
+  margin-right: 40px;
+  margin-left: 10px;
+  position: relative;
+  top: 10px;
+  color: #F2C70F;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.SPSideBar {
+  margin-left: 30px;
+  margin-top: 20px;
+  background-color: white;
+  width: 230px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.SPSideBarBox {
+  width: 100%;
+  height: 16%;
+  font-weight: bold;
+  color: black;
+  /* border-bottom: 1px solid black; */
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.SPSideBarBox:hover{
+  cursor: pointer;
+}
+
+#bottomBorder {
+  border-top: 1px solid black;
+  margin-left: 5px;
+  width: 220px;
+  margin-bottom: 5px;
 }

@@ -5,6 +5,7 @@ import LogIn from "./LogIn.js"
 import SignUp from "./SignUp.js"
 import SPLogIn from "./SPLogIn.js"
 import SPSignUp from "./SPSignUp.js"
+import SPAbout from "./SPAbout.js"
 
 const Main = () => {
   return (
@@ -15,6 +16,7 @@ const Main = () => {
             <Route exact path='/signup' component={SignUp}></Route>
             <Route exact path='/login-service-provider' component={SPLogIn}></Route>
             <Route exact path='/signup-service-provider' component={SPSignUp}></Route>
+            <Route exact path='/service-provider_id/about' component={SPAbout}></Route>
         </Switch>
    </BrowserRouter>
   );
