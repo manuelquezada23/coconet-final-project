@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./Home.js"
-import LogIn from "./LogIn.js"
+import LogIn from "./components/login.component"
+//import LogIn from "./LogIn.js"
 import SignUp from "./SignUp.js"
 import SPLogIn from "./SPLogIn.js"
 import SPSignUp from "./SPSignUp.js"

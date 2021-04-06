@@ -100,7 +100,7 @@ export default class Login extends Component {
     return (
       <React.Fragment>
       <div className="LogInBody">
-        <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
+          <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
           <Form
             onSubmit={this.handleLogin}
             ref={c => {
@@ -108,28 +108,31 @@ export default class Login extends Component {
             }}
             className="LogInForm"
           >
+            <div className = "logInTextWrapper">
               <label htmlFor="username">Email</label>
               <Input
                 type="text"
-                className="logInText"
                 name="username"
+                placeholder="Email"
                 value={this.state.username}
                 onChange={this.onChangeUsername}
                 validations={[required, email]}
               />
-
+            </div>
+            <div className = "logInTextWrapper">
               <label htmlFor="password">Password</label>
               <Input
                 type="password"
-                className="logInText"
                 name="password"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.onChangePassword}
                 validations={[required]}
               />
-
+            </div>
+            <div className="logInBtnWrapper">
               <button
-                className="logInButton"
+                id="logInButton"
                 disabled={this.state.loading}
               >
                 {this.state.loading && (
@@ -137,7 +140,7 @@ export default class Login extends Component {
                 )}
                 <span>Login</span>
               </button>
-
+            </div>
             {this.state.message && (
               <div className="LogInForm">
                 <div className="alert alert-danger" role="alert">
@@ -152,8 +155,12 @@ export default class Login extends Component {
               }}
             />
           </Form>
+        <div className="logInBtnWrapper">
           <button id="signUpButton" onClick={() => {this.sendToPage("/signup")}}>Sign Up</button>
+        </div>
+        <div className="logInBtnWrapper">
           <button id="forgotPassword">Forgot Password?</button>
+        </div>
       </div>
       </React.Fragment>
     );
