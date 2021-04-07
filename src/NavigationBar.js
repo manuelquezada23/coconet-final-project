@@ -10,15 +10,15 @@ function NavigationBar() {
     return (
         <React.Fragment>
             <div className="navigationBar">
-                <img id="navigationBarLogo" src={LogoImage}></img>
-                <div id="navigationBarLogoText"></div>
+                <img id="navigationBarLogo" src={LogoImage} onClick={() => {sendToPage("/")}}></img>
+                <div id="navigationBarLogoText" onClick={() => {sendToPage("/")}}></div>
                 <div id="searchBar">
                         <select name="searchValue" id="searchBarDropdown">
                             <option value="serviceProviders">Service Providers</option>
                             <option value="projects">Projects</option>
                         </select>
                     <div id="line"></div>
-                    <input id="searchInputText" type="text" name="email" />
+                    <input autocomplete="off" id="searchInputText" type="text" name="email" />
                     <div id="line2"></div>
                     <img id="searchIcon" alt="searchIcon" src={SearchIcon}></img>
                 </div>

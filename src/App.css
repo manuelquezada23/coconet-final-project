@@ -14,7 +14,7 @@
 }
 
 .navigationBar {
-  background-color: #E5E5E5;
+  background-color: #D8D4D3;
   height: 100px;
   width: 100%;
   display: flex;
@@ -39,6 +39,14 @@
   background-image: url("./images/coconet-logo-text.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#navigationBarLogo:hover {
+  cursor: pointer;
+}
+
+#navigationBarLogoText:hover {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1300px) {
@@ -66,9 +74,10 @@
   position: relative;
   height: 20px;
   top: 15px;
-  margin-left: 30px;
+  margin-left: 25px;
   background-color: transparent;
   border: none;
+  font-weight: bold;
 }
 
 #searchBarDropdown:focus {
@@ -337,4 +346,205 @@
 
 .companyCategoryName {
   font-size: 30px;
+}
+
+.SPHeader {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.SPLogo {
+  margin-left: 30px;
+  border: 1px solid black;
+}
+
+.SPInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.SPName {
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: left;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.SPLocation {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.SPType {
+  margin-left: 10px;
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #F2C70F;
+}
+
+.SPCredentials {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.SPBadge {
+  height: 40px;
+}
+
+.SPBadgeText {
+  text-align: center;
+  margin-right: 40px;
+  margin-left: 10px;
+  position: relative;
+  top: 10px;
+  color: #F2C70F;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.SPTopBar {
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: auto;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
+.SPSideBarBox {
+  width: auto;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.SPSideBarBox:hover{
+  cursor: pointer;
+}
+
+#bottomBorder {
+  border-top: 1px solid black;
+  margin-left: 5px;
+  width: 220px;
+  margin-bottom: 5px;
+}
+
+.SPAboutBody {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.SPAboutIcons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.aboutIcon {
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.iconAlignment {
+  display: flex;
+  flex-direction: row;
+}
+
+.iconDescription {
+  margin-left: 10px;
+  margin-top: 12px;
+  min-width: 120px;
+  text-align: left;
+}
+
+.SPAboutDescription {
+  min-width: 500px;
+  text-align: left;
+  margin-left: 40px;
+  margin-right: 25px;
+}
+
+.SPAboutCoverPhoto {
+  width: 95%;
+  border: 1px solid black;
+  margin: 0 auto;
+  min-width: 95%;
+  height: 200px;
+  margin-top: 10px;
+}
+
+.SPProjectsTable {
+  width: 95%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+td {
+  text-align: center;
+  padding: 8px;
+}
+
+th {
+  border: 1px solid black;
+  height: 30px;
+  background-color: #F2C70F;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.SPPreviousClientsTable {
+  width: 95%;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.SPLicensesAndCertificationsGrid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  height: 150px;
+  text-align: center;
+}
+
+.SPQualificationsBody {
+  width: 90%;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.SPQualificationsTable {
+  width: 95%;
+  margin-left: 30px;
+  margin-right: 30px;
 }
