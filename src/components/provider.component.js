@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import Logo from "./../images/coconet-logo.png"
 
 import AuthService from "./../services/auth.service";
 
@@ -46,6 +47,7 @@ const vpassword = value => {
   }
 };
 
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +55,13 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
       successful: false,
       message: ""
     };
@@ -81,6 +85,12 @@ export default class Register extends Component {
     });
   }
 
+  onChangeConfirmPassword(e) {
+    this.setState({
+      confirmPassword: e.target.value
+    });
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -89,6 +99,13 @@ export default class Register extends Component {
       successful: false
     });
 
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState({
+        successful: false,
+        message: "passwords don't match"
+      });
+      return false;
+    }
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
@@ -123,8 +140,9 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
+      <React.Fragment>
+      <div className="signUpBody">
+        <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
 
           <Form
             onSubmit={this.handleRegister}
@@ -134,11 +152,10 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div className="form-group">
-                  <label htmlFor="username">Service Provider Name</label>
+                <div className="logInTextWrapper">
+                  <label htmlFor="username">Username</label>
                   <Input
                     type="text"
-                    className="form-control"
                     name="username"
                     value={this.state.username}
                     onChange={this.onChangeUsername}
@@ -146,11 +163,10 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="email">Email</label>
                   <Input
                     type="text"
-                    className="form-control"
                     name="email"
                     value={this.state.email}
                     onChange={this.onChangeEmail}
@@ -158,11 +174,10 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="password">Password</label>
                   <Input
                     type="password"
-                    className="form-control"
                     name="password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
@@ -170,9 +185,18 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Register</button>
+                <div className="logInTextWrapper">
+                  <label htmlFor="password">Confirm Password</label>
+                  <Input
+                    type="password"
+                    name="confirmPassword"
+                    value={this.state.confirmPassword}
+                    onChange={this.onChangeConfirmPassword}
+                    validations={[required, vpassword]}
+                  />
                 </div>
+
+                  <button id="signUpButton_1">Sign Up</button>
               </div>
             )}
 
@@ -197,8 +221,8 @@ export default class Register extends Component {
               }}
             />
           </Form>
-        </div>
       </div>
+      </React.Fragment>
     );
   }
 }

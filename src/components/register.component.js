@@ -55,6 +55,7 @@ export default class Register extends Component {
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
     this.state = {
       firstName: "",
@@ -90,6 +91,12 @@ export default class Register extends Component {
     });
   }
 
+  onChangeConfirmPassword(e) {
+    this.setState({
+      confirmPassword: e.target.value
+    });
+  }
+
   handleRegister(e) {
     e.preventDefault();
 
@@ -97,6 +104,14 @@ export default class Register extends Component {
       message: "",
       successful: false
     });
+
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState({
+        successful: false,
+        message: "passwords don't match"
+      });
+      return false;
+    }
 
     this.form.validateAll();
 
@@ -132,6 +147,7 @@ export default class Register extends Component {
 
   render() {
     return (
+      <React.Fragment>
       <div className="signUpBody">
         <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
 
@@ -143,23 +159,21 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="firstName">First Name</label>
                   <Input
                     type="text"
-                    className="form-control"
-                    name="lastname"
+                    name="firstname"
                     value={this.state.firstName}
                     onChange={this.onChangeFirstName}
                     validations={[required, vusername]}
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="lastName">Last Name</label>
                   <Input
                     type="text"
-                    className="form-control"
                     name="lastname"
                     value={this.state.lastName}
                     onChange={this.onChangeLastName}
@@ -167,11 +181,10 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="email">Email</label>
                   <Input
                     type="text"
-                    className="form-control"
                     name="email"
                     value={this.state.email}
                     onChange={this.onChangeEmail}
@@ -179,11 +192,10 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="logInTextWrapper">
                   <label htmlFor="password">Password</label>
                   <Input
                     type="password"
-                    className="form-control"
                     name="password"
                     value={this.state.password}
                     onChange={this.onChangePassword}
@@ -191,9 +203,18 @@ export default class Register extends Component {
                   />
                 </div>
 
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                <div className="logInTextWrapper">
+                  <label htmlFor="password">Confirm Password</label>
+                  <Input
+                    type="password"
+                    name="confirmPassword"
+                    value={this.state.confirmPassword}
+                    onChange={this.onChangeConfirmPassword}
+                    validations={[required, vpassword]}
+                  />
                 </div>
+
+                  <button id="signUpButton_1">Sign Up</button>
               </div>
             )}
 
@@ -219,6 +240,7 @@ export default class Register extends Component {
             />
           </Form>
       </div>
+      </React.Fragment>
     );
   }
 }

@@ -237,7 +237,7 @@
 }
 
 #logInButton {
-  width: 10%;
+  width: 5%;
   height: 30px;
   margin-top: 20px;
   background-color: #F2C70F;
@@ -248,7 +248,7 @@
 }
 
 #signUpButton {
-  width: 10%;
+  width: 5%;
   height: 30px;
   margin-top: 10px;
   background-color: #F2C70F;
@@ -256,6 +256,19 @@
   border-radius: 6px;
   color: black;
   font-weight: bold;
+  align-items: center;
+}
+
+#signUpButton_1 {
+  width: 50%;
+  height: 30px;
+  margin-top: 10px;
+  background-color: #F2C70F;
+  border: 1px solid black;;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  align-items: center;
 }
 
 #forgotPassword {

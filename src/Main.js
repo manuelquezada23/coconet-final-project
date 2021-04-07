@@ -3,9 +3,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./Home.js"
 import LogIn from "./components/login.component"
 //import LogIn from "./LogIn.js"
-import SignUp from "./SignUp.js"
-import SPLogIn from "./SPLogIn.js"
-import SPSignUp from "./SPSignUp.js"
+//import SignUp from "./SignUp.js"
+import SignUp from "./components/register.component"
+//import SPLogIn from "./SPLogIn.js"
+import SPLogIn from "./components/login.component"
+//import SPSignUp from "./SPSignUp.js"
+import SPSignUp from "./components/provider.component"
 
 const Main = () => {
   return (

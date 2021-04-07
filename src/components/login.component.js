@@ -130,17 +130,15 @@ export default class Login extends Component {
                 validations={[required]}
               />
             </div>
-            <div className="logInBtnWrapper">
-              <button
+            <button
                 id="logInButton"
                 disabled={this.state.loading}
-              >
+            >
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
                 <span>Login</span>
               </button>
-            </div>
             {this.state.message && (
               <div className="LogInForm">
                 <div className="alert alert-danger" role="alert">
@@ -155,12 +153,15 @@ export default class Login extends Component {
               }}
             />
           </Form>
-        <div className="logInBtnWrapper">
-          <button id="signUpButton" onClick={() => {this.sendToPage("/signup")}}>Sign Up</button>
-        </div>
-        <div className="logInBtnWrapper">
+          <button id="signUpButton" onClick={() => {
+            if (this.props.location.pathname === '/login-service-provider') {
+              this.sendToPage("/signup-service-provider")
+            }
+            else{
+              this.sendToPage("/signup")
+            }
+          }}>Sign Up</button>
           <button id="forgotPassword">Forgot Password?</button>
-        </div>
       </div>
       </React.Fragment>
     );
