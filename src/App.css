@@ -12,15 +12,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 
-}.bodyBack {
-  position: relative;
+}
+
+.bodyBack {
+  width: 100%;
+  height: 100vh;
   background-image: url(images/home-background.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  width: 100%;
   opacity: 0.5;
 }
+
 
 .bodyFront {
   position: relative;
@@ -34,13 +36,13 @@ a:hover, a:visited, a:link, a:active {
 .bodyHeadingText {
   font-size: 50px;
   color: black;
-  padding-top: 15px;
+  padding-top: 1%;
 }
 
 .serviceCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 65px;
+  padding-top: 4%;
 }
 
 .serviceCategoryBox {
@@ -64,11 +66,12 @@ a:hover, a:visited, a:link, a:active {
 .companyCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 65px;
+  padding-top: 4%;
 }
 
 .companyCategoryBox {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   /* height: ;
@@ -92,7 +95,6 @@ a:hover, a:visited, a:link, a:active {
 
 .currentCompanyBox {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-content: center;
   background-color: transparent;

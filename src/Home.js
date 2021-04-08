@@ -1,4 +1,5 @@
 import React from "react";
+import NavigationBar from "./NavigationBar.js"
 import './App.css';
 // import Design from "./images/design-icon.jpeg";
 // import Construction from "./images/construction-icon.jpeg";
@@ -11,6 +12,7 @@ import RightArrow from "./images/right-arrow.png";
 function Home() {
     return (
         <React.Fragment>
+            <NavigationBar />
             <div className="bodyBack"></div>
             <div className="bodyFront">
                 <h1 className="bodyHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
@@ -44,32 +46,32 @@ function Home() {
                 
                 <div className="companyCategoriesContainer">
                     <div className="companyCategoryBox">
-                        <button className="arrowButton" onClick={() => {}}>
-                            <img className="arrowImg" alt="leftArrow" src={LeftArrow}/>
-                        </button>
                         <div className="currentCompanyBox" href="google.com">
+                            <button className="arrowButton" onClick={() => {}}>
+                                <img className="arrowImg" alt="leftArrow" src={LeftArrow}/>
+                            </button>
                             <a href="/service-provider_id/about">
                                 <img className="companyLogo" alt="companyLogo" src="https://livejones.com/wp-content/uploads/2020/05/logo-Placeholder.png"/>
                             </a>
-                            <p className="companyCategoryName"><strong>Buyers</strong></p>
+                            <button className="arrowButton" onClick={() => {}}>
+                                <img className="arrowImg" alt="rightArrow" src={RightArrow}/>
+                            </button>
                         </div>
-                        <button className="arrowButton" onClick={() => {}}>
-                            <img className="arrowImg" alt="rightArrow" src={RightArrow}/>
-                        </button>
+                        <p className="companyCategoryName"><strong>Buyers</strong></p>
                     </div>
                     <div className="companyCategoryBox">
-                        <button className="arrowButton" onClick={() => {}}>
-                            <img className="arrowImg" alt="leftArrow" src={LeftArrow}/>
-                        </button>
                         <div className="currentCompanyBox">
+                            <button className="arrowButton" onClick={() => {}}>
+                                <img className="arrowImg" alt="leftArrow" src={LeftArrow}/>
+                            </button>
                             <a href="/service-provider_id/about">
                                 <img className="companyLogo" alt="companyLogo" src="https://livejones.com/wp-content/uploads/2020/05/logo-Placeholder.png"/>
                             </a>
-                            <p className="companyCategoryName"><strong>Sellers</strong></p>
+                            <button className="arrowButton" onClick={() => {}}>
+                                <img className="arrowImg" alt="rightArrow" src={RightArrow}/>
+                            </button>
                         </div>
-                        <button className="arrowButton" onClick={() => {}}>
-                            <img className="arrowImg" alt="rightArrow" src={RightArrow}/>
-                        </button>
+                        <p className="companyCategoryName"><strong>Sellers</strong></p>
                     </div>
                 </div>
             </div>  
