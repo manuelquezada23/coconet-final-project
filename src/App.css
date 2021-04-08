@@ -27,8 +27,13 @@
   margin-top: -100vh;
 }
 
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+}
+
 .bodyHeadingText {
   font-size: 50px;
+  color: black;
   padding-top: 15px;
 }
 
@@ -101,6 +106,7 @@
 
 .companyCategoryName {
   font-size: 30px;
+  color: black;
   margin-top: 0;
 }
 
