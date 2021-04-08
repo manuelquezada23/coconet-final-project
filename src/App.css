@@ -11,341 +11,97 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
 
-.navigationBar {
-  background-color: #D8D4D3;
-  height: 100px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#navigationBarLogo {
-  position: relative;
-  float: left;
-  height: 70px;
-  margin-top: 15px;
-  left: 30px;
-}
-
-#navigationBarLogoText {
-  height: 50px;
-  min-width: 160px;
-  margin-left: 40px;
-  position: relative;
-  top: 20px;
-  background-image: url("./images/coconet-logo-text.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#navigationBarLogo:hover {
-  cursor: pointer;
-}
-
-#navigationBarLogoText:hover {
-  cursor: pointer;
-}
-
-@media screen and (max-width: 1300px) {
-  #navigationBarLogoText { 
-    display: none;
-  }
-}
-
-#searchBar {
-  position: relative;
-  height: 50px;
-  top: 25px;
-  margin-left: 50px;
-  margin-right: 50px;
-  width: 60%;
-  border-radius: 60px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#searchBarDropdown {
-  float: left;
-  position: relative;
-  height: 20px;
-  top: 15px;
-  margin-left: 25px;
-  background-color: transparent;
-  border: none;
-  font-weight: bold;
-}
-
-#searchBarDropdown:focus {
-  outline: none;
-}
-
-#searchIcon {
-  position: relative;
-  height: 35px;
-  margin-right: 20px;
-  top: 7px;
-}
-
-#line {
-  position: absolute;
-  margin-left: 20px;
-  border-left: 1px solid black;
-  height: 50px;
-  left: 160px;
-}
-
-#line2 {
-  position: absolute;
-  margin-left: 20px;
-  border-left: 1px solid black;
-  height: 50px;
-  right: 70px;
-}
-
-#searchInputText {
-  position: absolute;
-  height: 30px;
-  top: 10px;
-  margin-left: 20px;
-  left: 180px;
-  width: 50%;
-  background-color: transparent;
-  border: none;
-  color: black;
-}
-
-#searchInputText:focus {
-  outline: none;
-}
-
-#navBarButtons {
-  display: flex;
-  flex-direction: row;
-  margin-right: 30px;
-}
-
-@media screen and (max-width: 1100px) {
-  #navBarButtons { 
-    display: none;
-  }
-  #searchBar {
-    position: absolute;
-    left: 90px;
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  #searchBar {
-    position: absolute;
-    left: 80px;
-    width: 70%;
-  }
-  #searchBarDropdown {
-    display: none;
-  }
-  #line {
-    display: none;
-  }
-  #searchIcon {
-    position: absolute;
-    right: 0px;
-  }
-  #searchInputText {
-    position: absolute;
-    left: 0px;
-    width: 70%;
-  }
-}
-
-.userButtons {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 25px;
-  margin-right: 30px;
-}
-
-.logInButton {
-  background-color: #F2C70F;
-  height: 25px;
-  width: 125%;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.registerButton {
-  background-color: black;
-  height: 25px;
-  width: 125%;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-}
-
-.serviceProviderButton {
-  background-color: white;
-  position: relative;
-  width: 250px;
-  height: 55px;
-  top: 25px;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 1px solid black;
-  font-size: 20px;
-}
-
-.logInBody {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logInLogo {
-  width: 25%;
-  align-items: center;
-}
-
-.logInForm {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
-.logInTextWrapper {
-  flex-direction: column;
-  align-items: center;
-}
-
-#logInText {
-  width: 70%;
-  height: 30px;
-  border: 1px solid black;
-  margin-top: 10px;
-  border-radius: 6px;
-}
-
-.logInBtnWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#logInButton {
-  width: 5%;
-  height: 30px;
-  margin-top: 20px;
-  background-color: #F2C70F;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-}
-
-#signUpButton {
-  width: 5%;
-  height: 30px;
-  margin-top: 10px;
-  background-color: #F2C70F;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-  align-items: center;
-}
-
-#signUpButton_1 {
-  width: 50%;
-  height: 30px;
-  margin-top: 10px;
-  background-color: #F2C70F;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-  align-items: center;
-}
-
-#forgotPassword {
-  margin-top: 10px;
-  border: none;
-  background: none;
-}
-
-.signUpBody {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.homeBody {
+}.bodyBack {
   position: relative;
   background-image: url(images/home-background.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-  /* opacity: 0.50; */
   height: 100vh;
   width: 100%;
+  opacity: 0.5;
 }
 
-.homeHeadingText {
+.bodyFront {
+  position: relative;
+  margin-top: -100vh;
+}
+
+.bodyHeadingText {
   font-size: 50px;
-  padding-top: 40px;
+  padding-top: 15px;
 }
 
 .serviceCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 75px;
+  padding-top: 65px;
 }
 
 .serviceCategoryBox {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 .serviceCategoryIcon {
-
+  height: 170px;
+  width: 170px;
 }
 
 .serviceCategoryName {
   font-size: 20px;
   color: #F2C70F;
+  margin-top: 0;
 }
 
 .companyCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 75px;
+  padding-top: 65px;
 }
 
 .companyCategoryBox {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  /* height: ;
+  width: ; */
+  background-color: transparent;
+  border-color: transparent;
+}
 
+.arrowButton {
+  height: 80px;
+  width: 80px;
+  align-self: center;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.arrowImg {
+  height: 100%;
+  width: 100%;
+}
+
+.currentCompanyBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .companyLogo {
-
+  height: 200px;
+  width: 200px;
 }
 
 .companyCategoryName {
   font-size: 30px;
+  margin-top: 0;
 }
 
 .SPHeader {
