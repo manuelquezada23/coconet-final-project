@@ -20,6 +20,7 @@ import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
 //import SPSignUp from "./SPSignUp.js"
 import SPSignUp from "./components/provider.component"
+import Search from "./Search.js"
 
 const Main = () => {
   return (
@@ -38,6 +39,10 @@ const Main = () => {
             <Route exact path='/service-provider_id/qualifications' component={SPQualifications}></Route>
             <Route exact path='/service-provider_id/licenses-and-certifications' component={SPLicensesAndCertifications}></Route>
             <Route exact path='/service-provider_id/contact' component={SPContact}></Route>
+
+            <Route exact path='/search' component={Search}></Route>
+            
+            {/* Handling error 404 */}
             <Route component={NotFound}></Route>
         </Switch>
    </BrowserRouter>
