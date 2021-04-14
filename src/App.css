@@ -79,6 +79,8 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .logInForm {
+}
+
 .companyCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
