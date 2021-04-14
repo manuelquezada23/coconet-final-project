@@ -45,6 +45,77 @@ a:hover, a:visited, a:link, a:active {
   padding-top: 4%;
 }
 
+#loggedInMenu {
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+  width: 300px;
+}
+
+.loggedInDashboard {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.loggedInPicture {
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: relative;
+  top: 25px;
+}
+
+.loggedInName {
+  position: relative;
+  top: 25px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  #navBarButtons { 
+    display: none;
+  }
+  #loggedInMenu {
+    display: none;
+  }
+  #searchBar {
+    position: absolute;
+    left: 90px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #searchBar {
+    position: absolute;
+    left: 80px;
+    width: 70%;
+  }
+  #searchBarDropdown {
+    display: none;
+  }
+  #line {
+    display: none;
+  }
+  #searchIcon {
+    position: absolute;
+    right: 0px;
+  }
+  #searchInputText {
+    position: absolute;
+    left: 0px;
+    width: 70%;
+  }
+}
+
+.userButtons {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 25px;
+  margin-right: 30px;
+}
 .serviceCategoryBox {
   display: flex;
   flex-direction: column;
