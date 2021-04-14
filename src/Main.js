@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./Home.js"
-import LogInComponent from "./LogIn.js"
-import SignUpComponent from "./SignUp.js"
-import SPLogInComponent from "./SPLogIn.js"
-import SPSignUpComponent from "./SPSignUp.js"
+//import LogInComponent from "./LogIn.js"
+//simport SignUpComponent from "./SignUp.js"
+//import SPLogInComponent from "./SPLogIn.js"
+//import SPSignUpComponent from "./SPSignUp.js"
 import NotFound from "./NotFound.js"
 import SPAbout from "./SPAbout.js"
 import SPProjects from "./SPProjects.js"
@@ -24,16 +24,18 @@ import Search from "./Search.js"
 import SettingsProfile from "./SettingsProfile.js"
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
+import Search from "./Search.js"
+//import Search from "./components/search.component"
 
 const Main = () => {
   return (
     <BrowserRouter>
         <Switch>
             <Route exact path='/' component={Home}></Route>
-            <Route exact path='/login' component={LogInComponent}></Route>
-            <Route exact path='/signup' component={SignUpComponent}></Route>
-            <Route exact path='/login-service-provider' component={SPLogInComponent}></Route>
-            <Route exact path='/signup-service-provider' component={SPSignUpComponent}></Route>
+            <Route exact path='/login' component={LogIn}></Route>
+            <Route exact path='/signup' component={SignUp}></Route>
+            <Route exact path='/login-service-provider' component={SPLogIn}></Route>
+            <Route exact path='/signup-service-provider' component={SPSignUp}></Route>
 
             {/* Service Provider Pages */}
             <Route exact path='/service-provider_id/about' component={SPAbout}></Route>

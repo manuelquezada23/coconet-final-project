@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.springboot.models.User;
 
+import java.util.List;
+
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
@@ -19,4 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsByUsername(String name);
 
     Boolean existsByEmail(String email);
+
+    List<User> findByNameContaining(String username);
 }

@@ -34,6 +34,14 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
+
+  findByTitle(username) {
+    return axios.get(`/search?username=${username}`);
+  }
+
+  getAll() {
+    return axios.get("/search");
+  }
 }
 
 export default new AuthService();
