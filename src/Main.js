@@ -20,8 +20,12 @@ import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
 //import SPSignUp from "./SPSignUp.js"
 import SPSignUp from "./components/provider.component"
-//import Search from "./Search.js"
-import Search from "./components/search.component"
+import Search from "./Search.js"
+import SettingsProfile from "./SettingsProfile.js"
+import SettingsGeneral from "./SettingsGeneral.js"
+import SettingsPrivacy from "./SettingsPrivacy.js"
+import Search from "./Search.js"
+//import Search from "./components/search.component"
 
 const Main = () => {
   return (
@@ -42,7 +46,12 @@ const Main = () => {
             <Route exact path='/service-provider_id/contact' component={SPContact}></Route>
 
             <Route exact path='/search' component={Search}></Route>
-            
+
+            {/* Settings Pages */}
+            <Route exact path='/settings-profile' component={SettingsProfile}></Route>
+            <Route exact path='/settings-general' component={SettingsGeneral}></Route>
+            <Route exact path='/settings-privacy' component={SettingsPrivacy}></Route>
+
             {/* Handling error 404 */}
             <Route component={NotFound}></Route>
         </Switch>
