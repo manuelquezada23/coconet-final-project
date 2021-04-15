@@ -8,37 +8,40 @@ import './App.css';
 // import Installation from "./images/installation-icon.jpeg";
 import LeftArrow from "./images/left-arrow.png";
 import RightArrow from "./images/right-arrow.png";
+import Background from "./images/home-background.jpeg"
 
 function Home() {
     return (
         <React.Fragment>
             <NavigationBar />
-            <div className="bodyBack"></div>
+            <div className="bodyBack">
+                <img className="background" alt="homeBackground" src={Background}></img>
+            </div>
             <div className="bodyFront">
                 <h1 className="bodyHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
                 
                 <div className="serviceCategoriesContainer">
-                    <a className="serviceCategoryBox" href="http://google.com">
+                    <a className="serviceCategoryBox" href="/search">
                             <img className="serviceCategoryIcon" alt="designIcon" src="https://static.thenounproject.com/png/75540-200.png"/>
                         <p className="serviceCategoryName"><strong>Design</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="http://google.com">
+                    <a className="serviceCategoryBox" href="/search">
                             <img className="serviceCategoryIcon" alt="constructionIcon" src="https://www.freeiconspng.com/thumbs/building-icon/office-building-icon-32.png"/>
                         <p className="serviceCategoryName"><strong>Construction</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="http://google.com">
+                    <a className="serviceCategoryBox" href="/search">
                             <img className="serviceCategoryIcon" alt="qualificationIcon" src="https://www.pngarts.com/files/11/Qualification-Ribbon-PNG-Image-Background.png"/>
                         <p className="serviceCategoryName"><strong>Qualification</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="http://google.com">
+                    <a className="serviceCategoryBox" href="/search">
                             <img className="serviceCategoryIcon" alt="maintenanceIcon" src="https://www.pngkey.com/png/full/436-4368638_tools-transparent-tools-icon-png.png"/>
                         <p className="serviceCategoryName"><strong>Maintenance</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="http://google.com">
+                    <a className="serviceCategoryBox" href="/search">
                             <img className="serviceCategoryIcon" alt="installationIcon" src="https://image.flaticon.com/icons/png/512/81/81020.png"/>
                         <p className="serviceCategoryName"><strong>Installation</strong></p>
                     </a>
