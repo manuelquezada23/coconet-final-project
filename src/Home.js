@@ -17,7 +17,6 @@ function Home() {
             <div className="bodyBack">
                 <img className="background" alt="homeBackground" src={Background}></img>
             </div>
-            {/* <div className="bodyBack"></div> */}
             <div className="bodyFront">
                 <h1 className="bodyHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
                 

@@ -903,5 +903,27 @@ th {
 }
 
 .SettingsContent {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
   width: 70%;
+}
+
+.ChangeProfileInfoForm{
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+input[type=text] {
+  width: 300px;
+}
+
+.saveChangesButton {
+  padding-top: 30px;
+  padding-left: 225px;
 }

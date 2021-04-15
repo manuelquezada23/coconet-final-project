@@ -24,8 +24,17 @@ function SettingsProfile() {
                         </div>
                     </div>
                     <div className='SettingsContent'>
-                        Profile info goes here.
+                        <div>First Name
+                            <div>firstName</div>
+                        </div>
+                        <div>Last Name
+                            <div>lastName</div>
+                        </div>
+                        <div>Email
+                            <div>email</div>
+                        </div>
                     </div>
+                    <button id="editrProfile" onClick={() => {sendToPage("/settings-profile/user")}}>Edit Profile</button>
                 </div>
             </div>
         </React.Fragment>
