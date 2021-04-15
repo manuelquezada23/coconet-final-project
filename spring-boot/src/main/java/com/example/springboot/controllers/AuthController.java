@@ -135,35 +135,36 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-
+    /*
     @GetMapping("/search")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
         try {
             List<User> users = new ArrayList<User>();
-  
+
             if (username == null)
             {
                 userRepository.findAll().forEach(users::add);
             } else {
                 userRepository.findByNameContaining(username).forEach(users::add);
             }
-  
+
             if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            /*
+
             //For selecting sp
             for (User u: users) {
                 if (!u.getRoles().contains(ERole.ROLE_SP)){
                     users.remove(u);
                 }
             }
-            */
+
 
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 }
