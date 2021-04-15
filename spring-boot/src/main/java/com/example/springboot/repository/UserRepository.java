@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.springboot.models.User;
+import com.example.springboot.models.ERole;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByEmail(String email);
 
-    List<User> findByNameContaining(String username);
+    List<User> findByRole(ERole role);
 }

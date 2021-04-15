@@ -21,18 +21,21 @@ public class User {
 
     @NotBlank
     @Size(max = 20)
-    @Column(name = "username")
+    //@Column(name = "username")
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
-    @Column(name = "email")
+    //@Column(name = "email")
     private String email;
 
     @NotBlank
     @Size(max = 120)
     private String password;
+
+    @NotBlank
+    private ERole role;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -94,6 +97,18 @@ public class User {
     public Set<Role> getRoles() { return roles; }
 
     public void setRoles(Set<Role> roles) { this.roles = roles; }
+
+    public ERole getRole() { return role; }
+
+    public void setRole(ERole role) { this.role = role; }
+
+
+    public boolean isSP() {
+        if (this.roles.contains(ERole.ROLE_SP)){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

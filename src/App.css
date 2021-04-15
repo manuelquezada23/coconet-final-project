@@ -927,3 +927,7 @@ input[type=text] {
   padding-top: 30px;
   padding-left: 225px;
 }
+
+.splist {
+  list-style: none;
+}

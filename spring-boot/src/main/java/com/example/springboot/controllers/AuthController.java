@@ -131,37 +131,38 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        Role role = roles.iterator().next();
+        user.setRole(role.getName());
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-    @GetMapping("/search")
+    @GetMapping("/sp")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
         try {
-            List<User> users = new ArrayList<User>();
-  
-            if (username == null)
-            {
-                userRepository.findAll().forEach(users::add);
-            } else {
-                userRepository.findByNameContaining(username).forEach(users::add);
+            List<User> users = new ArrayList<>();
+            userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
+
+            List<User> to_return = new ArrayList<>();
+
+            for (User u: users) {
+                to_return.add(u);
             }
-  
-            if (users.isEmpty()) {
+
+            if (username != null) {
+                for (User u: users) {
+                    if (!u.getName().contains(username)){
+                        to_return.remove(u);
+                    }
+                }
+            }
+
+            if (to_return.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            /*
-            //For selecting sp
-            for (User u: users) {
-                if (!u.getRoles().contains(ERole.ROLE_SP)){
-                    users.remove(u);
-                }
-            }
-            */
-
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            return new ResponseEntity<>(to_return, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

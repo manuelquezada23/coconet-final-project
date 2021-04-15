@@ -20,6 +20,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user");
+    window.location.href = "/";
   }
 
   register(username, email, password, role) {
@@ -36,11 +37,11 @@ class AuthService {
   }
 
   findByTitle(username) {
-    return axios.get(`/search?username=${username}`);
+    return axios.get(API_URL + `sp?username=${username}`);
   }
 
   getAll() {
-    return axios.get("/search");
+    return axios.get(API_URL + "sp");
   }
 }
 
