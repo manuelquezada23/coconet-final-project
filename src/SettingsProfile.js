@@ -23,18 +23,23 @@ function SettingsProfile() {
                             <p style={{marginTop: "10px", marginLeft: "15px"}}>Privacy</p>
                         </div>
                     </div>
-                    <div className='SettingsContent'>
+                    <div className="SettingsContent">
                         <div>First Name
-                            <div>firstName</div>
+                            <div className="ProfileInfoTextBox"> firstName</div>
                         </div>
                         <div>Last Name
-                            <div>lastName</div>
+                            <div className="ProfileInfoTextBox">lastName</div>
                         </div>
                         <div>Email
-                            <div>email</div>
+                            <div className="ProfileInfoTextBox">email</div>
+                        </div>
+                        <div>Password
+                            <div className="ProfileInfoTextBox">****</div>
+                        </div>
+                        <div className="editProfileButton">
+                            <button id="editProfile" onClick={() => {sendToPage("/settings-profile/user")}}>Edit Profile</button>
                         </div>
                     </div>
-                    <button id="editrProfile" onClick={() => {sendToPage("/settings-profile/user")}}>Edit Profile</button>
                 </div>
             </div>
         </React.Fragment>

@@ -905,16 +905,28 @@ th {
 .SettingsContent {
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 250px;
   justify-content: space-between;
   width: 70%;
+}
+
+.ProfileInfoTextBox {
+  background-color: white;
+  height: 20px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.editProfileButton {
+  padding-top: 30px;
+  padding-left: 225px;
 }
 
 .ChangeProfileInfoForm{
   padding-left: 20px;
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 600px;
   justify-content: space-between;
   width: 100%;
 }
