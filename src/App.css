@@ -998,3 +998,9 @@ input[type=text] {
 .AboutColumnSubtitle {
   margin-top: -5px;
 }
+
+.AboutContact {
+  height: 50px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
