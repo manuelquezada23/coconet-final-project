@@ -8,12 +8,15 @@ import './App.css';
 // import Installation from "./images/installation-icon.jpeg";
 import LeftArrow from "./images/left-arrow.png";
 import RightArrow from "./images/right-arrow.png";
+import Background from "./images/home-background.jpeg"
 
 function Home() {
     return (
         <React.Fragment>
             <NavigationBar />
-            <div className="bodyBack"></div>
+            <div className="bodyBack">
+                <img className="background" alt="homeBackground" src={Background}></img>
+            </div>
             <div className="bodyFront">
                 <h1 className="bodyHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
                 

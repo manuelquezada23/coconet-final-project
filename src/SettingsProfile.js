@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import NavigationBar from "./NavigationBar.js"
+// import User from "./User.js"
 
 function SettingsProfile() {
     function sendToPage(link) {
@@ -25,7 +26,9 @@ function SettingsProfile() {
                     </div>
                     <div className='SettingsContent'>
                         Profile info goes here.
+                        {/* <User /> */}
                     </div>
+                    <button id="editrProfile" onClick={() => {sendToPage("/settings-profile/user")}}>Edit Profile</button>
                 </div>
             </div>
         </React.Fragment>
