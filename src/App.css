@@ -55,7 +55,7 @@ a:hover, a:visited, a:link, a:active {
 .serviceCategoriesContainer {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 4%;
+  padding-top: 2%;
 }
 
 #loggedInMenu {
@@ -369,7 +369,7 @@ a:hover, a:visited, a:link, a:active {
 .serviceCategoryName {
   font-size: 20px;
   color: #F2C70F;
-  margin-top: 0;
+  margin-top: 10px;
 }
 
 .logInBody {
@@ -926,4 +926,75 @@ input[type=text] {
 .saveChangesButton {
   padding-top: 30px;
   padding-left: 225px;
+}
+
+.AboutBody {
+  text-align: center;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.AboutTitle {
+  font-size: 30px;
+}
+
+.AboutColumns {
+  margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.AboutColumnOne {
+  width: 33%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.AboutColumnTwo {
+  width: 33%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.AboutColumnThree {
+  width: 33%;
+  width: 33%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.AboutColumnIcon {
+  height: 75px;
+  min-height: 75px;
+  padding-top: 1%;
+}
+
+.AboutColumnTitle {
+  text-align: left;
+  color: #F2C70F;
+  padding-left: 30px;
+}
+
+.AboutColumnsB {
+  margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.AboutColumnOneB {
+  width: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.AboutColumnTwoB {
+  width: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.AboutColumnSubtitle {
+  margin-top: -5px;
 }

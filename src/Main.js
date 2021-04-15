@@ -17,6 +17,7 @@ import SettingsProfile from "./SettingsProfile.js"
 // import User from "./User.js"
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
+import About from "./About.js"
 
 const Main = () => {
   return (
@@ -43,6 +44,7 @@ const Main = () => {
             {/* <Route exact path='/settings-profile/user' component={User}></Route> */}
             <Route exact path='/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/settings-privacy' component={SettingsPrivacy}></Route>
+            <Route exact path="/about" component={About}></Route>
 
             {/* Handling error 404 */}
             <Route component={NotFound}></Route>
