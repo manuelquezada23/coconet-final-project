@@ -10,7 +10,7 @@ import AuthService from "./../services/auth.service";
 const required = value => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" style={{marginTop: "5px"}}>
         This field is required!
       </div>
     );
@@ -20,7 +20,7 @@ const required = value => {
 const email = value => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" style={{marginTop: "5px"}}>
         This is not a valid email.
       </div>
     );
@@ -30,7 +30,7 @@ const email = value => {
 const vusername = value => {
   if (value.length < 2 || value.length > 20) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" style={{marginTop: "5px"}}>
         This field must be between 3 and 20 characters.
       </div>
     );
@@ -40,7 +40,7 @@ const vusername = value => {
 const vpassword = value => {
   if (value.length < 6 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert" style={{marginTop: "5px"}}> 
         The password must be between 6 and 40 characters.
       </div>
     );
@@ -65,6 +65,10 @@ export default class Register extends Component {
       successful: false,
       message: ""
     };
+  }
+
+  sendToPage(link) {
+    window.location.href = link;
   }
 
   onChangeFirstName(e) {
@@ -151,7 +155,7 @@ export default class Register extends Component {
       <div className="signUpBody">
         <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
 
-          <Form
+          <Form className="LogInForm"
             onSubmit={this.handleRegister}
             ref={c => {
               this.form = c;
@@ -160,8 +164,9 @@ export default class Register extends Component {
             {!this.state.successful && (
               <div>
                 <div className="logInTextWrapper">
-                  <label htmlFor="firstName">First Name</label>
                   <Input
+                    id="logInText"
+                    placeholder="First Name"
                     type="text"
                     name="firstname"
                     value={this.state.firstName}
@@ -171,8 +176,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="logInTextWrapper">
-                  <label htmlFor="lastName">Last Name</label>
                   <Input
+                    id="logInText"
+                    placeholder="Last Name"
                     type="text"
                     name="lastname"
                     value={this.state.lastName}
@@ -182,8 +188,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="logInTextWrapper">
-                  <label htmlFor="email">Email</label>
                   <Input
+                    id="logInText"
+                    placeholder="Email"
                     type="text"
                     name="email"
                     value={this.state.email}
@@ -193,8 +200,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="logInTextWrapper">
-                  <label htmlFor="password">Password</label>
                   <Input
+                    id="logInText"
+                    placeholder="Password"
                     type="password"
                     name="password"
                     value={this.state.password}
@@ -204,8 +212,9 @@ export default class Register extends Component {
                 </div>
 
                 <div className="logInTextWrapper">
-                  <label htmlFor="password">Confirm Password</label>
                   <Input
+                    id="logInText"
+                    placeholder="Confirm Password"
                     type="password"
                     name="confirmPassword"
                     value={this.state.confirmPassword}
@@ -214,7 +223,7 @@ export default class Register extends Component {
                   />
                 </div>
 
-                  <button id="signUpButton_1">Sign Up</button>
+                  <button id="signUpButton">Sign Up</button>
               </div>
             )}
 
@@ -239,6 +248,14 @@ export default class Register extends Component {
               }}
             />
           </Form>
+          <button id="forgotPassword" onClick={() => {
+            if (this.props.location.pathname === '/signup-service-provider') {
+              this.sendToPage("/login-service-provider")
+            }
+            else{
+              this.sendToPage("/login")
+            }
+          }}>Already have an account? Log In</button>
       </div>
       </React.Fragment>
     );

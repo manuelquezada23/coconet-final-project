@@ -109,6 +109,230 @@ a:hover, a:visited, a:link, a:active {
   }
 }
 
+.navigationBar {
+  background-color: #D8D4D3;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#navigationBarLogo {
+  position: relative;
+  float: left;
+  height: 70px;
+  margin-top: 15px;
+  left: 30px;
+}
+
+#navigationBarLogoText {
+  height: 50px;
+  min-width: 160px;
+  margin-left: 40px;
+  position: relative;
+  top: 20px;
+  background-image: url("./images/coconet-logo-text.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#navigationBarLogo:hover {
+  cursor: pointer;
+}
+
+#navigationBarLogoText:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1300px) {
+  #navigationBarLogoText { 
+    display: none;
+  }
+}
+
+#searchBar {
+  position: relative;
+  height: 50px;
+  top: 25px;
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 60%;
+  border-radius: 60px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#searchBarDropdown {
+  float: left;
+  position: relative;
+  height: 20px;
+  top: 15px;
+  margin-left: 25px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+#searchBarDropdown:focus {
+  outline: none;
+}
+
+#searchIcon {
+  position: relative;
+  height: 35px;
+  margin-right: 20px;
+  top: 7px;
+}
+
+#line {
+  position: absolute;
+  margin-left: 20px;
+  border-left: 1px solid black;
+  height: 50px;
+  left: 160px;
+}
+
+#line2 {
+  position: absolute;
+  margin-left: 20px;
+  border-left: 1px solid black;
+  height: 50px;
+  right: 70px;
+}
+
+#searchInputText {
+  position: absolute;
+  height: 30px;
+  top: 10px;
+  margin-left: 20px;
+  left: 180px;
+  width: 50%;
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+#searchInputText:focus {
+  outline: none;
+}
+
+#navBarButtons {
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+}
+
+#loggedInMenu {
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+  width: 300px;
+}
+
+.loggedInDashboard {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.loggedInPicture {
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  position: relative;
+  top: 25px;
+}
+
+.loggedInName {
+  position: relative;
+  top: 25px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  #navBarButtons { 
+    display: none;
+  }
+  #loggedInMenu {
+    display: none;
+  }
+  #searchBar {
+    position: absolute;
+    left: 90px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #searchBar {
+    position: absolute;
+    left: 80px;
+    width: 70%;
+  }
+  #searchBarDropdown {
+    display: none;
+  }
+  #line {
+    display: none;
+  }
+  #searchIcon {
+    position: absolute;
+    right: 0px;
+  }
+  #searchInputText {
+    position: absolute;
+    left: 0px;
+    width: 70%;
+  }
+}
+
+.userButtons {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 25px;
+  margin-right: 30px;
+}
+
+.logInButton {
+  background-color: #F2C70F;
+  height: 25px;
+  width: 125%;
+  border: 1px solid black;;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.registerButton {
+  background-color: black;
+  height: 25px;
+  width: 125%;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.serviceProviderButton {
+  background-color: white;
+  position: relative;
+  width: 250px;
+  height: 55px;
+  top: 25px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 1px solid black;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 .userButtons {
   display: flex;
   flex-direction: column;
@@ -145,11 +369,65 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .logInLogo {
-  width: 50%;
+  width: 300px;
   align-items: center;
 }
 
 .logInForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#logInText {
+  width: 250px;
+  height: 30px;
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+#logInButton {
+  width: 200px;
+  height: 30px;
+  margin-top: 20px;
+  background-color: #F2C70F;
+  border: 1px solid black;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#signUpButton {
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  background-color: #F2C70F;
+  border: 1px solid black;
+  border-radius: 6px;
+  color: black;
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+}
+
+#forgotPassword {
+  margin-top: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.signUpBody {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .companyCategoriesContainer {
@@ -161,29 +439,6 @@ a:hover, a:visited, a:link, a:active {
 .companyCategoryBox {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-#logInButton {
-  width: 50%;
-  height: 30px;
-  margin-top: 20px;
-  background-color: #F2C70F;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
-}
-
-#signUpButton {
-  width: 50%;
-  height: 30px;
-  margin-top: 10px;
-  background-color: #F2C70F;
-  border: 1px solid black;;
-  border-radius: 6px;
-  color: black;
-  font-weight: bold;
   align-items: center;
 }
 
