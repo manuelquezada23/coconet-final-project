@@ -48,7 +48,7 @@ function NavigationBar() {
                         <div id="line"></div>
                         <input autocomplete="off" id="searchInputText" type="text" name="email" />
                         <div id="line2"></div>
-                        <img id="searchIcon" alt="searchIcon" src={SearchIcon}></img>
+                        <img id="searchIcon" alt="searchIcon" src={SearchIcon} onClick={() => {sendToPage("/search")}}></img>
                     </div>
                     <div id="navBarButtons">
                         <div className="userButtons">

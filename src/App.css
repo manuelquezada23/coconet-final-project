@@ -198,6 +198,7 @@ a:hover, a:visited, a:link, a:active {
   height: 35px;
   margin-right: 20px;
   top: 7px;
+  cursor: pointer;
 }
 
 #line {
