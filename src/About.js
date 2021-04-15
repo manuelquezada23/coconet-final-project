@@ -6,6 +6,9 @@ import FindIcon from "./images/findIcon.png"
 import WorkIcon from "./images/workIcon.png"
 
 function AboutUs() {
+    function sendToPage(link) {
+        window.location.href = link;
+    }
     return (
         <React.Fragment>
             <NavigationBar />
@@ -29,13 +32,13 @@ function AboutUs() {
                 <div className="AboutColumnsB">
                     <div className="AboutColumnOneB">
                         <h2 className="AboutColumnSubtitle">Medical Manufacturers</h2>
-                        <p>1. Register now!</p>
+                        <p onClick={() => {sendToPage("/signup")}} style={{cursor: "pointer"}}>1. <span style={{fontWeight: "bold"}}>Register</span> now!</p>
                         <p>2. Create a profile that fit your needs!</p>
                         <p>3. Browse, find, and work with qualified service providers!</p>
                     </div>
                     <div className="AboutColumnTwoB">
                         <h2 className="AboutColumnSubtitle">Service Providers</h2>
-                        <p>1. Register now!</p>
+                        <p onClick={() => {sendToPage("/signup-service-provider")}} style={{cursor: "pointer"}}>1. <span style={{fontWeight: "bold"}}>Register</span> now!</p>
                         <p>2. Create a profile</p>
                         <p>3. If you want to get qualified, send us your documents and we'll review them!</p>
                     </div>
