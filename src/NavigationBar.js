@@ -17,6 +17,12 @@ export default class NavigationBar extends Component {
     sendToPage(link) {
         window.location.href = link;
     }
+
+    logOut() {
+        AuthService.logout();
+        this.sendToPage('/');
+    }
+
     render() {
         const { currentUser } = this.state;
         if (currentUser) {
@@ -40,6 +46,7 @@ export default class NavigationBar extends Component {
                                 <img className="loggedInPicture" src={Placeholder}></img>
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
+                            <button id="logout" onClick={() => {this.logOut()}}>logout</button>
                         </div>
                     </div>
                 </React.Fragment>

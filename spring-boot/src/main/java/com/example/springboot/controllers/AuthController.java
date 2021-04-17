@@ -1,17 +1,23 @@
 package com.example.springboot.controllers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.Optional;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
-import jdk.nashorn.internal.runtime.logging.DebugLogger;
-import lombok.extern.slf4j.Slf4j;
+import com.example.springboot.email.context.AccountVerificationEmailContext;
+import com.example.springboot.email.service.EmailService;
+import com.example.springboot.security.jpa.SecureToken;
+import com.example.springboot.security.jwt.AuthTokenFilter;
+import com.example.springboot.security.token.DefaultSecureTokenService;
+import com.example.springboot.security.token.SecureTokenService;
+import com.example.springboot.security.token.repository.SecureTokenRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +44,7 @@ import com.example.springboot.repository.RoleRepository;
 import com.example.springboot.repository.UserRepository;
 import com.example.springboot.security.jwt.JwtUtils;
 import com.example.springboot.security.services.UserDetailsImpl;
+import org.thymeleaf.util.StringUtils;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -58,11 +65,24 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
-    private DebugLogger log;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private SecureTokenService secureTokenService;
+
+    @Autowired
+    SecureTokenRepository secureTokenRepository;
+
+    @Autowired
+    private MessageSource messageSource;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+        logger.info(loginRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -133,7 +153,21 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        // Send registration email
+        SecureToken secureToken= secureTokenService.createSecureToken();
+        secureToken.setUser(user);
+        secureTokenRepository.save(secureToken);
+        AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
+        emailContext.init(user);
+        emailContext.setToken(secureToken.getToken());
+        emailContext.buildVerificationUrl("http://localhost:8080/", secureToken.getToken());
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully, confirm your email address!"));
     }
     /*
     @GetMapping("/search")
@@ -167,4 +201,27 @@ public class AuthController {
         }
     }
     */
+
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyCustomer(@RequestParam(required = false) String token){
+        try {
+            SecureToken secureToken = secureTokenService.findByToken(token);
+            if (Objects.isNull(secureToken) || !StringUtils.equals(token, secureToken.getToken()) || secureToken.isExpired()){
+                throw new Exception("Token is not valid");
+            }
+            User user = userRepository.getOne(secureToken.getUser().getId());
+            if (Objects.isNull(user)){
+                throw new Exception("User not exist");
+            }
+            user.setVerifiedStatus(true);
+            userRepository.save(user);
+
+            secureTokenService.removeToken(secureToken);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Token is not valid"));
+        }
+
+        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    }
 }

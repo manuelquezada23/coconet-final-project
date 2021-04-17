@@ -8,6 +8,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.example.springboot.security.jpa.SecureToken;
+
 @Entity
 @Table(	name = "users",
         uniqueConstraints = {
@@ -34,11 +36,18 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @NotBlank
+    private boolean verified;
+
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy="user")
+    private Set<SecureToken> tokens = new HashSet<>();
 
     public User() {}
 
@@ -46,6 +55,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.verified = false;
     }
 
     @Override
@@ -94,6 +104,10 @@ public class User {
     public Set<Role> getRoles() { return roles; }
 
     public void setRoles(Set<Role> roles) { this.roles = roles; }
+
+    public @NotBlank boolean getVerifiedStatus() { return verified; }
+
+    public void setVerifiedStatus(boolean verified) { this.verified = verified; }
 
     @Override
     public String toString() {
