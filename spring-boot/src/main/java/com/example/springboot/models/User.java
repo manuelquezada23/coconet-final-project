@@ -8,7 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.example.springboot.security.jpa.SecureToken;
+import com.example.springboot.security.token.SecureToken;
 
 @Entity
 @Table(	name = "users",

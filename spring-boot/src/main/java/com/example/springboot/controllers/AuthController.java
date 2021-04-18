@@ -8,7 +8,7 @@ import javax.validation.Valid;
 
 import com.example.springboot.email.context.AccountVerificationEmailContext;
 import com.example.springboot.email.service.EmailService;
-import com.example.springboot.security.jpa.SecureToken;
+import com.example.springboot.security.token.SecureToken;
 import com.example.springboot.security.jwt.AuthTokenFilter;
 import com.example.springboot.security.token.DefaultSecureTokenService;
 import com.example.springboot.security.token.SecureTokenService;
