@@ -34,6 +34,7 @@ export default class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.sp_handleLogin = this.sp_handleLogin.bind(this);
 
     this.state = {
       username: "",
@@ -78,9 +79,45 @@ export default class Login extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       const encryptedPassword = this.encryptPassword();
       AuthService.login(this.state.username, encryptedPassword).then(
-        () => {
-          this.props.history.push("/settings-profile");
-          window.location.reload();
+        response => {
+          this.props.history.push(`/${response.id}/settings-profile`);
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  sp_handleLogin(e) {
+    e.preventDefault();
+
+    this.setState({
+      message: "",
+      loading: true
+    });
+
+    this.form.validateAll();
+
+    if (this.checkBtn.context._errors.length === 0) {
+      const encryptedPassword = this.encryptPassword();
+      AuthService.login(this.state.username, encryptedPassword).then(
+        response => {
+          this.props.history.push(`/sp/${response.id}/settings-profile`);
         },
         error => {
           const resMessage =
@@ -110,7 +147,7 @@ export default class Login extends Component {
         <div className="logInBody">
             <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
             <h1 style={{marginTop: "0px"}}>Service Providers</h1>
-            <Form onSubmit={this.handleLogin} ref={c => { this.form = c;}} className="LogInForm">
+            <Form onSubmit={this.sp_handleLogin} ref={c => { this.form = c;}} className="LogInForm">
               <div className="logInTextWrapper">
                 <Input id="logInText" type="text" placeholder="Email" name="username" value={this.state.username} onChange={this.onChangeUsername} validations={[required, email]}/>
               </div>

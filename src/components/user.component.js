@@ -1,21 +1,41 @@
 import React, { Component } from "react";
-import './App.css';
-import NavigationBar from "./NavigationBar.js"
-import AuthService from "./services/auth.service";
+import '../App.css';
+import NavigationBar from "../NavigationBar.js"
+import AuthService from "../services/auth.service";
 
-export default class SettingsProfile extends Component {
+//<button id="editrProfile" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile/editing`)}}>Edit Profile</button>
+
+export default class userProfile extends Component {
     constructor(props) {
         super(props);
-    
+        this.getTutorial = this.getTutorial.bind(this);
         this.state = {
           currentUser: AuthService.getCurrentUser()
         };
-      }
+    }
+
+    componentDidMount() {
+        this.getTutorial(this.props.match.params.id);
+    }
+  
+    getTutorial(id) {
+        AuthService.get(id)
+          .then(response => {
+            this.setState({
+              currentUser: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    }
 
     sendToPage(link) {
         window.location.href = link;
     }
     render() {
+        const { currentUser } = this.state;
         return (
             <React.Fragment>
                 <NavigationBar />
@@ -34,14 +54,11 @@ export default class SettingsProfile extends Component {
                             </div>
                         </div>
                         <div className='SettingsContent'>
-                            <div>First Name
-                                <div>firstName</div>
+                            <div>Username:
+                                <div>{currentUser.name}</div>
                             </div>
-                            <div>Last Name
-                                <div>lastName</div>
-                            </div>
-                            <div>Email
-                                <div>email</div>
+                            <div>Email:
+                                <div>{currentUser.email}</div>
                             </div>
                         </div>
                     </div>
@@ -49,7 +66,7 @@ export default class SettingsProfile extends Component {
                         Profile info goes here.
                         {/* <User /> */}
                         <button id="logout" onClick={() => {AuthService.logout()}}>Log Out</button>
-                        <button id="editrProfile" onClick={() => {this.sendToPage("/settings-profile/user")}}>Edit Profile</button>
+                        
                     </div>
                 </div>
             </React.Fragment>

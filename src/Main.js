@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./Home.js"
 import NotFound from "./NotFound.js"
-import SPAbout from "./SPAbout.js"
+import SPAbout from "./components/about.component"
 import SPProjects from "./SPProjects.js"
 import SPPreviousClients from "./SPPreviousClients.js"
 import SPQualifications from "./SPQualifications.js"
@@ -13,9 +13,10 @@ import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
 import SP from "./components/sp.component.js"
-import SettingsProfile from "./SettingsProfile.js"
-
-//import User from "./User.js"
+import spProfile from "./components/spprofile.component"
+import userProfile from "./components/user.component"
+import spedit from "./components/spedit.component.js"
+import edit from "./components/edit.component.js"
 
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
@@ -31,20 +32,22 @@ const Main = () => {
             <Route exact path='/signup-service-provider' component={SPSignUp}></Route>
 
             {/* Service Provider Pages */}
-            <Route exact path='/service-provider_id/about' component={SPAbout}></Route>
-            <Route exact path='/service-provider_id/projects' component={SPProjects}></Route>
-            <Route exact path='/service-provider_id/previous-clients' component={SPPreviousClients}></Route>
-            <Route exact path='/service-provider_id/qualifications' component={SPQualifications}></Route>
-            <Route exact path='/service-provider_id/licenses-and-certifications' component={SPLicensesAndCertifications}></Route>
-            <Route exact path='/service-provider_id/contact' component={SPContact}></Route>
+            <Route exact path='/sp/:id' component={SPAbout}></Route>
+            <Route exact path='/sp/:id/projects' component={SPProjects}></Route>
+            <Route exact path='/sp/:id/previous-clients' component={SPPreviousClients}></Route>
+            <Route exact path='/sp/:id/qualifications' component={SPQualifications}></Route>
+            <Route exact path='/sp/:id/licenses-and-certifications' component={SPLicensesAndCertifications}></Route>
+            <Route exact path='/sp/:id/contact' component={SPContact}></Route>
 
             <Route exact path='/sp' component={SP}></Route>
 
             {/* Settings Pages */}
-            <Route exact path='/settings-profile' component={SettingsProfile}></Route>
-            {/* <Route exact path='/settings-profile/user' component={User}></Route> */}
-            <Route exact path='/settings-general' component={SettingsGeneral}></Route>
-            <Route exact path='/settings-privacy' component={SettingsPrivacy}></Route>
+            <Route exact path='/sp/:id/settings-profile' component={spProfile}></Route>
+            <Route exact path='/:id/settings-profile' component={userProfile}></Route>
+            <Route exact path='/sp/:id/settings-profile/editing' component={spedit}></Route>
+            <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
+            <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
+            <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
 
             {/* Handling error 404 */}
             <Route component={NotFound}></Route>

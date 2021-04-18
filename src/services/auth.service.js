@@ -43,6 +43,18 @@ class AuthService {
   getAll() {
     return axios.get(API_URL + "sp");
   }
+
+  sp_update(id, data) {
+    return axios.put(API_URL + `sp/${id}/settings-profile/editing`, data);
+  }
+
+  update(id, data) {
+    return axios.put(API_URL + `${id}/settings-profile/editing`, data);
+  }
+
+  get(id) {
+    return axios.get(API_URL + `sp/${id}`);
+  }
 }
 
 export default new AuthService();

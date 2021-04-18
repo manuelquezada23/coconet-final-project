@@ -41,6 +41,16 @@ public class User {
   
     private ERole role;
 
+    private String location;
+    private String phone;
+    private String website;
+    private String sptype;
+    private boolean ved;
+    private boolean qualified;
+    private String description;
+    private String logo;
+
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -56,7 +66,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.verified = false;
     }
 
     @Override
@@ -77,7 +86,6 @@ public class User {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -85,7 +93,6 @@ public class User {
     public String getName() {
         return username;
     }
-
     public void setName(String name) {
         this.username = name;
     }
@@ -93,35 +100,77 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
     public String getPassword() { return password; }
-
     public void setPassword(String password) { this.password = password; }
 
     public Set<Role> getRoles() { return roles; }
-
     public void setRoles(Set<Role> roles) { this.roles = roles; }
 
     public @NotBlank boolean getVerifiedStatus() { return verified; }
-
     public void setVerifiedStatus(boolean verified) { this.verified = verified; }
 
     public ERole getRole() { return role; }
-
     public void setRole(ERole role) { this.role = role; }
 
-
-    public boolean isSP() {
-        if (this.roles.contains(ERole.ROLE_SP)){
-            return true;
-        }
-        return false;
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String email) {
+        this.location = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String email) {
+        this.phone = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+    public void setWebsite(String email) {
+        this.website = email;
+    }
+
+    public String getSptype() {
+        return sptype;
+    }
+    public void setSptype(String email) {
+        this.sptype = email;
+    }
+
+    public boolean getVed() {
+        return ved;
+    }
+    public void setVed(boolean email) {
+        this.ved = email;
+    }
+
+    public boolean getQualified() {
+        return qualified;
+    }
+    public void setQualified(boolean email) {
+        this.qualified = email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String email) {
+        this.description = email;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+    public void setLogo(String email) {
+        this.logo = email;
+    }
     @Override
     public String toString() {
         return "User{" +

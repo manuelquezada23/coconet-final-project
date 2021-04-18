@@ -3,8 +3,8 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import Logo from "./../images/coconet-logo.png"
-import CryptoJS from 'crypto-js' ;
+import Logo from "./../images/coconet-logo.png";
+import CryptoJS from 'crypto-js';
 
 import AuthService from "./../services/auth.service";
 
@@ -52,14 +52,12 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
-    this.onChangeFirstName = this.onChangeFirstName.bind(this);
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
 
     this.state = {
-      firstName: "",
       lastName: "",
       email: "",
       password: "",
@@ -70,12 +68,6 @@ export default class Register extends Component {
 
   sendToPage(link) {
     window.location.href = link;
-  }
-
-  onChangeFirstName(e) {
-    this.setState({
-      firstName: e.target.value
-    });
   }
 
   onChangeLastName(e) {
@@ -129,7 +121,7 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       const hashedPassword = this.encryptPassword();
       AuthService.register(
-        this.state.firstName+this.state.lastName,
+        this.state.lastName,
         this.state.email,
         hashedPassword,
         ["user"]
@@ -171,24 +163,13 @@ export default class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div className="logInTextWrapper">
-                  <Input
-                    id="logInText"
-                    placeholder="First Name"
-                    type="text"
-                    name="firstname"
-                    value={this.state.firstName}
-                    onChange={this.onChangeFirstName}
-                    validations={[required, vusername]}
-                  />
-                </div>
 
                 <div className="logInTextWrapper">
                   <Input
                     id="logInText"
-                    placeholder="Last Name"
+                    placeholder="Username"
                     type="text"
-                    name="lastname"
+                    name="username"
                     value={this.state.lastName}
                     onChange={this.onChangeLastName}
                     validations={[required, vusername]}

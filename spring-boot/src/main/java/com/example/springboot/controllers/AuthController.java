@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.springboot.models.ERole;
 import com.example.springboot.models.Role;
@@ -229,5 +231,53 @@ public class AuthController {
         }
 
         return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    
+    }
+
+    @GetMapping("/sp/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            return new ResponseEntity<>(UserData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PutMapping("/sp/{id}/settings-profile/editing")
+    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            User _user = UserData.get();
+            //_user.setName(user.getName());
+            _user.setLocation(user.getLocation());
+            _user.setPhone(user.getPhone());
+            _user.setWebsite(user.getWebsite());
+            _user.setSptype(user.getSptype());
+            _user.setVed(user.getVed());
+            _user.setQualified(user.getQualified());
+            _user.setDescription(user.getDescription());
+            _user.setLogo(user.getLogo());
+
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}/settings-profile/editing")
+    public ResponseEntity<User> updateSP(@PathVariable("id") long id, @RequestBody User user) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            User _user = UserData.get();
+            _user.setName(user.getName());
+
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

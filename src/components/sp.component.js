@@ -17,7 +17,7 @@ export default class SP extends Component {
       this.state = {
         users: [],
         //currentTutorial: null,
-        currentIndex: -1,
+        //currentIndex: -1,
         searchUsername: ""
       };
     }
@@ -71,7 +71,7 @@ export default class SP extends Component {
     }
   
     render() {
-        const { users, currentIndex, searchUsername } = this.state;
+        const { users, searchUsername } = this.state;
 
         return (
           <React.Fragment>
@@ -155,17 +155,21 @@ export default class SP extends Component {
                     <ul className="list-group">
                       {users &&
                         users.map((user, index) => (
-                        <li className="splist">
+                        <li className="splist" key={user.id}>
                           <div className="SearchBodyRightContent">
                             <div className="SearchResults">
-                              <img className="SearchResultsLogo" src="https://livejones.com/wp-content/uploads/2020/05/logo-Placeholder.png"></img>
+                              <img className="SearchResultsLogo" src={user.logo}></img>
                               <div className="SearchResultsInfo">
-                                  <p id="SearchResultsInfoName">{user.name}</p>
-                                  <p id="SearchResultsInfoLocation">SP Location</p>
-                                  <p id="SearchResultsInfoService">SP Service</p>
+                                  <Link id="SearchResultsInfoName" onClick={() => {this.sendToPage(`/sp/${user.id}`)}}>{user.name}</Link>
+                                  <p id="SearchResultsInfoLocation">{user.location}</p>
+                                  <p id="SearchResultsInfoService">{user.sptype}</p>
                                   <div className="SearchResultsInfoBadges">
-                                      <img className="SearchResultsInfoBadge" src={VerifiedBadge}></img>
-                                      <img className="SearchResultsInfoBadge" src={QualifiedBadge}></img>
+                                    <div style={{ display: user.ved ? "inline" : "none"}}>
+                                      <img className="SPBadge" src={VerifiedBadge}></img>
+                                    </div>
+                                    <div style={{ display: user.qualified ? "inline" : "none"}}>
+                                      <img className="SPBadge" src={QualifiedBadge}></img>
+                                    </div>
                                   </div>
                               </div>
                             </div>
