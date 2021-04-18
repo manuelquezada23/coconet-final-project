@@ -14,7 +14,9 @@ import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
 import SP from "./components/sp.component.js"
 import SettingsProfile from "./SettingsProfile.js"
-// import User from "./User.js"
+
+//import User from "./User.js"
+
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
 

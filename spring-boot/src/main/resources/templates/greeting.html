@@ -1,10 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Email verification</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Goodbye, ' + ${name} + '!'" />
+<div class="text" style="padding: 0 2.5em; text-align: center;">
+    <h2>Finish creating your account.</h2>
+    <h3>Hi<p th:text="${firstName}"></h3>
+    <h3>Welcome to Coconet. Please validate your email before log in</h3>
+    <a th:href="${verificationURL}" class="btn btn-primary">Validate Account</a></p>
+</div>
 </body>
 </html>

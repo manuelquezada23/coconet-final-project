@@ -44,9 +44,14 @@ export default class SettingsProfile extends Component {
                                 <div>email</div>
                             </div>
                         </div>
+                    </div>
+                    <div className='SettingsContent'>
+                        Profile info goes here.
+                        {/* <User /> */}
                         <button id="logout" onClick={() => {AuthService.logout()}}>Log Out</button>
                         <button id="editrProfile" onClick={() => {this.sendToPage("/settings-profile/user")}}>Edit Profile</button>
                     </div>
+                    <button id="editrProfile" onClick={() => {sendToPage("/settings-profile/user")}}>Edit Profile</button>
                 </div>
             </React.Fragment>
         )

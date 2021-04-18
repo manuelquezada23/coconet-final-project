@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Logo from "./../images/coconet-logo.png"
 import { isEmail } from "validator";
-
+import CryptoJS from 'crypto-js' ;
 
 import AuthService from "./../services/auth.service";
 
@@ -59,6 +59,12 @@ export default class Login extends Component {
     });
   }
 
+  encryptPassword() {
+    const hashedPassword = CryptoJS.SHA256(this.state.password).toString();
+    console.log(hashedPassword);
+    return hashedPassword;
+  }
+
   handleLogin(e) {
     e.preventDefault();
 
@@ -70,7 +76,8 @@ export default class Login extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.username, this.state.password).then(
+      const encryptedPassword = this.encryptPassword();
+      AuthService.login(this.state.username, encryptedPassword).then(
         () => {
           this.props.history.push("/settings-profile");
           window.location.reload();
