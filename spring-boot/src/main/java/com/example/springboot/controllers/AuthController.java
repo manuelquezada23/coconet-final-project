@@ -178,25 +178,30 @@ public class AuthController {
             List<User> users = new ArrayList<>();
             userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
 
-            List<User> to_return = new ArrayList<>();
-
-            for (User u: users) {
-                to_return.add(u);
-            }
+            Set<User> to_return = new HashSet<>();
 
             if (username != null) {
+                String[] user_list = username.split(" ");
                 for (User u: users) {
-                    if (!u.getName().contains(username)){
-                        to_return.remove(u);
+                    for (String a: user_list) {
+                        if (u.getName().contains(a)) {
+                            to_return.add(u);
+                        }
                     }
+                }
+            } else {
+                for (User u: users) {
+                    to_return.add(u);
                 }
             }
 
-            if (to_return.isEmpty()) {
+            List<User> a = new ArrayList<>(to_return);
+
+            if (a.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            return new ResponseEntity<>(to_return, HttpStatus.OK);
+            return new ResponseEntity<>(a, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

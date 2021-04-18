@@ -32,6 +32,7 @@ export default class SP extends Component {
       this.setState({
         searchUsername: searchTitle
       });
+      this.searchUsername();
     }
   
     retrieveUsers() {
