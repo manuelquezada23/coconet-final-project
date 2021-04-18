@@ -38,7 +38,8 @@ public class User {
 
     @NotBlank
     private boolean verified;
-
+  
+    private ERole role;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
@@ -108,6 +109,18 @@ public class User {
     public @NotBlank boolean getVerifiedStatus() { return verified; }
 
     public void setVerifiedStatus(boolean verified) { this.verified = verified; }
+
+    public ERole getRole() { return role; }
+
+    public void setRole(ERole role) { this.role = role; }
+
+
+    public boolean isSP() {
+        if (this.roles.contains(ERole.ROLE_SP)){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

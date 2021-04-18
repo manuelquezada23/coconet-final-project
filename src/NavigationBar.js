@@ -31,22 +31,15 @@ export default class NavigationBar extends Component {
                     <div className="navigationBar">
                         <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                        <div id="searchBar">
-                                <select name="searchValue" id="searchBarDropdown">
-                                    <option value="serviceProviders">Service Providers</option>
-                                    <option value="projects">Projects</option>
-                                </select>
-                            <div id="line"></div>
-                            <input autocomplete="off" id="searchInputText" type="text" name="email" />
-                            <div id="line2"></div>
-                            <img id="searchIcon" alt="searchIcon" src={SearchIcon}></img>
-                        </div>
+                        <button onClick={() => {this.sendToPage("/sp")}}>Service Providers</button>
                         <div id="loggedInMenu">
                             <div className="loggedInDashboard" onClick={() => {this.sendToPage("/settings-profile")}}>
                                 <img className="loggedInPicture" src={Placeholder}></img>
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
+
                             <button id="logout" onClick={() => {this.logOut()}}>logout</button>
+
                         </div>
                     </div>
                 </React.Fragment>
@@ -57,16 +50,7 @@ export default class NavigationBar extends Component {
                     <div className="navigationBar">
                         <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                        <div id="searchBar">
-                                <select name="searchValue" id="searchBarDropdown">
-                                    <option value="serviceProviders">Service Providers</option>
-                                    <option value="projects">Projects</option>
-                                </select>
-                            <div id="line"></div>
-                            <input autocomplete="off" id="searchInputText" type="text" name="email" />
-                            <div id="line2"></div>
-                            <img id="searchIcon" alt="searchIcon" src={SearchIcon}></img>
-                        </div>
+                        <button onClick={() => {this.sendToPage("/sp")}}>Service Providers</button>
                         <div id="navBarButtons">
                             <div className="userButtons">
                                 <button className="logInButton" onClick={() => {this.sendToPage("/login")}}>Log In</button>

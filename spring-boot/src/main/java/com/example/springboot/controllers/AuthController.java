@@ -151,6 +151,8 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        Role role = roles.iterator().next();
+        user.setRole(role.getName());
         userRepository.save(user);
 
         // Send registration email
@@ -169,38 +171,36 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully, confirm your email address!"));
     }
-    /*
-    @GetMapping("/search")
+  
+    @GetMapping("/sp")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
         try {
-            List<User> users = new ArrayList<User>();
+            List<User> users = new ArrayList<>();
+            userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
 
-            if (username == null)
-            {
-                userRepository.findAll().forEach(users::add);
-            } else {
-                userRepository.findByNameContaining(username).forEach(users::add);
-            }
+            List<User> to_return = new ArrayList<>();
 
-            if (users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-
-            //For selecting sp
             for (User u: users) {
-                if (!u.getRoles().contains(ERole.ROLE_SP)){
-                    users.remove(u);
+                to_return.add(u);
+            }
+
+            if (username != null) {
+                for (User u: users) {
+                    if (!u.getName().contains(username)){
+                        to_return.remove(u);
+                    }
                 }
             }
 
+            if (to_return.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
 
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            return new ResponseEntity<>(to_return, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    */
 
     @GetMapping("/verify")
     public ResponseEntity<?> verifyCustomer(@RequestParam(required = false) String token){
@@ -223,5 +223,6 @@ public class AuthController {
                     .body(new MessageResponse("Token is not valid"));
         }
 
-        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    }
+        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    
+    }
 }

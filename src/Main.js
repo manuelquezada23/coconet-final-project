@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./Home.js"
 import NotFound from "./NotFound.js"
@@ -12,9 +12,11 @@ import LogIn from "./components/login.component"
 import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
-import Search from "./Search.js"
+import SP from "./components/sp.component.js"
 import SettingsProfile from "./SettingsProfile.js"
+
 //import User from "./User.js"
+
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
 
@@ -36,10 +38,11 @@ const Main = () => {
             <Route exact path='/service-provider_id/licenses-and-certifications' component={SPLicensesAndCertifications}></Route>
             <Route exact path='/service-provider_id/contact' component={SPContact}></Route>
 
-            <Route exact path='/search' component={Search}></Route>
+            <Route exact path='/sp' component={SP}></Route>
 
             {/* Settings Pages */}
             <Route exact path='/settings-profile' component={SettingsProfile}></Route>
+            {/* <Route exact path='/settings-profile/user' component={User}></Route> */}
             <Route exact path='/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/settings-privacy' component={SettingsPrivacy}></Route>
 
