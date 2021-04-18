@@ -1006,3 +1006,51 @@ input[type=text] {
   cursor: pointer;
   margin-bottom: 30px;
 }
+
+.ProfileCreation {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ProfileCreationBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.formBody {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#descriptionText {
+  width: 250px;
+  min-height: 30px;
+  max-width: 250px;
+  max-height: 150px;
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 6px;
+  vertical-align: top;
+  text-align: left;
+}
+
+#imagePicker {
+  width: 250px;
+  height: 30px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+#serviceDropdown {
+  width: 255px;
+  height: 30px;
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 6px;
+}
