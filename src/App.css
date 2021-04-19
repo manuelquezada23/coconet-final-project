@@ -87,43 +87,6 @@ a:hover, a:visited, a:link, a:active {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1100px) {
-  #navBarButtons { 
-    display: none;
-  }
-  #loggedInMenu {
-    display: none;
-  }
-  #searchBar {
-    position: absolute;
-    left: 90px;
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  #searchBar {
-    position: absolute;
-    left: 80px;
-    width: 70%;
-  }
-  #searchBarDropdown {
-    display: none;
-  }
-  #line {
-    display: none;
-  }
-  #searchIcon {
-    position: absolute;
-    right: 0px;
-  }
-  #searchInputText {
-    position: absolute;
-    left: 0px;
-    width: 70%;
-  }
-}
-
 .navigationBar {
   background-color: #D8D4D3;
   height: 100px;
@@ -145,8 +108,9 @@ a:hover, a:visited, a:link, a:active {
   height: 50px;
   min-width: 160px;
   margin-left: 40px;
-  position: relative;
+  position: absolute;
   top: 20px;
+  left: 70px;
   background-image: url("./images/coconet-logo-text.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -160,18 +124,13 @@ a:hover, a:visited, a:link, a:active {
   cursor: pointer;
 }
 
-@media screen and (max-width: 1300px) {
-  #navigationBarLogoText { 
-    display: none;
-  }
-}
-
 #searchBar {
   position: relative;
   height: 50px;
-  top: 25px;
-  margin-left: 50px;
+  top: 15px;
+  margin-left: 30px;
   margin-right: 50px;
+  margin-bottom: 30px;
   width: 60%;
   border-radius: 60px;
   border: 1px solid black;
@@ -201,6 +160,22 @@ a:hover, a:visited, a:link, a:active {
   height: 35px;
   margin-right: 20px;
   top: 7px;
+  cursor: pointer;
+}
+
+#searchIconNavBar {
+  position: absolute;
+  height: 35px;
+  top: 35px;
+  left: 325px;
+  cursor: pointer;
+}
+
+#navBarBrowsingText {
+  position: absolute;
+  height: 35px;
+  top: 22px;
+  left: 375px;
   cursor: pointer;
 }
 
@@ -269,40 +244,12 @@ a:hover, a:visited, a:link, a:active {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 975px) {
   #navBarButtons { 
     display: none;
   }
   #loggedInMenu {
     display: none;
-  }
-  #searchBar {
-    position: absolute;
-    left: 90px;
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  #searchBar {
-    position: absolute;
-    left: 80px;
-    width: 70%;
-  }
-  #searchBarDropdown {
-    display: none;
-  }
-  #line {
-    display: none;
-  }
-  #searchIcon {
-    position: absolute;
-    right: 0px;
-  }
-  #searchInputText {
-    position: absolute;
-    left: 0px;
-    width: 70%;
   }
 }
 
@@ -721,13 +668,13 @@ th {
   height: 100px;
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 }
 
 .SearchBodyLeft {
   width: 40%;
   height: auto;
   min-width: 375px;
+  margin-top: -10px;
 }
 
 .SearchBodyRight {
@@ -735,6 +682,7 @@ th {
   margin-right: 20px;
   position: relative;
   top: 55px;
+  margin-top: -10px;
 }
 
 .SearchBodyRightContent {
