@@ -20,6 +20,9 @@ import edit from "./components/edit.component.js"
 
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
+import About from "./About.js"
+import ProfileCreationUser from "./components/profile-creation-user.js"
+import ProfileCreationSP from "./components/profile-creation-sp.js"
 
 const Main = () => {
   return (
@@ -48,6 +51,9 @@ const Main = () => {
             <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
             <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
+            <Route exact path="/about" component={About}></Route>
+            <Route exact path="/profile-creation" component={ProfileCreationUser}></Route>
+            <Route exact path="/profile-creation-service-provider" component={ProfileCreationSP}></Route>
 
             {/* Handling error 404 */}
             <Route component={NotFound}></Route>

@@ -11,6 +11,9 @@ import RightArrow from "./images/right-arrow.png";
 import Background from "./images/home-background.jpeg"
 
 function Home() {
+    function sendToPage(link) {
+        window.location.href = link;
+    }
     return (
         <React.Fragment>
             <NavigationBar />
@@ -19,6 +22,7 @@ function Home() {
             </div>
             <div className="bodyFront">
                 <h1 className="bodyHeadingText"><strong>Find Qualified Service Providers<br/>for your project.</strong></h1>
+                <h2 style={{paddingTop: "0", marginBottom: "0px", cursor: "pointer"}} onClick={() => {sendToPage("/about")}}>Learn More</h2>
                 
                 <div className="serviceCategoriesContainer">
                     <a className="serviceCategoryBox" href="/search">

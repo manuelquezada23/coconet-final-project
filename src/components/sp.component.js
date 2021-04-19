@@ -10,6 +10,7 @@ export default class SP extends Component {
     constructor(props) {
       super(props);
       this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+      this.onChangeSearchClientType = this.onChangeSearchClientType.bind(this);
       this.retrieveUsers = this.retrieveUsers.bind(this);
       this.refreshList = this.refreshList.bind(this);
       this.searchUsername = this.searchUsername.bind(this);
@@ -18,7 +19,8 @@ export default class SP extends Component {
         users: [],
         //currentTutorial: null,
         //currentIndex: -1,
-        searchUsername: ""
+        searchUsername: "",
+        clienttype: ""
       };
     }
   
@@ -33,6 +35,15 @@ export default class SP extends Component {
         searchUsername: searchTitle
       });
       this.searchUsername();
+    }
+
+    onChangeSearchClientType(e) {
+      const c = e.target.value;
+  
+      this.setState({
+        clienttype: c
+      });
+      //this.searchUsername();
     }
   
     retrieveUsers() {
@@ -66,12 +77,25 @@ export default class SP extends Component {
         });
     }
 
+    searchType() {
+      AuthService.findByTitle(this.state.searchUsername)
+        .then(response => {
+          this.setState({
+            users: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
     sendToPage(link) {
       window.location.href = link;
     }
   
     render() {
-        const { users, searchUsername } = this.state;
+        const { users, searchUsername, clienttype } = this.state;
 
         return (
           <React.Fragment>
@@ -120,8 +144,9 @@ export default class SP extends Component {
                               <p>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="clientTypeDropdown">
-                                  <option value="clientTypeValue">Pharmaceuticals</option>
+                              <select name="searchValue" id="clientTypeDropdown" value={clienttype} onChange={this.onChangeSearchClientType}>
+                                  <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                  <option value="Asd">Asd</option>
                               </select>
                           </div>
                       </div>
