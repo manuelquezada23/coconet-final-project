@@ -209,6 +209,70 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/sp/location")
+    public ResponseEntity<List<User>> getLocations(@RequestParam(required = false) String location) {
+        try {
+            List<User> users = new ArrayList<>();
+            userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
+
+            Set<User> to_return = new HashSet<>();
+
+            if (location != null) {
+                for (User u: users) {
+                    if (u.getLocation().equals(location)) {
+                        to_return.add(u);
+                    }
+                }
+            } else {
+                for (User u: users) {
+                    to_return.add(u);
+                }
+            }
+
+            List<User> a = new ArrayList<>(to_return);
+
+            if (a.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(a, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/sp/service")
+    public ResponseEntity<List<User>> getServices(@RequestParam(required = false) String service) {
+        try {
+            List<User> users = new ArrayList<>();
+            userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
+
+            Set<User> to_return = new HashSet<>();
+
+            if (service != null) {
+                for (User u: users) {
+                    if (u.getSptype().equals(service)) {
+                        to_return.add(u);
+                    }
+                }
+            } else {
+                for (User u: users) {
+                    to_return.add(u);
+                }
+            }
+
+            List<User> a = new ArrayList<>(to_return);
+
+            if (a.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(a, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/verify")
     public ResponseEntity<?> verifyCustomer(@RequestParam(required = false) String token){
         try {

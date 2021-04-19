@@ -13,26 +13,72 @@ export default class SP extends Component {
       this.retrieveUsers = this.retrieveUsers.bind(this);
       this.refreshList = this.refreshList.bind(this);
       this.searchUsername = this.searchUsername.bind(this);
+      this.handleLocation = this.handleLocation.bind(this);
+      this.searchLocation = this.searchLocation.bind(this);
+      this.handleService = this.handleService.bind(this);
+      this.searchService = this.searchService.bind(this);
+      this.settotal = this.settotal.bind(this);
   
       this.state = {
         users: [],
         //currentTutorial: null,
         //currentIndex: -1,
-        searchUsername: ""
+        searchUsername: "",
+        location: "",
+        service: "",
+        totalusers: []
       };
     }
   
     componentDidMount() {
       this.retrieveUsers();
+      this.settotal();
     }
-  
+
+    filterBender = data => {
+      const {searchUsername, location, service} = this.state;
+      if(searchUsername && !data.name.toLowerCase().includes(searchUsername)) return false;
+      if(location && data.location !== location) return false;
+      if(service && data.sptype !== service) return false;
+      return true;
+    }
+
+    settotal() {
+      AuthService.getAll()
+        .then(response => {
+          this.setState({
+            totalusers: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
+    handleLocation(e) {
+      const searchTitle = e.target.value;
+      this.setState({ location: searchTitle }, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
+      });
+    }
+
+    handleService(e) {
+      const searchTitle = e.target.value;
+      this.setState({ service: searchTitle }, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
+      });
+    }
+
     onChangeSearchTitle(e) {
       const searchTitle = e.target.value;
   
-      this.setState({
-        searchUsername: searchTitle
+      this.setState({ searchUsername: searchTitle }, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
       });
-      this.searchUsername();
     }
   
     retrieveUsers() {
@@ -50,11 +96,36 @@ export default class SP extends Component {
   
     refreshList() {
       this.retrieveUsers();
-      this.setState({ currentIndex: -1});
     }
   
     searchUsername() {
       AuthService.findByTitle(this.state.searchUsername)
+        .then(response => {
+          this.setState({
+            users: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
+    searchLocation() {
+      AuthService.getlocation(this.state.location)
+        .then(response => {
+          this.setState({
+            users: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
+    searchService() {
+      AuthService.getservice(this.state.service)
         .then(response => {
           this.setState({
             users: response.data
@@ -71,7 +142,7 @@ export default class SP extends Component {
     }
   
     render() {
-        const { users, searchUsername } = this.state;
+        const { users, searchUsername, location, service, totalusers } = this.state;
 
         return (
           <React.Fragment>
@@ -98,8 +169,11 @@ export default class SP extends Component {
                               <p>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="servicesDropdown">
-                                  <option value="servicesValue">Design</option>
+                              <select name="searchValue" id="locationDropdown" value={service} onChange={this.handleService}>
+                                <option></option>
+                                {totalusers.map((option) => (
+                                  <option value={option.sptype}>{option.sptype}</option>
+                                ))}
                               </select>
                           </div>
                       </div>
@@ -109,47 +183,15 @@ export default class SP extends Component {
                               <p>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="locationDropdown">
-                                  <option value="locationValue">Puerto Rico</option>
+                              <select name="searchValue" id="locationDropdown" value={location} onChange={this.handleLocation}>
+                                <option></option>
+                                {totalusers.map((option) => (
+                                  <option value={option.location}>{option.location}</option>
+                                ))}
                               </select>
                           </div>
                       </div>
-                      <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Client Type</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="clientTypeDropdown">
-                                  <option value="clientTypeValue">Pharmaceuticals</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Employees</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="employeesDropdown">
-                                  <option value="employeesValue">100+</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <div className="SearchCredentialsDropdown">
-                                  <img className="SearchPageBadge" src={VerifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Verified</div>
-                                  <img className="SearchPageBadge" src={QualifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Qualified</div>
-                              </div>
-                          </div>
-                      </div>
+                      
                   </div>
                   <div className="SearchBodyRight">
                     <ul className="list-group">
@@ -185,3 +227,42 @@ export default class SP extends Component {
       )
     }
   }
+
+  /*
+  <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Client Type</p>
+                              <p>Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <select name="searchValue" id="clientTypeDropdown">
+                                  <option value="clientTypeValue">Pharmaceuticals</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Employees</p>
+                              <p>Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <select name="searchValue" id="employeesDropdown">
+                                  <option value="employeesValue">100+</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
+                              <p>Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <div className="SearchCredentialsDropdown">
+                                  <img className="SearchPageBadge" src={VerifiedBadge}></img>
+                                  <div className="SearchPageBadgeText">Verified</div>
+                                  <img className="SearchPageBadge" src={QualifiedBadge}></img>
+                                  <div className="SearchPageBadgeText">Qualified</div>
+                              </div>
+                          </div>
+                      </div>
+                      */

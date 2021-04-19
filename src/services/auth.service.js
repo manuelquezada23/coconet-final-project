@@ -55,6 +55,14 @@ class AuthService {
   get(id) {
     return axios.get(API_URL + `sp/${id}`);
   }
+
+  getlocation(location) {
+    return axios.get(API_URL + `sp/location?location=${location}`);
+  }
+
+  getservice(service) {
+    return axios.get(API_URL + `sp/service?service=${service}`);
+  }
 }
 
 export default new AuthService();
