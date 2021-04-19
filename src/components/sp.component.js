@@ -31,8 +31,8 @@ export default class SP extends Component {
     }
   
     componentDidMount() {
-      this.retrieveUsers();
       this.settotal();
+      
     }
 
     filterBender = data => {
@@ -50,10 +50,18 @@ export default class SP extends Component {
             totalusers: response.data
           });
           console.log(response.data);
+          if (this.props.match.params.service){
+            this.setState({
+              service: this.props.match.params.service
+            })
+          }
+          const a = this.state.totalusers.filter(this.filterBender);
+          this.setState({users : a});
         })
         .catch(e => {
           console.log(e);
         });
+      
     }
 
     handleLocation(e) {
@@ -82,6 +90,7 @@ export default class SP extends Component {
     }
   
     retrieveUsers() {
+      /*
         AuthService.getAll()
         .then(response => {
           this.setState({
@@ -92,6 +101,9 @@ export default class SP extends Component {
         .catch(e => {
           console.log(e);
         });
+        */
+      const a = this.state.totalusers.filter(this.filterBender);
+      this.setState({users : a});
     }
   
     refreshList() {

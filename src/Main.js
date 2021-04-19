@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from "./Home.js"
+import Home from "./components/home.component"
 import NotFound from "./NotFound.js"
 import SPAbout from "./components/about.component"
 import SPProjects from "./SPProjects.js"
@@ -12,11 +12,11 @@ import LogIn from "./components/login.component"
 import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
-import SP from "./components/sp.component.js"
+import SP from "./components/sp.component"
 import spProfile from "./components/spprofile.component"
 import userProfile from "./components/user.component"
-import spedit from "./components/spedit.component.js"
-import edit from "./components/edit.component.js"
+import spedit from "./components/spedit.component"
+import edit from "./components/edit.component"
 
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
@@ -40,6 +40,7 @@ const Main = () => {
             <Route exact path='/sp/:id/contact' component={SPContact}></Route>
 
             <Route exact path='/sp' component={SP}></Route>
+            <Route exact path='/sp/service/:service' component={SP}></Route>
 
             {/* Settings Pages */}
             <Route exact path='/sp/:id/settings-profile' component={spProfile}></Route>
