@@ -1,11 +1,6 @@
 import React from "react";
 import NavigationBar from "./NavigationBar.js"
 import './App.css';
-// import Design from "./images/design-icon.jpeg";
-// import Construction from "./images/construction-icon.jpeg";
-// import Qualification from "./images/qualification-icon.jpeg";
-// import Maintenance from "./images/maintenance-icon.jpeg";
-// import Installation from "./images/installation-icon.jpeg";
 import LeftArrow from "./images/left-arrow.png";
 import RightArrow from "./images/right-arrow.png";
 import Background from "./images/home-background.jpeg"

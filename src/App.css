@@ -853,16 +853,20 @@ th {
   cursor: pointer;
 }
 
-.SettingsContent {
+.settingsContent {
   display: flex;
   flex-direction: column;
-  height: 350px;
-  justify-content: space-between;
+  max-width: 500px;
   width: 70%;
 }
 
-input[type=text] {
+#aboutSettings input[type=text] {
   width: 300px;
+}
+
+#settingsContent h2 {
+  padding-left: 50px;
+  margin-bottom: 5px;
 }
 
 .settignsCategoryPromt {
@@ -883,9 +887,26 @@ select {
   width: 300px;
 }
 
+#projectsSettings input {
+  width: 100%;
+}
+
+.projectNameInput {
+  min-width: 300px;
+}
+
+.projectDateInput {
+  min-width: 300px;
+}
+
+.projectPdfInput {
+  min-width: 150px;
+}
+
 .saveChangesButton {
   padding-top: 30px;
   padding-left: 225px;
+  padding-bottom: 20px;
 }
 
 .AboutBody {
