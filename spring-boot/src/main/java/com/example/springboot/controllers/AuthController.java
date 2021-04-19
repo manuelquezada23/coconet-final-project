@@ -1,17 +1,23 @@
 package com.example.springboot.controllers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.Optional;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
-import jdk.nashorn.internal.runtime.logging.DebugLogger;
-import lombok.extern.slf4j.Slf4j;
+import com.example.springboot.email.context.AccountVerificationEmailContext;
+import com.example.springboot.email.service.EmailService;
+import com.example.springboot.security.token.SecureToken;
+import com.example.springboot.security.jwt.AuthTokenFilter;
+import com.example.springboot.security.token.DefaultSecureTokenService;
+import com.example.springboot.security.token.SecureTokenService;
+import com.example.springboot.security.token.repository.SecureTokenRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.springboot.models.ERole;
 import com.example.springboot.models.Role;
@@ -38,6 +46,7 @@ import com.example.springboot.repository.RoleRepository;
 import com.example.springboot.repository.UserRepository;
 import com.example.springboot.security.jwt.JwtUtils;
 import com.example.springboot.security.services.UserDetailsImpl;
+import org.thymeleaf.util.StringUtils;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -58,11 +67,24 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
-    private DebugLogger log;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private SecureTokenService secureTokenService;
+
+    @Autowired
+    SecureTokenRepository secureTokenRepository;
+
+    @Autowired
+    private MessageSource messageSource;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+        logger.info(loginRequest.getPassword());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -131,39 +153,131 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        Role role = roles.iterator().next();
+        user.setRole(role.getName());
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-    }
+        // Send registration email
+        SecureToken secureToken= secureTokenService.createSecureToken();
+        secureToken.setUser(user);
+        secureTokenRepository.save(secureToken);
+        AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
+        emailContext.init(user);
+        emailContext.setToken(secureToken.getToken());
+        emailContext.buildVerificationUrl("http://localhost:8080/", secureToken.getToken());
+        try {
+            emailService.sendMail(emailContext);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
 
-    @GetMapping("/search")
+        return ResponseEntity.ok(new MessageResponse("User registered successfully, confirm your email address!"));
+    }
+  
+    @GetMapping("/sp")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
         try {
-            List<User> users = new ArrayList<User>();
-  
-            if (username == null)
-            {
-                userRepository.findAll().forEach(users::add);
+            List<User> users = new ArrayList<>();
+            userRepository.findByRole(ERole.ROLE_SP).forEach(users::add);
+
+            Set<User> to_return = new HashSet<>();
+
+            if (username != null) {
+                String[] user_list = username.split(" ");
+                for (User u: users) {
+                    for (String a: user_list) {
+                        if (u.getName().contains(a)) {
+                            to_return.add(u);
+                        }
+                    }
+                }
             } else {
-                userRepository.findByNameContaining(username).forEach(users::add);
+                for (User u: users) {
+                    to_return.add(u);
+                }
             }
-  
-            if (users.isEmpty()) {
+
+            List<User> a = new ArrayList<>(to_return);
+
+            if (a.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
-            /*
-            //For selecting sp
-            for (User u: users) {
-                if (!u.getRoles().contains(ERole.ROLE_SP)){
-                    users.remove(u);
-                }
-            }
-            */
-
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            return new ResponseEntity<>(a, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyCustomer(@RequestParam(required = false) String token){
+        try {
+            SecureToken secureToken = secureTokenService.findByToken(token);
+            if (Objects.isNull(secureToken) || !StringUtils.equals(token, secureToken.getToken()) || secureToken.isExpired()){
+                throw new Exception("Token is not valid");
+            }
+            User user = userRepository.getOne(secureToken.getUser().getId());
+            if (Objects.isNull(user)){
+                throw new Exception("User not exist");
+            }
+            user.setVerifiedStatus(true);
+            userRepository.save(user);
+
+            secureTokenService.removeToken(secureToken);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Token is not valid"));
+        }
+
+        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    
+    }
+
+    @GetMapping("/sp/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            return new ResponseEntity<>(UserData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @PutMapping("/sp/{id}/settings-profile/editing")
+    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            User _user = UserData.get();
+            //_user.setName(user.getName());
+            _user.setLocation(user.getLocation());
+            _user.setPhone(user.getPhone());
+            _user.setWebsite(user.getWebsite());
+            _user.setSptype(user.getSptype());
+            _user.setVed(user.getVed());
+            _user.setQualified(user.getQualified());
+            _user.setDescription(user.getDescription());
+            _user.setLogo(user.getLogo());
+
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}/settings-profile/editing")
+    public ResponseEntity<User> updateSP(@PathVariable("id") long id, @RequestBody User user) {
+        Optional<User> UserData = userRepository.findById(id);
+
+        if (UserData.isPresent()) {
+            User _user = UserData.get();
+            _user.setName(user.getName());
+
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
