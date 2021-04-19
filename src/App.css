@@ -907,21 +907,30 @@ th {
 .SettingsContent {
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 350px;
   justify-content: space-between;
   width: 70%;
 }
 
-.ChangeProfileInfoForm{
-  padding-left: 20px;
+input[type=text] {
+  width: 300px;
+}
+
+.settignsCategoryPromt {
+  text-align: right;
+  vertical-align: top;
+}
+
+.serviceTypeInputBox {
   display: flex;
-  flex-direction: column;
-  height: 300px;
-  justify-content: space-between;
+}
+
+select {
   width: 100%;
 }
 
-input[type=text] {
+.companyDescriptionInput {
+  height: 100px;
   width: 300px;
 }
 
