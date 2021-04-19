@@ -244,7 +244,7 @@ a:hover, a:visited, a:link, a:active {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 975px) {
+@media screen and (max-width: 900px) {
   #navBarButtons { 
     display: none;
   }
@@ -757,6 +757,7 @@ th {
   height: 40px;
   position: relative;
   top: 5px;
+  cursor: pointer;
 }
 
 .SearchPageBadgeText {
@@ -765,7 +766,7 @@ th {
   margin-left: 10px;
   position: relative;
   top: 12px;
-  color: #F2C70F;
+  color: black;
   font-weight: bold;
   font-size: 20px;
 }

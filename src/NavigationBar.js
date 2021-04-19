@@ -25,7 +25,7 @@ export default class NavigationBar extends Component {
                     <div className="navigationBar">
                         <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Start browsing now!</h3>
+                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Browse now!</h3>
                         <img id="searchIconNavBar" alt="searchIcon" src={SearchIcon} onClick={() => {this.sendToPage("/search")}}></img>
                         <div id="loggedInMenu">
                             <div className="loggedInDashboard" onClick={() => {this.sendToPage("/settings-profile")}}>
@@ -42,7 +42,7 @@ export default class NavigationBar extends Component {
                     <div className="navigationBar">
                         <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Start browsing now!</h3>
+                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Browse now!</h3>
                         <img id="searchIconNavBar" alt="searchIcon" src={SearchIcon} onClick={() => {this.sendToPage("/search")}}></img>
                         <div id="navBarButtons">
                             <div className="userButtons">

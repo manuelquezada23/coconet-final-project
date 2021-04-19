@@ -69,6 +69,28 @@ export default class SP extends Component {
     sendToPage(link) {
       window.location.href = link;
     }
+
+    clearDropDown(dropdown) {
+        dropdown.value = "select"
+    }
+
+    clearAllFilters() {
+        document.getElementById("servicesDropdown").value = "select"
+        document.getElementById("locationDropdown").value = "select"
+        document.getElementById("clientTypeDropdown").value = "select"
+        document.getElementById("employeesDropdown").value = "select"
+        document.getElementById("verifiedText").style.color = "black"
+        document.getElementById("qualifiedText").style.color = "black"
+    }
+
+    selectVerification(element) {
+        element.style.color = "#F2C70F"
+    }
+
+    clearVerifications() {
+        document.getElementById("verifiedText").style.color = "black"
+        document.getElementById("qualifiedText").style.color = "black"
+    }
   
     render() {
         const { users, searchUsername } = this.state;
@@ -81,7 +103,7 @@ export default class SP extends Component {
                   <option value="serviceProviders">Service Providers</option>
                 </select>
                 <div id="line"></div>
-                <input autocomplete="off" id="searchInputText" type="text" name="email" value={searchUsername} onChange={this.onChangeSearchTitle}/>
+                <input autoComplete="off" id="searchInputText" type="text" name="email" value={searchUsername} onChange={this.onChangeSearchTitle}/>
                 <div id="line2"></div>
                 <img id="searchIcon" alt="searchIcon" src={SearchIcon} onClick={this.searchUsername}></img>
               </div>
@@ -89,16 +111,17 @@ export default class SP extends Component {
                   <div className="SearchBodyLeft">
                       <div className="SearchBodyLeftHeader">
                           <p style={{fontWeight: "bold"}}>Filters</p>
-                          <p>Clear all</p>
+                          <p id="clearAllButton" onClick={this.clearAllFilters}>Clear all</p>
                       </div>
                       <div className="SearchBodyLeftLine"></div>
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Services</p>
-                              <p>Clear</p>
+                              <p id="clearServicesButton" onClick={() => {this.clearDropDown(document.getElementById("servicesDropdown"))}}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="servicesDropdown">
+                                  <option value="select">Select an option</option>
                                   <option value="servicesValue">Design</option>
                               </select>
                           </div>
@@ -106,10 +129,11 @@ export default class SP extends Component {
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Location</p>
-                              <p>Clear</p>
+                              <p id="clearLocationButton" onClick={() => {this.clearDropDown(document.getElementById("locationDropdown"))}}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="locationDropdown">
+                                <option value="select">Select an option</option>
                                   <option value="locationValue">Puerto Rico</option>
                               </select>
                           </div>
@@ -117,10 +141,11 @@ export default class SP extends Component {
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Client Type</p>
-                              <p>Clear</p>
+                              <p id="clearTypeButton" onClick={() => {this.clearDropDown(document.getElementById("clientTypeDropdown"))}}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="clientTypeDropdown">
+                                <option value="select">Select an option</option>
                                   <option value="clientTypeValue">Pharmaceuticals</option>
                               </select>
                           </div>
@@ -128,10 +153,11 @@ export default class SP extends Component {
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Employees</p>
-                              <p>Clear</p>
+                              <p id="clearEmployeesButton" onClick={() => {this.clearDropDown(document.getElementById("employeesDropdown"))}}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="employeesDropdown">
+                                <option value="select">Select an option</option>
                                   <option value="employeesValue">100+</option>
                               </select>
                           </div>
@@ -139,14 +165,14 @@ export default class SP extends Component {
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
-                              <p>Clear</p>
+                              <p id="clearVerificationsButton" onClick={this.clearVerifications}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <div className="SearchCredentialsDropdown">
-                                  <img className="SearchPageBadge" src={VerifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Verified</div>
-                                  <img className="SearchPageBadge" src={QualifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Qualified</div>
+                                  <img className="SearchPageBadge" src={VerifiedBadge} onClick={() => {this.selectVerification(document.getElementById("verifiedText"))}}></img>
+                                  <div id="verifiedText" className="SearchPageBadgeText">Verified</div>
+                                  <img className="SearchPageBadge" src={QualifiedBadge} onClick={() => {this.selectVerification(document.getElementById("qualifiedText"))}}></img>
+                                  <div id="qualifiedText" className="SearchPageBadgeText">Qualified</div>
                               </div>
                           </div>
                       </div>
