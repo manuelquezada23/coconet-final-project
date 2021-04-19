@@ -227,6 +227,8 @@ export default class Register extends Component {
               </div>
             )}
 
+            {/* REDIRECT USER TO PROFILE CREATION PAGE */}
+
             {this.state.message && (
               <div className="form-group">
                 <div

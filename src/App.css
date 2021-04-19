@@ -186,6 +186,7 @@ a:hover, a:visited, a:link, a:active {
   height: 20px;
   top: 15px;
   margin-left: 25px;
+  width: 150px;
   background-color: transparent;
   border: none;
   font-weight: bold;
@@ -1062,4 +1063,8 @@ select {
   border: 1px solid black;
   margin-top: 10px;
   border-radius: 6px;
+}
+
+#clearAllButton, #clearServicesButton, #clearLocationButton, #clearTypeButton, #clearEmployeesButton, #clearVerificationsButton {
+  cursor: pointer;
 }

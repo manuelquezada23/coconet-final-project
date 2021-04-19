@@ -10,6 +10,10 @@ function Search() {
         window.location.href = link;
     }
 
+    function clearFilters() {
+
+    }
+
     return (
         <React.Fragment>
             <NavigationBar />
@@ -17,13 +21,13 @@ function Search() {
                 <div className="SearchBodyLeft">
                     <div className="SearchBodyLeftHeader">
                         <p style={{fontWeight: "bold"}}>Filters</p>
-                        <p>Clear all</p>
+                        <p id="clearAllButton">Clear all</p>
                     </div>
                     <div className="SearchBodyLeftLine"></div>
                     <div className="SearchBodyLeftContent">
                         <div className="SearchBodyLeftContentHeader">
                             <p style={{fontWeight: "bold"}}>Services</p>
-                            <p>Clear</p>
+                            <p id="clearServicesButton">Clear</p>
                         </div>
                         <div className="SearchBodyLeftDropDown">
                             <select name="searchValue" id="servicesDropdown">
@@ -34,7 +38,7 @@ function Search() {
                     <div className="SearchBodyLeftContent">
                         <div className="SearchBodyLeftContentHeader">
                             <p style={{fontWeight: "bold"}}>Location</p>
-                            <p>Clear</p>
+                            <p id="clearLocationButton">Clear</p>
                         </div>
                         <div className="SearchBodyLeftDropDown">
                             <select name="searchValue" id="locationDropdown">
@@ -45,7 +49,7 @@ function Search() {
                     <div className="SearchBodyLeftContent">
                         <div className="SearchBodyLeftContentHeader">
                             <p style={{fontWeight: "bold"}}>Client Type</p>
-                            <p>Clear</p>
+                            <p id="clearTypeButton">Clear</p>
                         </div>
                         <div className="SearchBodyLeftDropDown">
                             <select name="searchValue" id="clientTypeDropdown">
@@ -56,7 +60,7 @@ function Search() {
                     <div className="SearchBodyLeftContent">
                         <div className="SearchBodyLeftContentHeader">
                             <p style={{fontWeight: "bold"}}>Employees</p>
-                            <p>Clear</p>
+                            <p id="clearEmployeesButton">Clear</p>
                         </div>
                         <div className="SearchBodyLeftDropDown">
                             <select name="searchValue" id="employeesDropdown">
@@ -67,7 +71,7 @@ function Search() {
                     <div className="SearchBodyLeftContent">
                         <div className="SearchBodyLeftContentHeader">
                             <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
-                            <p>Clear</p>
+                            <p id="clearVerificationsButton">Clear</p>
                         </div>
                         <div className="SearchBodyLeftDropDown">
                             <div className="SearchCredentialsDropdown">
