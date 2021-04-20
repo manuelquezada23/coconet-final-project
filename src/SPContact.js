@@ -13,11 +13,11 @@ function SPContact() {
         <React.Fragment>
             <NavigationBar />
             <div className="SPTopBar">
-                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/about")}}>About</h3>
-                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/projects")}}>Projects</h3>
-                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/previous-clients")}}>Previous Clients</h3>
-                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/qualifications")}}>Qualifications</h3>
-                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/licenses-and-certifications")}}>Licenses & Certifications</h3>
+                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/sp/:id")}}>About</h3>
+                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/sp/:id/projects")}}>Projects</h3>
+                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/sp/:id/previous-clients")}}>Previous Clients</h3>
+                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/sp/:id/qualifications")}}>Qualifications</h3>
+                <h3 className="SPSideBarBox" onClick={() => {sendToPage("/sp/:id/licenses-and-certifications")}}>Licenses & Certifications</h3>
                 <h3 style={{color: "#F2C70F"}} className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/contact")}}>Contact</h3>
             </div>
             <div className="SPAboutIcons">

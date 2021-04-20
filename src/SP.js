@@ -251,6 +251,30 @@ export default class SP extends Component {
         colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
     }
 
+    removeClient(e) {
+        e.preventDefault();
+        const index = document.getElementById(e.target.id).parentElement.parentElement.id;
+        this.clients.remove(index);
+    }
+
+    addCurrentQualifications() {
+        this.qualifications.forEach(qualification => {
+            const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
+            const colName = newRow.insertCell(0);
+            const colDate = newRow.insertCell(1);
+            const colPdf = newRow.insertCell(2);
+
+            colName.appendChild(document.createElement('input'));
+            colDate.appendChild(document.createElement('input'));
+            colPdf.appendChild(document.createElement('input'));
+
+            newRow.id = qualification.qualificationId;
+            colName.onChange = (e) => {this.onChangeQualificationName(e)};
+            colDate.onChange = (e) => {this.onChangeQualificationDate(e)};
+            colPdf.onChange = (e) => {this.onChangeQualificationPdf(e)};
+        });
+    }
+
     addNewQualification(e) {
         e.preventDefault();
         const newRow = document.getElementById('qualificationsSettingsBody').appendChild(document.createElement('tr'));

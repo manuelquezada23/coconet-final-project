@@ -20,6 +20,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("user");
+    window.location.href = "/";
   }
 
   register(username, email, password, role) {
@@ -36,11 +37,31 @@ class AuthService {
   }
 
   findByTitle(username) {
-    return axios.get(`/search?username=${username}`);
+    return axios.get(API_URL + `sp?username=${username}`);
   }
 
   getAll() {
-    return axios.get("/search");
+    return axios.get(API_URL + "sp");
+  }
+
+  sp_update(id, data) {
+    return axios.put(API_URL + `sp/${id}/settings-profile/editing`, data);
+  }
+
+  update(id, data) {
+    return axios.put(API_URL + `${id}/settings-profile/editing`, data);
+  }
+
+  get(id) {
+    return axios.get(API_URL + `sp/${id}`);
+  }
+
+  getlocation(location) {
+    return axios.get(API_URL + `sp/location?location=${location}`);
+  }
+
+  getservice(service) {
+    return axios.get(API_URL + `sp/service?service=${service}`);
   }
 }
 
