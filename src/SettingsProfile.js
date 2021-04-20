@@ -25,7 +25,7 @@ function SettingsProfile() {
                             <p style={{marginTop: "10px", marginLeft: "15px"}}>Privacy</p>
                         </div>
                     </div>
-                    {/* if */}
+                    {/* if SP*/}
                         <SP/>
                     {/* else
                         <User/> */}

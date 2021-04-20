@@ -33,12 +33,13 @@ export default class SP extends Component {
         });
     }
 
-    addProject() {
-        const newRow = document.getElementByID('projectsSettings').appendChild(document.createElement('tr'));
-        console.log(document.getElementByID('projectsSettings'));
-        newRow.innerHTML(`<td></td>
-            <td></td>
-            <td></td>`);
+    addProject(e) {
+        e.preventDefault();
+        const newRow = document.getElementById('projectsSettings').appendChild(document.createElement('tr'));
+        var column1 = newRow.insertCell(0)
+        var column2 = newRow.insertCell(1)
+        var column3 = newRow.insertCell(2)
+        column1.innerHTML = document.getElementById("projectNameValue").value 
     }
 
     sendToPage(link) {
@@ -115,7 +116,7 @@ export default class SP extends Component {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input
+                                        <td><input id="projectNameValue"
                                                 value={this.projects.projectName}
                                             />
                                         </td>
@@ -128,7 +129,7 @@ export default class SP extends Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button onClick={() => {this.addProject()}}>Add Project</button>
+                            <button onClick={e => {this.addProject(e)}}>Add Project</button>
                         </form>
 
                         <h2>Previous Clients</h2>
