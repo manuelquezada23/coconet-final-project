@@ -858,6 +858,11 @@ th {
   flex-direction: column;
   max-width: 500px;
   width: 70%;
+  padding-bottom: 40px;
+}
+
+#projectsSettings input {
+  width: 100%;
 }
 
 #aboutSettings input[type=text] {
@@ -887,20 +892,44 @@ select {
   width: 300px;
 }
 
-#projectsSettings input {
-  width: 100%;
+#settingsContent {
+  width: 850px;
 }
 
-.projectNameInput {
-  min-width: 300px;
+.projectName {
+  width: 40%;
 }
 
-.projectDateInput {
-  min-width: 300px;
+.projectDate {
+  width: 40%;
 }
 
-.projectPdfInput {
-  min-width: 150px;
+.projectPdf {
+  width: 20%;
+}
+
+.clientName {
+  width: 45%;
+}
+
+.clientLocation {
+  width: 20%;
+}
+
+.clientWebsite {
+  width: 35%;
+}
+
+.qualificationName {
+  width: 45%;
+}
+
+.qualificationDate {
+  width: 20%;
+}
+
+.qualificationDocument {
+  width: 35%;
 }
 
 .saveChangesButton {
