@@ -81,15 +81,20 @@ export default class SP extends Component {
         document.getElementById("employeesDropdown").value = "select"
         document.getElementById("verifiedText").style.color = "black"
         document.getElementById("qualifiedText").style.color = "black"
+        document.getElementById("verifiedText").style.fontWeight = "normal"
+        document.getElementById("qualifiedText").style.fontWeight = "normal"
     }
 
     selectVerification(element) {
         element.style.color = "#F2C70F"
+        element.style.fontWeight = "bold"
     }
 
     clearVerifications() {
         document.getElementById("verifiedText").style.color = "black"
         document.getElementById("qualifiedText").style.color = "black"
+        document.getElementById("verifiedText").style.fontWeight = "normal"
+        document.getElementById("qualifiedText").style.fontWeight = "normal"
     }
   
     render() {
