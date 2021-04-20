@@ -14,9 +14,11 @@ export default class SP extends Component {
             description: "description description description description description",
         };
 
-        this.projects = {
-            projectName: ""
-        };
+        this.projects = [
+            {projectName: "Name",
+            projectDate: "Date",
+            projectPdf: "Link"}
+        ];
 
         this.contact = {
             phoneNumber: "(401)000-0000",
@@ -34,9 +36,9 @@ export default class SP extends Component {
     addProject() {
         const newRow = document.getElementByID('projectsSettings').appendChild(document.createElement('tr'));
         console.log(document.getElementByID('projectsSettings'));
-        newRow.innerHTML(`<td><input></input></td>
-            <td><input></input></td>
-            <td><input></input></td>`);
+        newRow.innerHTML(`<td></td>
+            <td></td>
+            <td></td>`);
     }
 
     sendToPage(link) {
@@ -117,8 +119,12 @@ export default class SP extends Component {
                                                 value={this.projects.projectName}
                                             />
                                         </td>
-                                        <td><input></input></td>
-                                        <td><input></input></td>
+                                        <td><input
+                                                value={this.projects.projectDate}
+                                            /></td>
+                                        <td><input
+                                                value={this.projects.projectPdf}
+                                            /></td>
                                     </tr>
                                 </tbody>
                             </table>
