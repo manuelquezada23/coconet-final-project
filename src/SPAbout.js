@@ -23,15 +23,15 @@ function SPAbout() {
                 <h3 className="SPSideBarBox" onClick={() => {sendToPage("/service-provider_id/contact")}}>Contact</h3>
             </div>
             <div className="SPHeader">
-                <img className="SPLogo" src="https://livejones.com/wp-content/uploads/2020/05/logo-Placeholder.png"></img>
+                <img className="SPLogo" src="https://livejones.com/wp-content/uploads/2020/05/logo-Placeholder.png" alt="service provider logo"></img>
                 <div className="SPInfo">
                     <div className="SPName">SP Name</div>
                     <div className="SPLocation">SP Location</div>
                     <div className="SPType">SP Type</div>
                     <div className="SPCredentials">
-                        <img className="SPBadge" src={VerifiedBadge}></img>
+                        <img className="SPBadge" src={VerifiedBadge} alt="service provider badge"></img>
                         <div className="SPBadgeText">Verified</div>
-                        <img className="SPBadge" src={QualifiedBadge}></img>
+                        <img className="SPBadge" src={QualifiedBadge} alt="service provider badge"></img>
                         <div className="SPBadgeText">Qualified</div>
                     </div>
                 </div>
@@ -39,15 +39,15 @@ function SPAbout() {
             <div className="SPAboutBody">
                 <div className="SPAboutIcons">
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={PhoneIcon}></img>
+                        <img className="aboutIcon" src={PhoneIcon} alt="about icon"></img>
                         <p className="iconDescription">SP Phone</p>
                     </div>
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={EmailIcon}></img>
+                        <img className="aboutIcon" src={EmailIcon} alt="about icon"></img>
                         <p className="iconDescription">SP Email</p>
                     </div>
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={WebsiteIcon}></img>
+                        <img className="aboutIcon" src={WebsiteIcon} alt="about icon"></img>
                         <p className="iconDescription">SP Website</p>
                     </div>
                 </div>  

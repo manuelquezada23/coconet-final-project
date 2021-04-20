@@ -5,6 +5,8 @@ export default class SP extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
+
+        this.index = 0;
     
         this.about = {
             // currentUser: AuthService.getCurrentUser()
@@ -15,13 +17,14 @@ export default class SP extends Component {
         };
 
         this.projects = [
-            {projectName: "Name",
-            projectDate: "Date",
-            projectPdf: "Link"}
+            {projectId: 0,
+            projectName: "",
+            projectDate: Number,
+            projectPdf: ""}
         ];
 
         this.contact = {
-            phoneNumber: "(401)000-0000",
+            phoneNumber: "(XXX)XXX-XXXX",
             email: "example@sp.com",
             website: "example.com"
         };
@@ -33,12 +36,30 @@ export default class SP extends Component {
         });
     }
 
-    addProject() {
-        const newRow = document.getElementByID('projectsSettings').appendChild(document.createElement('tr'));
-        console.log(document.getElementByID('projectsSettings'));
-        newRow.innerHTML(`<td></td>
-            <td></td>
-            <td></td>`);
+    addProject(e) {
+        e.preventDefault();
+        const newRow = document.getElementById('projectsSettings').appendChild(document.createElement('tr'));
+        const colName = newRow.insertCell(0);
+        const colDate = newRow.insertCell(1);
+        const colPdf = newRow.insertCell(2);
+
+        colName.appendChild(document.createElement('input'));
+        colDate.appendChild(document.createElement('input'));
+        colPdf.appendChild(document.createElement('input'));
+        
+        this.index++;
+        const project = {projectId: this.index, projectName: "", projectDate: 0,};
+        this.projects.push(project);
+
+        newRow.value = this.index;
+        console.log(newRow.value);
+    }
+
+    removeProject(e) {
+        e.preventDefault();
+        this.index++;
+        const project = {projectId: this.index, projectName: "", projectDate: 0,};
+        this.projects.push(project);
     }
 
     sendToPage(link) {
@@ -128,7 +149,7 @@ export default class SP extends Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button onClick={() => {this.addProject()}}>Add Project</button>
+                            <button onClick={e => {this.addProject(e)}}>Add Project</button>
                         </form>
 
                         <h2>Previous Clients</h2>

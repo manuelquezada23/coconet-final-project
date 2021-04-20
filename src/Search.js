@@ -110,7 +110,7 @@ export default class SP extends Component {
                 <div id="line"></div>
                 <input autoComplete="off" id="searchInputText" type="text" name="email" value={searchUsername} onChange={this.onChangeSearchTitle}/>
                 <div id="line2"></div>
-                <img id="searchIcon" alt="searchIcon" src={SearchIcon} onClick={this.searchUsername}></img>
+                <img id="searchIcon" src={SearchIcon} alt="search icon" onClick={this.searchUsername}></img>
               </div>
               <div className="SearchBody">
                   <div className="SearchBodyLeft">
@@ -174,9 +174,9 @@ export default class SP extends Component {
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <div className="SearchCredentialsDropdown">
-                                  <img className="SearchPageBadge" src={VerifiedBadge} onClick={() => {this.selectVerification(document.getElementById("verifiedText"))}}></img>
+                                  <img className="SearchPageBadge" src={VerifiedBadge} alt="badge" onClick={() => {this.selectVerification(document.getElementById("verifiedText"))}}></img>
                                   <div id="verifiedText" className="SearchPageBadgeText">Verified</div>
-                                  <img className="SearchPageBadge" src={QualifiedBadge} onClick={() => {this.selectVerification(document.getElementById("qualifiedText"))}}></img>
+                                  <img className="SearchPageBadge" src={QualifiedBadge} alt="badge" onClick={() => {this.selectVerification(document.getElementById("qualifiedText"))}}></img>
                                   <div id="qualifiedText" className="SearchPageBadgeText">Qualified</div>
                               </div>
                           </div>
@@ -189,17 +189,17 @@ export default class SP extends Component {
                         <li className="splist" key={user.id}>
                           <div className="SearchBodyRightContent">
                             <div className="SearchResults">
-                              <img className="SearchResultsLogo" src={user.logo}></img>
+                              <img className="SearchResultsLogo" src={user.logo} alt="service provider logo"></img>
                               <div className="SearchResultsInfo">
                                   <Link id="SearchResultsInfoName" onClick={() => {this.sendToPage(`/sp/${user.id}`)}}>{user.name}</Link>
                                   <p id="SearchResultsInfoLocation">{user.location}</p>
                                   <p id="SearchResultsInfoService">{user.sptype}</p>
                                   <div className="SearchResultsInfoBadges">
                                     <div style={{ display: user.ved ? "inline" : "none"}}>
-                                      <img className="SPBadge" src={VerifiedBadge}></img>
+                                      <img className="SPBadge" src={VerifiedBadge} alt="service provider badge"></img>
                                     </div>
                                     <div style={{ display: user.qualified ? "inline" : "none"}}>
-                                      <img className="SPBadge" src={QualifiedBadge}></img>
+                                      <img className="SPBadge" src={QualifiedBadge} alt="service provider badge"></img>
                                     </div>
                                   </div>
                               </div>
