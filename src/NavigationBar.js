@@ -23,13 +23,13 @@ export default class NavigationBar extends Component {
             return (
                 <React.Fragment>
                     <div className="navigationBar">
-                        <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
+                        <img id="navigationBarLogo" src={LogoImage} alt="navigation bar logo" onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
                         <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Browse now!</h3>
-                        <img id="searchIconNavBar" alt="searchIcon" src={SearchIcon} onClick={() => {this.sendToPage("/search")}}></img>
+                        <img id="searchIconNavBar" src={SearchIcon}  alt="search icon" onClick={() => {this.sendToPage("/search")}}></img>
                         <div id="loggedInMenu">
                             <div className="loggedInDashboard" onClick={() => {this.sendToPage("/settings-profile")}}>
-                                <img className="loggedInPicture" src={Placeholder}></img>
+                                <img className="loggedInPicture" src={Placeholder} alt="logged in"></img>
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                         </div>
@@ -40,10 +40,10 @@ export default class NavigationBar extends Component {
             return (
                 <React.Fragment>
                     <div className="navigationBar">
-                        <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
+                        <img id="navigationBarLogo" src={LogoImage} alt="navigation bar logo" onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
                         <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/search")}}>Browse now!</h3>
-                        <img id="searchIconNavBar" alt="searchIcon" src={SearchIcon} onClick={() => {this.sendToPage("/search")}}></img>
+                        <img id="searchIconNavBar" src={SearchIcon} alt="search icon" onClick={() => {this.sendToPage("/search")}}></img>
                         <div id="navBarButtons">
                             <div className="userButtons">
                                 <button className="logInButton" onClick={() => {this.sendToPage("/login")}}>Log In</button>

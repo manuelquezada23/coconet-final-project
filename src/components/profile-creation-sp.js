@@ -22,7 +22,7 @@ export default class ProfileCreationSP extends Component {
         return (
             <React.Fragment>
                 <div className="formBody">
-                    <img className="logInLogo" alt="coconetLogo" src={Logo}></img>
+                    <img className="logInLogo" src={Logo} alt="coconet logo"></img>
                     <h1 style={{marginTop: "0px"}}>Service Providers, complete your profile now!</h1>
                     <form className="ProfileCreationBody">
                         {/* name was given in the sign up page, so we need to send this info here and place it in the name 

@@ -17,15 +17,15 @@ function AboutUs() {
                 <h1 className="AboutColumnTitle">What It Is</h1>
                 <div className="AboutColumns">
                     <div className="AboutColumnOne">
-                        <img className="AboutColumnIcon" src={BrowseIcon}></img>
+                        <img className="AboutColumnIcon" src={BrowseIcon} alt="about column icon"></img>
                         <h3><span style={{color: "#F2C70F"}}>Browse</span> for qualified service providers that you think will be helpful for your project.</h3>
                     </div>
                     <div className="AboutColumnTwo">
-                        <img className="AboutColumnIcon" src={FindIcon}></img>
+                        <img className="AboutColumnIcon" src={FindIcon} alt="about column icon"></img>
                         <h3><span style={{color: "#F2C70F"}}>Find</span> the correct and best qualified service provider for your project.</h3>
                     </div>
                     <div className="AboutColumnThree">
-                        <img className="AboutColumnIcon" src={WorkIcon}></img>
+                        <img className="AboutColumnIcon" src={WorkIcon} alt="about column icon"></img>
                         <h3><span style={{color: "#F2C70F"}}>Work</span> with qualified service providers and make your project a success!</h3>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ function AboutUs() {
                 </div>
                 <h1 className="AboutColumnTitle">Have more questions?</h1>
                 <a href="mailto:jaime_matos@brown.edu" style={{textDecoration: "none"}}>
-                    <img className="AboutContact" src={EmailIcon}></img>
+                    <img className="AboutContact" src={EmailIcon} alt="about contact"></img>
                 </a>
             </div>
         </React.Fragment>
