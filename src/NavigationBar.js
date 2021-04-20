@@ -28,49 +28,54 @@ export default class NavigationBar extends Component {
             if (currentUser.roles[0] === "ROLE_USER") {
                 return (
                     <React.Fragment>
-                        <div className="navigationBar">
-                            <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
-                            <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                            <button onClick={() => {this.sendToPage("/sp")}}>Service Providers</button>
-                            <div id="loggedInMenu">
-                                <div className="loggedInDashboard" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile`)}}>
-                                    <img className="loggedInPicture" src={Placeholder}></img>
-                                    <p className="loggedInName">{currentUser.username}</p>
-                                </div>
-    
-                                <button id="logout" onClick={() => {this.logOut()}}>logout</button>
-    
+                    <div className="navigationBar">
+                    <img id="navigationBarLogo" src={LogoImage} alt="navigation bar logo" onClick={() => {this.sendToPage("/")}}></img>
+                        <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
+                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/sp")}}>Browse now!</h3>
+                        <img id="searchIconNavBar" src={SearchIcon}  alt="search icon" onClick={() => {this.sendToPage("/sp")}}></img>
+                        <div class="dropdown">
+                            <div className="loggedInDashboard">
+                                <img className="loggedInPicture" src={Placeholder}></img>
+                                <p className="loggedInName">{currentUser.username}</p>
+                            </div>
+                            <div class="dropdown-content">
+                                <a href='/:id/settings-profile'>Settings</a>
+                                <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>
-                    </React.Fragment>
+                    </div>
+                </React.Fragment>
                 ) 
             } else {
                 return (
                     <React.Fragment>
-                        <div className="navigationBar">
-                            <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
-                            <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                            <button onClick={() => {this.sendToPage("/sp")}}>Service Providers</button>
-                            <div id="loggedInMenu">
-                                <div className="loggedInDashboard" onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>
-                                    <img className="loggedInPicture" src={Placeholder}></img>
-                                    <p className="loggedInName">{currentUser.username}</p>
-                                </div>
-    
-                                <button id="logout" onClick={() => {this.logOut()}}>logout</button>
-    
+                    <div className="navigationBar">
+                    <img id="navigationBarLogo" src={LogoImage} alt="navigation bar logo" onClick={() => {this.sendToPage("/")}}></img>
+                        <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
+                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/sp")}}>Browse now!</h3>
+                        <img id="searchIconNavBar" src={SearchIcon}  alt="search icon" onClick={() => {this.sendToPage("/sp")}}></img>
+                        <div class="dropdown">
+                            <div className="loggedInDashboard">
+                                <img className="loggedInPicture" src={Placeholder}></img>
+                                <p className="loggedInName">{currentUser.username}</p>
+                            </div>
+                            <div class="dropdown-content">
+                                <a href='/:id/settings-profile'>Settings</a>
+                                <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>
-                    </React.Fragment>
+                    </div>
+                </React.Fragment>
                 )
             } 
         } else {
             return (
                 <React.Fragment>
                     <div className="navigationBar">
-                        <img id="navigationBarLogo" src={LogoImage} onClick={() => {this.sendToPage("/")}}></img>
+                        <img id="navigationBarLogo" src={LogoImage} alt="navigation bar logo" onClick={() => {this.sendToPage("/")}}></img>
                         <div id="navigationBarLogoText" onClick={() => {this.sendToPage("/")}}></div>
-                        <button onClick={() => {this.sendToPage("/sp")}}>Service Providers</button>
+                        <h3 id="navBarBrowsingText" onClick={() => {this.sendToPage("/sp")}}>Browse now!</h3>
+                        <img id="searchIconNavBar" src={SearchIcon} alt="search icon" onClick={() => {this.sendToPage("/sp")}}></img>
                         <div id="navBarButtons">
                             <div className="userButtons">
                                 <button className="logInButton" onClick={() => {this.sendToPage("/login")}}>Log In</button>
