@@ -856,21 +856,19 @@ th {
 .settingsContent {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 700px;
   width: 70%;
   padding-bottom: 40px;
 }
 
-#projectsSettings input {
+#settingsContent input {
   width: 100%;
 }
 
-#aboutSettings input[type=text] {
-  width: 300px;
-}
-
 #settingsContent h2 {
-  padding-left: 50px;
+  font-size: 30px;
+  margin-top: 10px;
+  padding-left: 20px;
   margin-bottom: 5px;
 }
 
@@ -883,24 +881,21 @@ th {
   display: flex;
 }
 
-select {
+#settingsContent table, select {
   width: 100%;
+}
+
+#settingsContent button {
+  float: right;
 }
 
 .companyDescriptionInput {
   height: 100px;
-  width: 300px;
+  min-width: 100%;
+  max-width: 100%;
 }
 
-#settingsContent {
-  width: 850px;
-}
-
-.projectName {
-  width: 40%;
-}
-
-.projectDate {
+.projectName, .projectDate {
   width: 40%;
 }
 
