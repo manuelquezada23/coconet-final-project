@@ -37,10 +37,19 @@ export default class SP extends Component {
 
     filterBender = data => {
       const {searchUsername, location, service} = this.state;
-      if(searchUsername && !data.name.toLowerCase().includes(searchUsername)) return false;
+      const words = searchUsername.split(' ');
+      let a = false;
+      words.forEach(e => {
+        if(searchUsername && data.name.toLowerCase().includes(e)) {
+          a = true;
+        }
+      });
+      if (searchUsername == ""){
+        a = true;
+      }
       if(location && data.location !== location) return false;
       if(service && data.sptype !== service) return false;
-      return true;
+      return true && a;
     }
 
     settotal() {
