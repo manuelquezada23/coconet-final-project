@@ -18,13 +18,6 @@ export default class SP extends Component {
             {description: ""},
         ];
 
-        // this.projects = [
-        //     {projectId: this.projectIndex,
-        //     projectName: "",
-        //     projectDate: Number,
-        //     projectPdf: ""}
-        // ];
-
         this.projects = new Map();
         this.projects[0] = {projectId: this.projectIndex,
             projectName: "",
@@ -32,19 +25,20 @@ export default class SP extends Component {
             projectPdf: ""
         };
 
-        this.previousClients = [
-            {clientId: this.clientIndex,
+        this.previousClients = new Map();
+        this.previousClients[0] = {clientId: this.clientIndex,
             clientName: "",
             clientLocation: "",
-            clientWebsite: ""}
-        ];
+            clientWebsite: ""
+        };
 
-        this.qualifications = [
-            {qualificationId: this.qualificationIndex,
+        this.qualifications = new Map();
+        this.qualifications[0] = {
+            qualificationId: this.qualificationIndex,
             qualificationName: "",
             qualificationDate: Number,
-            qualificationPdf: ""}
-        ];
+            qualificationPdf: ""
+        };
 
         this.contact = [
             {phoneNumber: "(XXX)XXX-XXXX"},
@@ -168,9 +162,27 @@ export default class SP extends Component {
             // console.log('Format is not valid');
     }
 
-    addProject(e) {
+    addCurrentProjects() {
+        this.projects.forEach(project => {
+            const newRow = document.getElementById('projectsSettingsBody').appendChild(document.createElement('tr'));
+            const colName = newRow.insertCell(0);
+            const colDate = newRow.insertCell(1);
+            const colPdf = newRow.insertCell(2);
+
+            colName.appendChild(document.createElement('input'));
+            colDate.appendChild(document.createElement('input'));
+            colPdf.appendChild(document.createElement('input'));
+
+            newRow.id = project.projectId;
+            colName.onChange = (e) => {this.onChangeProjectName(e)};
+            colDate.onChange = (e) => {this.onChangeProjectDate(e)};
+            colPdf.onChange = (e) => {this.onChangeProjectPdf(e)};
+        });
+    }
+
+    addNewProject(e) {
         e.preventDefault();
-        const newRow = document.getElementById('projectsSettings').appendChild(document.createElement('tr'));
+        const newRow = document.getElementById('projectsSettingsBody').appendChild(document.createElement('tr'));
         const colName = newRow.insertCell(0);
         const colDate = newRow.insertCell(1);
         const colPdf = newRow.insertCell(2);
@@ -195,9 +207,27 @@ export default class SP extends Component {
         this.projects.remove(index);
     }
 
-    addClient(e) {
+    addCurrentClients() {
+        this.clients.forEach(client => {
+            const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
+            const colName = newRow.insertCell(0);
+            const colDate = newRow.insertCell(1);
+            const colPdf = newRow.insertCell(2);
+
+            colName.appendChild(document.createElement('input'));
+            colDate.appendChild(document.createElement('input'));
+            colPdf.appendChild(document.createElement('input'));
+
+            newRow.id = client.clientId;
+            colName.onChange = (e) => {this.onChangeClientName(e)};
+            colDate.onChange = (e) => {this.onChangeClientLocation(e)};
+            colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
+        });
+    }
+
+    addNewClient(e) {
         e.preventDefault();
-        const newRow = document.getElementById('previousClientsSettings').appendChild(document.createElement('tr'));
+        const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
         const colName = newRow.insertCell(0);
         const colDate = newRow.insertCell(1);
         const colPdf = newRow.insertCell(2);
@@ -213,7 +243,7 @@ export default class SP extends Component {
             clientLocation: 0,
             clientWebsite: ""
         };
-        this.previousClients.push(client);
+        this.previousClients[this.previousClientIndex] = client;
 
         newRow.id = this.previousClientIndex;
         colName.onChange = (e) => {this.onChangeClientName(e)};
@@ -221,9 +251,9 @@ export default class SP extends Component {
         colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
     }
 
-    addQualification(e) {
+    addNewQualification(e) {
         e.preventDefault();
-        const newRow = document.getElementById('qualificationsSettings').appendChild(document.createElement('tr'));
+        const newRow = document.getElementById('qualificationsSettingsBody').appendChild(document.createElement('tr'));
         const colName = newRow.insertCell(0);
         const colDate = newRow.insertCell(1);
         const colPdf = newRow.insertCell(2);
@@ -239,7 +269,7 @@ export default class SP extends Component {
             qualificationDate: 0,
             qualificationPdf: 0
         };
-        this.qualifications.push(qualification);
+        this.qualifications[this.qualificationIndex] = qualification;
 
         newRow.id = this.qualificationIndex;
         colName.onChange = (e) => {this.onChangeQualificationName(e)};
@@ -313,7 +343,7 @@ export default class SP extends Component {
                     <br></br>
                             
                     <h2>Projects</h2>
-                    <form>
+                    <form id="form">
                         <table className="projectsSettings" id="projectsSettings">
                             <thead>
                                 <tr>
@@ -351,13 +381,13 @@ export default class SP extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className="addProjectButton" onClick={(e) => {this.addProject(e)}}>Add Project</button>
+                        <button className="addProjectButton" onClick={(e) => {this.addNewProject(e)}}>Add Project</button>
                     </form>
 
                     <br></br>
 
                     <h2>Previous Clients</h2>
-                    <form>
+                    <form id="form">
                         <table className="previousClientsSettings" id="previousClientsSettings">
                             <thead>
                                 <tr>
@@ -366,7 +396,7 @@ export default class SP extends Component {
                                     <td className="clientWebsite"><b>Website</b></td>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody  id="previousClientsSettingsBody">
                                 <tr id="0">
                                     <td>
                                         <input
@@ -395,13 +425,13 @@ export default class SP extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={(e) => {this.addClient(e)}}>Add Client</button>
+                        <button onClick={(e) => {this.addNewClient(e)}}>Add Client</button>
                     </form>
 
                     <br></br>
 
                     <h2>Qualifications</h2>
-                    <form>
+                    <form id="form">
                         <table className="qualificationsSettings" id="qualificationsSettings">
                             <thead>
                                 <tr>
@@ -410,7 +440,7 @@ export default class SP extends Component {
                                     <td className="qualificationPdf"><b>Document</b></td>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="qualificationsSettingsBody">
                                 <tr id="0">
                                     <td>
                                         <input
@@ -439,7 +469,7 @@ export default class SP extends Component {
                                 </tr>
                             </tbody>
                         </table>
-                        <button onClick={(e) => {this.addQualification(e)}}>Add Qualification</button>
+                        <button onClick={(e) => {this.addNewQualification(e)}}>Add Qualification</button>
                     </form>
 
                     <br></br>
