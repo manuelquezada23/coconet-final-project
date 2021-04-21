@@ -34,27 +34,27 @@ export default class Home extends Component {
                 <h2 style={{paddingTop: "0", marginBottom: "0px", cursor: "pointer"}} onClick={() => {this.sendToPage("/about")}}>Learn More</h2>
                 
                 <div className="serviceCategoriesContainer">
-                    <a className="serviceCategoryBox" href="/search">
+                    <a className="serviceCategoryBox" href="/sp/service/Design">
                             <img className="serviceCategoryIcon" alt="designIcon" src="https://static.thenounproject.com/png/75540-200.png"/>
                         <p className="serviceCategoryName"><strong>Design</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="/search">
+                    <a className="serviceCategoryBox" href="/sp/service/Construction">
                             <img className="serviceCategoryIcon" alt="constructionIcon" src="https://www.freeiconspng.com/thumbs/building-icon/office-building-icon-32.png"/>
                         <p className="serviceCategoryName"><strong>Construction</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="/search">
+                    <a className="serviceCategoryBox" href="/sp/service/Qualification">
                             <img className="serviceCategoryIcon" alt="qualificationIcon" src="https://www.pngarts.com/files/11/Qualification-Ribbon-PNG-Image-Background.png"/>
                         <p className="serviceCategoryName"><strong>Qualification</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="/search">
+                    <a className="serviceCategoryBox" href="/sp/service/Maintenance">
                             <img className="serviceCategoryIcon" alt="maintenanceIcon" src="https://www.pngkey.com/png/full/436-4368638_tools-transparent-tools-icon-png.png"/>
                         <p className="serviceCategoryName"><strong>Maintenance</strong></p>
                     </a>
 
-                    <a className="serviceCategoryBox" href="/search">
+                    <a className="serviceCategoryBox" href="/sp/service/Installation">
                             <img className="serviceCategoryIcon" alt="installationIcon" src="https://image.flaticon.com/icons/png/512/81/81020.png"/>
                         <p className="serviceCategoryName"><strong>Installation</strong></p>
                     </a>

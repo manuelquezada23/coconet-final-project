@@ -1135,3 +1135,7 @@ th {
     display: none;
   }
 }
+
+.splist{
+  list-style-type: none;
+}

@@ -37,7 +37,7 @@ export default class SP extends Component {
 
     filterBender = data => {
       const {searchUsername, location, service} = this.state;
-      const words = searchUsername.split(' ');
+      const words = searchUsername.split(" ");
       let a = false;
       words.forEach(e => {
         if(searchUsername && data.name.toLowerCase().includes(e)) {

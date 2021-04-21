@@ -46,10 +46,10 @@ export default class userProfile extends Component {
                             <div className="SettingsSideBarContent" style={{backgroundColor: "#F2C70F"}} onClick={() => {this.sendToPage("/settings-profile")}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Profile</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage("/settings-general")}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-general`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>General</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage("/settings-privacy")}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-privacy`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Privacy</p>
                             </div>
                         </div>

@@ -50,6 +50,8 @@ const Main = () => {
             <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
             <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
+            <Route exact path='/:id/settings-general' component={SettingsGeneral}></Route>
+            <Route exact path='/:id/settings-privacy' component={SettingsPrivacy}></Route>
 
             <Route exact path="/about" component={About}></Route>
 
