@@ -19,6 +19,7 @@ First, clone this project into a directory of your choice. Then, run
 Once you have installed all the node modules, make sure to activate the back end by running:
 
 ### cd spring-boot
+
 ### maven spring-boot:run
 
 Once the backend is running, go back to the main directory and run:
@@ -28,4 +29,5 @@ Once the backend is running, go back to the main directory and run:
 Enjoy!
 
 ### Other Information
+
 This is the final project for Brown University's CS1320 course. The team is made up of Manuel Quezada, Carolina Collazo, Huiyuan Wu, and Zihan Hu. 
