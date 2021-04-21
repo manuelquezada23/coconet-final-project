@@ -173,7 +173,7 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully, confirm your email address!"));
     }
-  
+
     @GetMapping("/sp")
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
         try {
@@ -209,23 +209,6 @@ public class AuthController {
         }
     }
 
-<<<<<<< HEAD
-    @GetMapping("/verify")
-    public ResponseEntity<?> verifyCustomer(@RequestParam(required = false) String token){
-        try {
-            SecureToken secureToken = secureTokenService.findByToken(token);
-            if (Objects.isNull(secureToken) || !StringUtils.equals(token, secureToken.getToken()) || secureToken.isExpired()){
-                throw new Exception("Token is not valid");
-            }
-            User user = userRepository.getOne(secureToken.getUser().getId());
-            if (Objects.isNull(user)){
-                throw new Exception("User not exist");
-            }
-            user.setVerifiedStatus(true);
-            userRepository.save(user);
-
-            secureTokenService.removeToken(secureToken);
-=======
     @GetMapping("/sp/location")
     public ResponseEntity<List<User>> getLocations(@RequestParam(required = false) String location) {
         try {
@@ -253,61 +236,8 @@ public class AuthController {
             }
 
             return new ResponseEntity<>(a, HttpStatus.OK);
->>>>>>> 5c63ae9cfb221edc06e5d4c16cb98993d90a77ab
         } catch (Exception e) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Token is not valid"));
-        }
-
-        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    
-    }
-
-    @GetMapping("/sp/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
-        Optional<User> UserData = userRepository.findById(id);
-
-        if (UserData.isPresent()) {
-            return new ResponseEntity<>(UserData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-
-    @PutMapping("/sp/{id}/settings-profile/editing")
-    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-        Optional<User> UserData = userRepository.findById(id);
-
-        if (UserData.isPresent()) {
-            User _user = UserData.get();
-            //_user.setName(user.getName());
-            _user.setLocation(user.getLocation());
-            _user.setPhone(user.getPhone());
-            _user.setWebsite(user.getWebsite());
-            _user.setSptype(user.getSptype());
-            _user.setVed(user.getVed());
-            _user.setQualified(user.getQualified());
-            _user.setDescription(user.getDescription());
-            _user.setLogo(user.getLogo());
-
-            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PutMapping("/{id}/settings-profile/editing")
-    public ResponseEntity<User> updateSP(@PathVariable("id") long id, @RequestBody User user) {
-        Optional<User> UserData = userRepository.findById(id);
-
-        if (UserData.isPresent()) {
-            User _user = UserData.get();
-            _user.setName(user.getName());
-
-            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -364,7 +294,7 @@ public class AuthController {
                     .body(new MessageResponse("Token is not valid"));
         }
 
-        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));    
+        return ResponseEntity.ok(new MessageResponse("User activated successfully!"));
     }
 
     @GetMapping("/sp/{id}")
@@ -401,13 +331,16 @@ public class AuthController {
         }
     }
 
-    @PutMapping("/{id}/settings-profile/editing")
+    @PutMapping("/{id}/settings-profile")
     public ResponseEntity<User> updateSP(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> UserData = userRepository.findById(id);
 
         if (UserData.isPresent()) {
             User _user = UserData.get();
             _user.setName(user.getName());
+            _user.setPhone(user.getPhone());
+            _user.setEmail(user.getEmail());
+            _user.setWebsite(user.getWebsite());
 
             return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
         } else {

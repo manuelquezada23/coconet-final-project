@@ -49,7 +49,7 @@ class AuthService {
   }
 
   update(id, data) {
-    return axios.put(API_URL + `${id}/settings-profile/editing`, data);
+    return axios.put(API_URL + `${id}/settings-profile`, data);
   }
 
   get(id) {

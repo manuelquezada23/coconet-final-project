@@ -3,11 +3,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./components/home.component"
 import NotFound from "./NotFound.js"
 import SPAbout from "./components/about.component"
-import SPProjects from "./SPProjects.js"
-import SPPreviousClients from "./SPPreviousClients.js"
-import SPQualifications from "./SPQualifications.js"
-import SPLicensesAndCertifications from "./SPLicensesAndCertifications.js"
-import SPContact from "./SPContact.js"
+import SPProjects from "./components/spproject.component"
+import SPPreviousClients from "./components/client.component"
+import SPQualifications from "./components/qualification.component"
+import SPLicensesAndCertifications from "./components/ceri.component"
+import SPContact from "./components/contact.component"
 import LogIn from "./components/login.component"
 import SignUp from "./components/register.component"
 import SPLogIn from "./components/login.component"
@@ -20,8 +20,8 @@ import spedit from "./components/spedit.component"
 import edit from "./components/edit.component"
 import About from "./About.js"
 
-import SettingsGeneral from "./SettingsGeneral.js"
-import SettingsPrivacy from "./SettingsPrivacy.js"
+import SettingsGeneral from "./components/general.component"
+import SettingsPrivacy from "./components/privacy.component"
 
 const Main = () => {
   return (
@@ -51,7 +51,7 @@ const Main = () => {
             <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
             <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
-            <Route exact path='/  :id/settings-general' component={SettingsGeneral}></Route>
+            <Route exact path='/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/:id/settings-privacy' component={SettingsPrivacy}></Route>
 
             <Route exact path="/about" component={About}></Route>

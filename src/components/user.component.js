@@ -4,7 +4,6 @@ import NavigationBar from "../NavigationBar.js"
 import AuthService from "../services/auth.service";
 import User from "../User.js"
 
-//<button id="editrProfile" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile/editing`)}}>Edit Profile</button>
 
 export default class userProfile extends Component {
     constructor(props) {
@@ -13,6 +12,16 @@ export default class userProfile extends Component {
         this.state = {
           currentUser: AuthService.getCurrentUser()
         };
+    }
+
+    componentWillMount(){
+        //If user is an Alumno, throw them to '/some/path'
+        if(this.props.match.params.id != AuthService.getCurrentUser().id){
+            alert("You cannot access others' accounts")
+            //window.location.href = "/";
+            this.props.history.push('/');
+        }
+           
     }
 
     componentDidMount() {
@@ -47,16 +56,16 @@ export default class userProfile extends Component {
                             <div className="SettingsSideBarContent" style={{backgroundColor: "#F2C70F"}} onClick={() => {this.sendToPage("/settings-profile")}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Profile</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-general`)}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-general`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>General</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-privacy`)}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-privacy`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Privacy</p>
                             </div>
                         </div>
                         
                         
-                        <User/>
+                        <User currentUser={this.state.currentUser}/>
                     </div>
                 </div>
                 

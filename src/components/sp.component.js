@@ -19,6 +19,9 @@ export default class SP extends Component {
       this.handleService = this.handleService.bind(this);
       this.searchService = this.searchService.bind(this);
       this.settotal = this.settotal.bind(this);
+      this.clearLocation = this.clearLocation.bind(this);
+      this.clearService = this.clearService.bind(this);
+      this.clearAll = this.clearAll.bind(this);
   
       this.state = {
         users: [],
@@ -40,17 +43,28 @@ export default class SP extends Component {
       const {searchUsername, location, service} = this.state;
       const words = searchUsername.split(" ");
       let a = false;
-      words.forEach(e => {
+      let b = false;
+      let c = false;
+      let filtered = words.filter(function (e) {
+        return e !== "";
+      });
+      filtered.forEach(e => {
         if(searchUsername && data.name.toLowerCase().includes(e)) {
           a = true;
         }
       });
+      if(location && data.location == location) b = true;
+      if(service && data.sptype == service) c = true;
       if (searchUsername == ""){
         a = true;
       }
-      if(location && data.location !== location) return false;
-      if(service && data.sptype !== service) return false;
-      return true && a;
+      if (location == ""){
+        b = true;
+      }
+      if (service == ""){
+        c = true;
+      }
+      return true && a && b && c;
     }
 
     settotal() {
@@ -162,6 +176,27 @@ export default class SP extends Component {
     sendToPage(link) {
       window.location.href = link;
     }
+
+    clearLocation() {
+      this.setState({ location: "" }, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
+      });
+    }
+
+    clearService() {
+      this.setState({ service: "" }, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
+      });
+    }
+
+    clearAll() {
+      this.setState({ location: "", service: ""}, () => {
+        const a = this.state.totalusers.filter(this.filterBender);
+        this.setState({users : a});
+      });
+    }
   
     render() {
         const { users, searchUsername, location, service, totalusers } = this.state;
@@ -182,17 +217,17 @@ export default class SP extends Component {
                   <div className="SearchBodyLeft">
                       <div className="SearchBodyLeftHeader">
                           <p style={{fontWeight: "bold"}}>Filters</p>
-                          <p>Clear all</p>
+                          <p id="clearTypeButton" onClick={this.clearAll}>Clear All</p>
                       </div>
                       <div className="SearchBodyLeftLine"></div>
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Services</p>
-                              <p>Clear</p>
+                              <p id="clearTypeButton" onClick={() => {this.clearService()}}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="locationDropdown" value={service} onChange={this.handleService}>
-                                <option></option>
+                                <option value="">Select an option</option>
                                 {totalusers.map((option) => (
                                   <option value={option.sptype}>{option.sptype}</option>
                                 ))}
@@ -202,15 +237,53 @@ export default class SP extends Component {
                       <div className="SearchBodyLeftContent">
                           <div className="SearchBodyLeftContentHeader">
                               <p style={{fontWeight: "bold"}}>Location</p>
-                              <p>Clear</p>
+                              <p id="clearTypeButton" onClick={this.clearLocation}>Clear</p>
                           </div>
                           <div className="SearchBodyLeftDropDown">
                               <select name="searchValue" id="locationDropdown" value={location} onChange={this.handleLocation}>
-                                <option></option>
+                                <option value="">Select an option</option>
                                 {totalusers.map((option) => (
                                   <option value={option.location}>{option.location}</option>
                                 ))}
                               </select>
+                          </div>
+                      </div>
+                      <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Client Type</p>
+                              <p id="clearTypeButton" onClick={() => {}}>Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <select name="searchValue" id="clientTypeDropdown">
+                                <option value="select">Select an option</option>
+                                  <option value="clientTypeValue">Pharmaceuticals</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Employees</p>
+                              <p id="clearEmployeesButton" onClick={() => {}}>Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <select name="searchValue" id="employeesDropdown">
+                                <option value="select">Select an option</option>
+                                  <option value="employeesValue">100+</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div className="SearchBodyLeftContent">
+                          <div className="SearchBodyLeftContentHeader">
+                              <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
+                              <p id="clearVerificationsButton" >Clear</p>
+                          </div>
+                          <div className="SearchBodyLeftDropDown">
+                              <div className="SearchCredentialsDropdown">
+                                  <img className="SearchPageBadge" src={VerifiedBadge} alt="badge" onClick={() => {this.selectVerification(document.getElementById("verifiedText"))}}></img>
+                                  <div id="verifiedText" className="SearchPageBadgeText">Verified</div>
+                                  <img className="SearchPageBadge" src={QualifiedBadge} alt="badge" onClick={() => {this.selectVerification(document.getElementById("qualifiedText"))}}></img>
+                                  <div id="qualifiedText" className="SearchPageBadgeText">Qualified</div>
+                              </div>
                           </div>
                       </div>
                       

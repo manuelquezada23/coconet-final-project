@@ -1,66 +1,107 @@
 import React, { Component } from "react";
 import validator from 'validator';
 import './App.css';
+import AuthService from "./services/auth.service";
 
 export default class User extends Component {
     constructor(props) {
         super(props);
-        this.onChangeFirstName = this.onChangeFirstName.bind(this);
-        this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeWebsite = this.onChangeWebsite.bind(this);
         
-        this.profile = [
-            {firstName: ""},
-            {lastName: ""},
-            {username: ""},
-            {phoneNumber: ""},
-            {email: ""},
-            {website: ""}
-        ];
+        this.state = {
+            currentTutorial: {
+                id: null,
+                name: "",
+                email: "",
+                location: "",
+                phone: "",
+                website: "",
+                sptype: "",
+                ved: false,
+                qualified: false,
+                description: "",
+                logo: ""
+            },
+            message: ""
+        };
     }
 
-    onChangeFirstName(e) {
-        this.profile[0] = e.target.value;
+    componentDidMount() {
+        this.getTutorial(this.props.currentUser.id);
     }
-
-    onChangeLastName(e) {
-        this.profile[0] = e.target.value;
+  
+    getTutorial(id) {
+        AuthService.get(id)
+          .then(response => {
+            this.setState({
+              currentTutorial: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
 
     onChangeUsername(e) {
-        // if username is valid
-            this.profile[1] = e.target.value;
-        // else 
-            // note that its not valid username
-            // console.log('Format is not valid');
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              name: title
+            }
+          };
+        });
     }
 
     onChangePhoneNumber(e) {
-        if (validator.isMobilePhone(e.target.value)) {
-            this.profile[2] = e.target.value;
-        } else {
-            // note that its not valid phone number
-            console.log('Format is not valid');
-        }
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              phone: title
+            }
+          };
+        });
+    }
+
+    validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 
     onChangeEmail(e) {
-        // if email is valid
-            this.profile[3] = e.target.value;
-        // else 
-            // note that its not valid email
-            // console.log('Format is not valid');
+        const title = e.target.value;
+        if (this.validateEmail(title)){
+            this.setState(function(prevState) {
+                return {
+                  currentTutorial: {
+                    ...prevState.currentTutorial,
+                    email: title
+                  }
+                };
+              });
+        }
     }
 
     onChangeWebsite(e) {
-        // if url is valid
-            this.profile[4] = e.target.value;
-        // else 
-            // note that its not valid url
-            // console.log('Format is not valid');
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              website: title
+            }
+          };
+        });
     }
 
     sendToPage(link) {
@@ -69,11 +110,23 @@ export default class User extends Component {
 
 
     submitChanges() {
-        //logic goes here
+        AuthService.update(
+            this.state.currentTutorial.id,
+            this.state.currentTutorial
+          )
+            .then(response => {
+              console.log(response.data);
+              this.setState({
+                message: "The User was updated successfully!"
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
     }
 
     render() {
-        // const { currentUser } = this.state;
+        const { currentTutorial } = this.state;
         // if (currentUser) {
         if (true) {
             return (
@@ -82,32 +135,14 @@ export default class User extends Component {
                     <form>
                         <table className="aboutForm" id="aboutSettings">
                             <tbody>
-                                <tr>
-                                    <td className="settignsCategoryPromt"><b> First Name: </b></td>
-                                    <td><input
-                                            id="userFirstName"
-                                            type="text"
-                                            name="firstName"
-                                            onChange={(e) => {this.onChangeFirstName(e)}}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="settignsCategoryPromt"><b> Last Name: </b></td>
-                                    <td><input
-                                            id="userLastName"
-                                            type="text"
-                                            name="lastName"
-                                            onChange={(e) => {this.onChangeLastName(e)}}
-                                        />
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <td className="settignsCategoryPromt"><b> Username: </b></td>
                                     <td><input
                                             id="username"
                                             type="text"
                                             name="username"
+                                            value={currentTutorial.name}
                                             onChange={(e) => {this.onChangeUsername(e)}}
                                         />
                                     </td>
@@ -120,6 +155,7 @@ export default class User extends Component {
                                             id="userPhoneNumber"
                                             type="text"
                                             name="phoneNumber"
+                                            value={currentTutorial.phone}
                                             onChange={(e) => {this.onChangePhoneNumber(e)}}
                                         />
                                     </td>
@@ -131,6 +167,7 @@ export default class User extends Component {
                                             id="userEmail"
                                             type="text"
                                             name="email"
+                                            value={currentTutorial.email}
                                             onChange={(e) => {this.onChangeEmail(e)}}
                                         />
                                     </td>
@@ -142,14 +179,15 @@ export default class User extends Component {
                                             id="userWebsite"
                                             type="text"
                                             name="website"
+                                            value={currentTutorial.website}
                                             onChange={(e) => {this.onChangeWebsite(e)}}
                                         />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="submit" value="Save" onclick="submitChanges()">Save</input>
                     </form>
+                    <button type="submit" value="Save" onClick={() => {this.submitChanges()}}>Save</button>
                 </div>
                 </React.Fragment>
                 );

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import validator from 'validator' 
 import './App.css';
+import AuthService from "./services/auth.service";
 
 export default class SP extends Component {
     constructor(props) {
@@ -21,17 +22,11 @@ export default class SP extends Component {
         this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeWebsite = this.onChangeWebsite.bind(this);
+        this.onChangeLogo = this.onChangeLogo.bind(this);
 
         this.projectIndex = 0;
         this.clientIndex = 0;
         this.qualificationIndex = 0;
-        
-        this.about = [
-            {name: ""},
-            {location: ""},
-            {type: ""},
-            {description: ""}
-        ];
 
         this.projects = new Map();
         this.projects[0] = {projectId: this.projectIndex,
@@ -55,31 +50,89 @@ export default class SP extends Component {
             qualificationPdf: ""
         };
 
-        this.contact = [
-            {phoneNumber: ""},
-            {email: ""},
-            {website: ""}
-        ];
+        this.state = {
+            currentTutorial: {
+                id: null,
+                name: "",
+                email: "",
+                location: "",
+                phone: "",
+                website: "",
+                sptype: "",
+                ved: false,
+                qualified: false,
+                description: "",
+                logo: ""
+            },
+            message: ""
+        };
+    }
+
+    componentDidMount() {
+        this.getTutorial(this.props.currentUser.id);
+    }
+  
+    getTutorial(id) {
+        AuthService.get(id)
+          .then(response => {
+            this.setState({
+              currentTutorial: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
 
     onChangeName(e) {
-        this.about[0] = e.target.value;
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              name: title
+            }
+          };
+        });
     }
 
     onChangeLocation(e) {
-        // if location is valid
-            this.about[1] = e.target.value;
-        // else 
-            // note that its not valid location
-            // console.log('Format is not valid');
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              location: title
+            }
+          };
+        });
     }
 
     onChangeType(e) {
-        this.about[2] = e.target.value;
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              sptype: title
+            }
+          };
+        });
     }
 
     onChangeDescription(e) {
-        this.about[3] = e.target.value;
+        const description = e.target.value;
+        
+        this.setState(prevState => ({
+          currentTutorial: {
+            ...prevState.currentTutorial,
+            description: description
+          }
+        }));
     }
 
     onChangeProjectName(e) {
@@ -152,28 +205,61 @@ export default class SP extends Component {
     }
 
     onChangePhoneNumber(e) {
-        if (validator.isMobilePhone(e.target.value)) {
-            this.contact[0] = e.target.value;
-        } else {
-            // note that its not valid phone number
-            console.log('Format is not valid');
-        }
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              phone: title
+            }
+          };
+        });
+    }
+
+    validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 
     onChangeEmail(e) {
-        // if email is valid
-            this.contact[1] = e.target.value;
-        // else 
-            // note that its not valid email
-            // console.log('Format is not valid');
+        const title = e.target.value;
+        if (this.validateEmail(title)){
+            this.setState(function(prevState) {
+                return {
+                  currentTutorial: {
+                    ...prevState.currentTutorial,
+                    email: title
+                  }
+                };
+              });
+        }
     }
 
     onChangeWebsite(e) {
-        // if url is valid
-            this.contact[2] = e.target.value;
-        // else 
-            // note that its not valid url
-            // console.log('Format is not valid');
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              website: title
+            }
+          };
+        });
+    }
+
+    onChangeLogo(e) {
+        const title = e.target.value;
+    
+        this.setState(function(prevState) {
+          return {
+            currentTutorial: {
+              ...prevState.currentTutorial,
+              logo: title
+            }
+          };
+        });
     }
 
     // Not implemented yet
@@ -332,10 +418,24 @@ export default class SP extends Component {
     }
 
     submitChanges() {
-        //logic goes here
+        AuthService.sp_update(
+            this.state.currentTutorial.id,
+            this.state.currentTutorial
+          )
+            .then(response => {
+              console.log(response.data);
+              this.setState({
+                message: "The Service Provider was updated successfully!"
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
+          this.sendToPage(`/sp/${this.state.currentTutorial.id}`);
     }
 
     render() {
+        const { currentTutorial } = this.state;
         return (
             <React.Fragment>
                 <div id="spSettingsContent" className='settingsContent'>
@@ -349,6 +449,7 @@ export default class SP extends Component {
                                             id="companyName"
                                             type="text"
                                             name="name"
+                                            value={currentTutorial.name}
                                             onChange={(e) => {this.onChangeName(e)}}
                                         />
                                     </td>
@@ -359,6 +460,7 @@ export default class SP extends Component {
                                             id="companyLocation"
                                             type="text"
                                             name="location"
+                                            value={currentTutorial.location}
                                             onChange={(e)=> {this.onChangeLocation(e)}}
                                         />
                                     </td>
@@ -369,13 +471,13 @@ export default class SP extends Component {
                                         <select
                                             className="serviceTypeDropdown"
                                             id="serviceType"
-                                            onChange={(e) => {this.onChangeType(e)}}>
-                                            <option defaultValue> </option>
-                                            <option> Design </option>
-                                            <option> Construction </option>
-                                            <option> Qualification </option>
-                                            <option> Maintenance </option>
-                                            <option> Installation </option>
+                                            onChange={(e) => {this.onChangeType(e)}}
+                                            value = {currentTutorial.sptype}>
+                                            <option value="Design"> Design </option>
+                                            <option value="Construction"> Construction </option>
+                                            <option value="Qualification"> Qualification </option>
+                                            <option value="Maintenance"> Maintenance </option>
+                                            <option value="Installation"> Installation </option>
                                         </select></td>
                                 </tr>
                                 <tr>
@@ -385,6 +487,7 @@ export default class SP extends Component {
                                             id="description"
                                             type="text"
                                             name="description"
+                                            value={currentTutorial.description}
                                             onChange={(e) => {this.onChangeDescription(e)}}
                                         />
                                     </td>
@@ -543,6 +646,7 @@ export default class SP extends Component {
                                             id="companyPhoneNumber"
                                             type="text"
                                             name="phoneNumber"
+                                            value={currentTutorial.phone}
                                             onChange={(e) => {this.onChangePhoneNumber(e)}}
                                         />
                                     </td>
@@ -554,6 +658,7 @@ export default class SP extends Component {
                                             id="companyEmail"
                                             type="text"
                                             name="email"
+                                            value={currentTutorial.email}
                                             onChange={(e) => {this.onChangeEmail(e)}}
                                         />
                                     </td>
@@ -565,14 +670,16 @@ export default class SP extends Component {
                                             id="companyWebsite"
                                             type="text"
                                             name="website"
+                                            value={currentTutorial.website}
                                             onChange={(e) => {this.onChangeWebsite(e)}}
                                         />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+
                     </form>
-                    <input type="submit" value="Save" onclick="submitChanges()">Save</input>
+                    <button type="submit" value="Save" onClick={() => {this.submitChanges()}}>Save</button>
                 </div>
             </React.Fragment>
         );

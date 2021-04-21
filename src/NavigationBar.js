@@ -39,7 +39,7 @@ export default class NavigationBar extends Component {
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                             <div class="dropdown-content">
-                                <a href='/:id/settings-profile'>Settings</a>
+                                <a onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile`)}}>Settings</a>
                                 <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ export default class NavigationBar extends Component {
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                             <div class="dropdown-content">
-                                <a href='/:id/settings-profile'>Settings</a>
+                                <a onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>Settings</a>
                                 <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>

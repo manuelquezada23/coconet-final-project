@@ -50,12 +50,12 @@ export default class SP extends Component {
             <React.Fragment>
                 <NavigationBar />
                 <div className="SPTopBar">
-                    <h3 style={{color: "#F2C70F"}}className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id")}}>About</h3>
-                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id/projects")}}>Projects</h3>
-                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id/previous-clients")}}>Previous Clients</h3>
-                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id/qualifications")}}>Qualifications</h3>
-                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id/licenses-and-certifications")}}>Licenses & Certifications</h3>
-                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage("/sp/:id/contact")}}>Contact</h3>
+                    <h3 style={{color: "#F2C70F"}}className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}`)}}>About</h3>
+                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/projects`)}}>Projects</h3>
+                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/previous-clients`)}}>Previous Clients</h3>
+                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/qualifications`)}}>Qualifications</h3>
+                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/licenses-and-certifications`)}}>Licenses & Certifications</h3>
+                    <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/contact`)}}>Contact</h3>
                 </div>
                 <div className="SPHeader">
                     <img className="SPLogo" src={currentTutorial.logo}></img>

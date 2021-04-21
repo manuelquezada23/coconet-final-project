@@ -14,6 +14,16 @@ export default class spProfile extends Component {
         };
     }
 
+    componentWillMount(){
+        //If user is an Alumno, throw them to '/some/path'
+        if(this.props.match.params.id != AuthService.getCurrentUser().id){
+            alert("You cannot access others' accounts")
+            //window.location.href = "/";
+            this.props.history.push('/');
+        }
+           
+    }
+
     componentDidMount() {
         this.getTutorial(this.props.match.params.id);
     }
@@ -54,7 +64,7 @@ export default class spProfile extends Component {
                                 </div>
                             </div>
                             
-                            <SPedit/>
+                            <SPedit currentUser={this.state.currentUser}/>
                         </div>
                     </div>
                     
