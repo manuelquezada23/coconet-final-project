@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AuthService from "../services/auth.service";
 import NavigationBar from "../NavigationBar.js"
 import '../App.css';
 import LeftArrow from "../images/left-arrow.png";

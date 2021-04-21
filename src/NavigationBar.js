@@ -35,12 +35,12 @@ export default class NavigationBar extends Component {
                         <img id="searchIconNavBar" src={SearchIcon}  alt="search icon" onClick={() => {this.sendToPage("/sp")}}></img>
                         <div class="dropdown">
                             <div className="loggedInDashboard">
-                                <img className="loggedInPicture" src={Placeholder}></img>
+                                <img alt="userPicture" className="loggedInPicture" src={Placeholder}></img>
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
-                            <div class="dropdown-content">
-                                <a onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile`)}}>Settings</a>
-                                <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
+                            <div class="dropdown-content" >
+                                <p style={{cursor: "pointer"}} onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile`)}}>Settings</p>
+                                <p style={{cursor: "pointer"}} onClick={() => {this.logOut()}}>Log Out</p>
                             </div>
                         </div>
                     </div>
@@ -56,12 +56,12 @@ export default class NavigationBar extends Component {
                         <img id="searchIconNavBar" src={SearchIcon}  alt="search icon" onClick={() => {this.sendToPage("/sp")}}></img>
                         <div class="dropdown">
                             <div className="loggedInDashboard">
-                                <img className="loggedInPicture" src={Placeholder}></img>
+                                <img alt="userPicture" className="loggedInPicture" src={Placeholder}></img>
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                             <div class="dropdown-content">
-                                <a onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>Settings</a>
-                                <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
+                                <p style={{cursor: "pointer"}}onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>Settings</p>
+                                <p style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</p>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from "./components/home.component"
 import NotFound from "./NotFound.js"
@@ -14,12 +14,10 @@ import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
 import SP from "./components/sp.component"
 import spProfile from "./components/spprofile.component"
-
 import userProfile from "./components/user.component"
 import spedit from "./components/spedit.component"
 import edit from "./components/edit.component"
 import About from "./About.js"
-
 import SettingsGeneral from "./components/general.component"
 import SettingsPrivacy from "./components/privacy.component"
 

@@ -53,15 +53,15 @@ export default class SP extends Component {
           a = true;
         }
       });
-      if(location && data.location == location) b = true;
-      if(service && data.sptype == service) c = true;
-      if (searchUsername == ""){
+      if(location && data.location === location) b = true;
+      if(service && data.sptype === service) c = true;
+      if (searchUsername === ""){
         a = true;
       }
-      if (location == ""){
+      if (location === ""){
         b = true;
       }
-      if (service == ""){
+      if (service === ""){
         c = true;
       }
       return true && a && b && c;
@@ -295,17 +295,17 @@ export default class SP extends Component {
                         <li className="splist" key={user.id}>
                           <div className="SearchBodyRightContent">
                             <div className="SearchResults">
-                              <img className="SearchResultsLogo" src={user.logo}></img>
+                              <img alt="SearchResultsLogo" className="SearchResultsLogo" src={user.logo}></img>
                               <div className="SearchResultsInfo">
                                   <Link id="SearchResultsInfoName" onClick={() => {this.sendToPage(`/sp/${user.id}`)}}>{user.name}</Link>
                                   <p id="SearchResultsInfoLocation">{user.location}</p>
                                   <p id="SearchResultsInfoService">{user.sptype}</p>
                                   <div className="SearchResultsInfoBadges">
                                     <div style={{ display: user.ved ? "inline" : "none"}}>
-                                      <img className="SPBadge" src={VerifiedBadge}></img>
+                                      <img alt="service-provider-verifiedbadge" className="SPBadge" src={VerifiedBadge}></img>
                                     </div>
                                     <div style={{ display: user.qualified ? "inline" : "none"}}>
-                                      <img className="SPBadge" src={QualifiedBadge}></img>
+                                      <img alt="service-provider-qualifiedbadge" className="SPBadge" src={QualifiedBadge}></img>
                                     </div>
                                   </div>
                               </div>
@@ -322,42 +322,3 @@ export default class SP extends Component {
       )
     }
   }
-
-  /*
-  <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Client Type</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="clientTypeDropdown">
-                                  <option value="clientTypeValue">Pharmaceuticals</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Employees</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <select name="searchValue" id="employeesDropdown">
-                                  <option value="employeesValue">100+</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div className="SearchBodyLeftContent">
-                          <div className="SearchBodyLeftContentHeader">
-                              <p style={{fontWeight: "bold"}}>Verification & Certifications</p>
-                              <p>Clear</p>
-                          </div>
-                          <div className="SearchBodyLeftDropDown">
-                              <div className="SearchCredentialsDropdown">
-                                  <img className="SearchPageBadge" src={VerifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Verified</div>
-                                  <img className="SearchPageBadge" src={QualifiedBadge}></img>
-                                  <div className="SearchPageBadgeText">Qualified</div>
-                              </div>
-                          </div>
-                      </div>
-                      */

@@ -3,7 +3,6 @@ import '../App.css';
 import NavigationBar from "../NavigationBar.js"
 import AuthService from "../services/auth.service";
 import SPedit from "../SP.js"
-import User from "../User.js"
 
 export default class spProfile extends Component {
     constructor(props) {
@@ -16,7 +15,7 @@ export default class spProfile extends Component {
 
     componentWillMount(){
         //If user is an Alumno, throw them to '/some/path'
-        if(this.props.match.params.id != AuthService.getCurrentUser().id){
+        if (this.props.match.params.id !== AuthService.getCurrentUser().id){
             alert("You cannot access others' accounts")
             //window.location.href = "/";
             this.props.history.push('/');

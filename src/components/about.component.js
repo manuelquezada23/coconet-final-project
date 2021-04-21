@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AuthService from "../services/auth.service";
-import { Link } from "react-router-dom";
 import '../App.css';
 import NavigationBar from "../NavigationBar.js"
 import VerifiedBadge from "../images/verified-badge.png"
@@ -58,18 +57,18 @@ export default class SP extends Component {
                     <h3 className="SPSideBarBox" onClick={() => {this.sendToPage(`/sp/${currentTutorial.id}/contact`)}}>Contact</h3>
                 </div>
                 <div className="SPHeader">
-                    <img className="SPLogo" src={currentTutorial.logo}></img>
+                    <img alt="service-provider-logo" className="SPLogo" src={currentTutorial.logo}></img>
                     <div className="SPInfo">
                         <div className="SPName">{currentTutorial.name}</div>
                         <div className="SPLocation">{currentTutorial.location}</div>
                         <div className="SPType">{currentTutorial.sptype}</div>
                         <div className="SPCredentials">
                           <div style={{ display: currentTutorial.ved ? "inline" : "none"}}>
-                            <img className="SPBadge" src={VerifiedBadge}></img>
+                            <img alt="service-provider-verifiedbadge" className="SPBadge" src={VerifiedBadge}></img>
                             <div className="SPBadgeText">Verified</div>
                           </div>
                           <div style={{ display: currentTutorial.qualified ? "inline" : "none"}}>
-                            <img className="SPBadge" src={QualifiedBadge}></img>
+                            <img alt ="service-provider-qualifiedbadge" lassName="SPBadge" src={QualifiedBadge}></img>
                             <div className="SPBadgeText">Qualified</div>
                           </div>
                         </div>
@@ -78,15 +77,15 @@ export default class SP extends Component {
                 <div className="SPAboutBody">
                     <div className="SPAboutIcons">
                         <div className="iconAlignment">
-                            <img className="aboutIcon" src={PhoneIcon}></img>
+                            <img alt="aboutIcon" className="aboutIcon" src={PhoneIcon}></img>
                             <p className="iconDescription">{currentTutorial.phone}</p>
                         </div>
                         <div className="iconAlignment">
-                            <img className="aboutIcon" src={EmailIcon}></img>
+                            <img alt="aboutIcon" className="aboutIcon" src={EmailIcon}></img>
                             <p className="iconDescription">{currentTutorial.email}</p>
                         </div>
                         <div className="iconAlignment">
-                            <img className="aboutIcon" src={WebsiteIcon}></img>
+                            <img alt="aboutIcon" className="aboutIcon" src={WebsiteIcon}></img>
                             <p className="iconDescription">{currentTutorial.website}</p>
                         </div>
                     </div>  

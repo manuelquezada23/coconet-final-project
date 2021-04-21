@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import '../App.css';
 import NavigationBar from "../NavigationBar.js"
 import AuthService from "../services/auth.service";
-import User from "../User.js"
 
 
 export default class userProfile extends Component {
@@ -36,7 +35,7 @@ export default class userProfile extends Component {
     }
     render() {
         const { currentUser } = this.state;
-        if (currentUser.role == "ROLE_USER") {
+        if (currentUser.role === "ROLE_USER") {
             return (
                 <React.Fragment>
                 <NavigationBar />

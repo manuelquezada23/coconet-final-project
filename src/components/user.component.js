@@ -16,7 +16,7 @@ export default class userProfile extends Component {
 
     componentWillMount(){
         //If user is an Alumno, throw them to '/some/path'
-        if(this.props.match.params.id != AuthService.getCurrentUser().id){
+        if (this.props.match.params.id !== AuthService.getCurrentUser().id){
             alert("You cannot access others' accounts")
             //window.location.href = "/";
             this.props.history.push('/');

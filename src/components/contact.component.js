@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "../services/auth.service";
-import { Link } from "react-router-dom";
 import '../App.css';
 import NavigationBar from "../NavigationBar.js"
-import VerifiedBadge from "../images/verified-badge.png"
-import QualifiedBadge from "../images/qualified-badge.png"
 import PhoneIcon from "../images/phoneIcon.png"
 import EmailIcon from "../images/emailIcon.png"
 import WebsiteIcon from "../images/websiteIcon.png"
