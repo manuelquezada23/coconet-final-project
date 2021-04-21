@@ -6,6 +6,7 @@ import VerifiedBadge from "../images/verified-badge.png"
 import QualifiedBadge from "../images/qualified-badge.png"
 import SearchIcon from "../images/searchIcon.png"
 
+
 export default class SP extends Component {
     constructor(props) {
       super(props);
@@ -37,7 +38,7 @@ export default class SP extends Component {
 
     filterBender = data => {
       const {searchUsername, location, service} = this.state;
-      const words = searchUsername.split(' ');
+      const words = searchUsername.split(" ");
       let a = false;
       words.forEach(e => {
         if(searchUsername && data.name.toLowerCase().includes(e)) {
@@ -240,7 +241,7 @@ export default class SP extends Component {
                         </li>
                       ))}
                     </ul>
-                      
+                    
                       
                   </div>
               </div>

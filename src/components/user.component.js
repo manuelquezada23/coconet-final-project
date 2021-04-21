@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../App.css';
 import NavigationBar from "../NavigationBar.js"
 import AuthService from "../services/auth.service";
+import User from "../User.js"
 
 //<button id="editrProfile" onClick={() => {this.sendToPage(`/${currentUser.id}/settings-profile/editing`)}}>Edit Profile</button>
 
@@ -46,29 +47,19 @@ export default class userProfile extends Component {
                             <div className="SettingsSideBarContent" style={{backgroundColor: "#F2C70F"}} onClick={() => {this.sendToPage("/settings-profile")}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Profile</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage("/settings-general")}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-general`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>General</p>
                             </div>
-                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage("/settings-privacy")}}>
+                            <div className="SettingsSideBarContent" onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-privacy`)}}>
                                 <p style={{marginTop: "10px", marginLeft: "15px"}}>Privacy</p>
                             </div>
                         </div>
-                        <div className='SettingsContent'>
-                            <div>Username:
-                                <div>{currentUser.name}</div>
-                            </div>
-                            <div>Email:
-                                <div>{currentUser.email}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='SettingsContent'>
-                        Profile info goes here.
-                        {/* <User /> */}
-                        <button id="logout" onClick={() => {AuthService.logout()}}>Log Out</button>
                         
+                        
+                        <User/>
                     </div>
                 </div>
+                
             </React.Fragment>
         )
     }

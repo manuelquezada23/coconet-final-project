@@ -3,7 +3,7 @@ import './App.css';
 import LogoImage from "./images/coconet-logo-image.png"
 import SearchIcon from "./images/searchIcon.png"
 import Placeholder from "./images/profile-placeholder.png"
-import AuthService from "./services/auth.service";
+import AuthService from "./services/auth.service"
 
 export default class NavigationBar extends Component {
     constructor(props) {
