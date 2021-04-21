@@ -24,33 +24,10 @@ export default class SP extends Component {
         this.onChangeWebsite = this.onChangeWebsite.bind(this);
         this.onChangeLogo = this.onChangeLogo.bind(this);
 
-        this.projectIndex = 0;
-        this.clientIndex = 0;
-        this.qualificationIndex = 0;
-
-        this.projects = new Map();
-        this.projects[0] = {projectId: this.projectIndex,
-            projectName: "",
-            projectDate: Number,
-            projectPdf: ""
-        };
-
-        this.previousClients = new Map();
-        this.previousClients[0] = {clientId: this.clientIndex,
-            clientName: "",
-            clientLocation: "",
-            clientWebsite: ""
-        };
-
-        this.qualifications = new Map();
-        this.qualifications[0] = {
-            qualificationId: this.qualificationIndex,
-            qualificationName: "",
-            qualificationDate: Number,
-            qualificationPdf: ""
-        };
-
         this.state = {
+            projects: [],
+            clients: [],
+            qualifications: [],
             currentTutorial: {
                 id: null,
                 name: "",
@@ -64,12 +41,36 @@ export default class SP extends Component {
                 description: "",
                 logo: ""
             },
+            project: {
+                id: null,
+                name: "",
+                date: "",
+                pdf: "",
+                owner: null
+            },
+            client: {
+                id: null,
+                name: "",
+                date: "",
+                pdf: "",
+                owner: null
+            },
+            qualification: {
+                id: null,
+                name: "",
+                date: "",
+                pdf: "",
+                owner: null
+            },
             message: ""
         };
     }
 
     componentDidMount() {
         this.getTutorial(this.props.currentUser.id);
+        this.addCurrentProjects();
+        this.addCurrentClients();
+        this.addCurrentQualifications();
     }
   
     getTutorial(id) {
@@ -136,72 +137,102 @@ export default class SP extends Component {
     }
 
     onChangeProjectName(e) {
-        const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-        this.projects[index].projectName = e.target.value;
+        this.setState(function(prevState) {
+            return {
+              project: {
+                ...prevState.project,
+                name: e.target.value
+              }
+            };
+        });
     }
 
     onChangeProjectDate(e) {
-        // if date is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.projects[index].projectDate = e.target.value;
-        // else 
-            // note that its not valid date
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              project: {
+                ...prevState.project,
+                date: e.target.value
+              }
+            };
+        });
     }
 
     onChangeProjectPdf(e) {
-        // if pdf is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.projects[index].projectPdf = e.target.value;
-        // else 
-            // note that its not valid pdf
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              project: {
+                ...prevState.project,
+                pdf: e.target.value
+              }
+            };
+        });
     }
 
     onChangeClientName(e) {
-        const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-        this.previousClients[index].clientName = e.target.value;
+        this.setState(function(prevState) {
+            return {
+              client: {
+                ...prevState.client,
+                name: e.target.value
+              }
+            };
+        });
     }
 
     onChangeClientLocation(e) {
-        // if location is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.previousClients[index].clientLocation = e.target.value;
-        // else 
-            // note that its not valid location
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              client: {
+                ...prevState.client,
+                date: e.target.value
+              }
+            };
+        });
     }
 
     onChangeClientWebsite(e) {
-        // if website is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.previousClients[index].clientWebsite = e.target.value;
-        // else 
-            // note that its not valid website
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              client: {
+                ...prevState.client,
+                pdf: e.target.value
+              }
+            };
+        });
     }
 
     onChangeQualificationName(e) {
-        const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-        this.qualifications[index].qualificationName = e.target.value;
+        this.setState(function(prevState) {
+            return {
+              qualification: {
+                ...prevState.qualification,
+                name: e.target.value
+              }
+            };
+        });
     }
 
     onChangeQualificationDate(e) {
-        // if date is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.qualifications[index].qualificationDate = e.target.value;
-        // else 
-            // note that its not valid date
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              qualification: {
+                ...prevState.qualification,
+                date: e.target.value
+              }
+            };
+        });
     }
 
     onChangeQualificationDocument(e) {
-        // if document is valid
-            const index = document.getElementById(e.target.id).parentElement.parentElement.id;
-            this.qualifications[index].qualificationDocument = e.target.value;
-        // else 
-            // note that its not valid document
-            // console.log('Format is not valid');
+        this.setState(function(prevState) {
+            return {
+              qualification: {
+                ...prevState.qualification,
+                pdf: e.target.value
+              }
+            };
+        });
     }
 
     onChangePhoneNumber(e) {
@@ -262,44 +293,50 @@ export default class SP extends Component {
         });
     }
 
-    // Not implemented yet
     addCurrentProjects() {
-        this.projects.forEach(project => {
-            const newRow = document.getElementById('projectsSettingsBody').appendChild(document.createElement('tr'));
-            const colName = newRow.insertCell(0);
-            const colDate = newRow.insertCell(1);
-            const colPdf = newRow.insertCell(2);
 
-            colName.appendChild(document.createElement('input'));
-            colDate.appendChild(document.createElement('input'));
-            colPdf.appendChild(document.createElement('input'));
-
-            newRow.id = project.projectId;
-            colName.onChange = (e) => {this.onChangeProjectName(e)};
-            colDate.onChange = (e) => {this.onChangeProjectDate(e)};
-            colPdf.onChange = (e) => {this.onChangeProjectPdf(e)};
-        });
+        AuthService.get_proj(this.props.currentUser.id)
+          .then(response => {
+            this.setState({
+              projects: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
 
     addNewProject(e) {
         e.preventDefault();
-        const newRow = document.getElementById('projectsSettingsBody').appendChild(document.createElement('tr'));
-        const colName = newRow.insertCell(0);
-        const colDate = newRow.insertCell(1);
-        const colPdf = newRow.insertCell(2);
 
-        colName.appendChild(document.createElement('input'));
-        colDate.appendChild(document.createElement('input'));
-        colPdf.appendChild(document.createElement('input'));
-        
-        this.projectIndex++;
-        const project = {projectId: this.projectIndex, projectName: "", projectDate: 0, projectPdf: ""};
-        this.projects[this.projectIndex] = project;
+        let data = {
+            name: this.state.project.name,
+            date: this.state.project.date,
+            pdf: this.state.project.pdf,
+            owner: this.state.currentTutorial.id
+        };
+      
+        AuthService.create_proj(data)
+            .then(response => {
+              console.log(response.data);
+              this.addCurrentProjects();
+      
+              this.setState({
+                  project: {
+                      id: null,
+                      name: "",
+                      date: "",
+                      pdf: "",
+                      owner: null
+                  }
+              }, () => {
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
 
-        newRow.id = this.projectIndex;
-        colName.onChange = (e) => {this.onChangeProjectName(e)};
-        colDate.onChange = (e) => {this.onChangeProjectDate(e)};
-        colPdf.onChange = (e) => {this.onChangeProjectPdf(e)};
     }
 
     // Not implemented yet
@@ -311,47 +348,47 @@ export default class SP extends Component {
 
     // Not implemented yet
     addCurrentClients() {
-        this.clients.forEach(client => {
-            const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
-            const colName = newRow.insertCell(0);
-            const colDate = newRow.insertCell(1);
-            const colPdf = newRow.insertCell(2);
-
-            colName.appendChild(document.createElement('input'));
-            colDate.appendChild(document.createElement('input'));
-            colPdf.appendChild(document.createElement('input'));
-
-            newRow.id = client.clientId;
-            colName.onChange = (e) => {this.onChangeClientName(e)};
-            colDate.onChange = (e) => {this.onChangeClientLocation(e)};
-            colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
-        });
+        AuthService.get_cl(this.props.currentUser.id)
+          .then(response => {
+            this.setState({
+              clients: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
 
     addNewClient(e) {
         e.preventDefault();
-        const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
-        const colName = newRow.insertCell(0);
-        const colDate = newRow.insertCell(1);
-        const colPdf = newRow.insertCell(2);
 
-        colName.appendChild(document.createElement('input'));
-        colDate.appendChild(document.createElement('input'));
-        colPdf.appendChild(document.createElement('input'));
-        
-        this.previousClientIndex++;
-        const client = {
-            clientId: this.previousClientIndex,
-            clientName: "",
-            clientLocation: 0,
-            clientWebsite: ""
+        let data = {
+            name: this.state.client.name,
+            date: this.state.client.date,
+            pdf: this.state.client.pdf,
+            owner: this.state.currentTutorial.id
         };
-        this.previousClients[this.previousClientIndex] = client;
-
-        newRow.id = this.previousClientIndex;
-        colName.onChange = (e) => {this.onChangeClientName(e)};
-        colDate.onChange = (e) => {this.onChangeClientLocation(e)};
-        colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
+      
+        AuthService.create_cl(data)
+            .then(response => {
+              console.log(response.data);
+              this.addCurrentClients();
+      
+              this.setState({
+                  client: {
+                      id: null,
+                      name: "",
+                      date: "",
+                      pdf: "",
+                      owner: null
+                  }
+              }, () => {
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
     }
 
     // Not implemented yet
@@ -363,47 +400,47 @@ export default class SP extends Component {
 
     // Not implemented yet
     addCurrentQualifications() {
-        this.qualifications.forEach(qualification => {
-            const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
-            const colName = newRow.insertCell(0);
-            const colDate = newRow.insertCell(1);
-            const colPdf = newRow.insertCell(2);
-
-            colName.appendChild(document.createElement('input'));
-            colDate.appendChild(document.createElement('input'));
-            colPdf.appendChild(document.createElement('input'));
-
-            newRow.id = qualification.qualificationId;
-            colName.onChange = (e) => {this.onChangeQualificationName(e)};
-            colDate.onChange = (e) => {this.onChangeQualificationDate(e)};
-            colPdf.onChange = (e) => {this.onChangeQualificationPdf(e)};
+        AuthService.get_q(this.props.currentUser.id)
+        .then(response => {
+          this.setState({
+            qualifications: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
         });
     }
 
     addNewQualification(e) {
         e.preventDefault();
-        const newRow = document.getElementById('qualificationsSettingsBody').appendChild(document.createElement('tr'));
-        const colName = newRow.insertCell(0);
-        const colDate = newRow.insertCell(1);
-        const colPdf = newRow.insertCell(2);
 
-        colName.appendChild(document.createElement('input'));
-        colDate.appendChild(document.createElement('input'));
-        colPdf.appendChild(document.createElement('input'));
-        
-        this.qualificationIndex++;
-        const qualification = {
-            qualificationId: this.qualificationIndex,
-            qualificationName: "",
-            qualificationDate: 0,
-            qualificationPdf: 0
+        let data = {
+            name: this.state.qualification.name,
+            date: this.state.qualification.date,
+            pdf: this.state.qualification.pdf,
+            owner: this.state.currentTutorial.id
         };
-        this.qualifications[this.qualificationIndex] = qualification;
-
-        newRow.id = this.qualificationIndex;
-        colName.onChange = (e) => {this.onChangeQualificationName(e)};
-        colDate.onChange = (e) => {this.onChangeQualificationDate(e)};
-        colPdf.onChange = (e) => {this.onChangeQualificationPdf(e)};
+      
+        AuthService.create_q(data)
+            .then(response => {
+              console.log(response.data);
+              this.addCurrentQualifications();
+      
+              this.setState({
+                qualification: {
+                      id: null,
+                      name: "",
+                      date: "",
+                      pdf: "",
+                      owner: null
+                  }
+              }, () => {
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            });
     }
 
     // Not implemented yet
@@ -435,7 +472,7 @@ export default class SP extends Component {
     }
 
     render() {
-        const { currentTutorial } = this.state;
+        const { currentTutorial, projects, clients, qualifications} = this.state;
         return (
             <React.Fragment>
                 <div id="spSettingsContent" className='settingsContent'>
@@ -510,12 +547,45 @@ export default class SP extends Component {
                                 </tr>
                             </thead>
                             <tbody id="projectsSettingsBody">
-                                <tr id="0">
+                            {projects &&
+                        projects.map((user, index) => (
+                            <tr id={user.id}>
+                            <td>
+                                <input
+                                    id="projectName"
+                                    type="text"
+                                    name="projectName"
+                                    value={user.name}
+
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    id="projectDate"
+                                    type="text"
+                                    name="projectDate"
+                                    value={user.date}
+
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    id="projectPdf"
+                                    type="text"
+                                    name="projectPdf"
+                                    value={user.pdf}
+
+                                />
+                            </td>
+                        </tr>
+                      ))}
+                                <tr>
                                     <td>
                                         <input
                                             id="projectName"
                                             type="text"
                                             name="projectName"
+                                            value={this.state.project.name}
                                             onChange={(e) => {this.onChangeProjectName(e)}}
                                         />
                                     </td>
@@ -524,6 +594,7 @@ export default class SP extends Component {
                                             id="projectDate"
                                             type="text"
                                             name="projectDate"
+                                            value={this.state.project.date}
                                             onChange={(e) => {this.onChangeProjectDate(e)}}
                                         />
                                     </td>
@@ -532,6 +603,7 @@ export default class SP extends Component {
                                             id="projectPdf"
                                             type="text"
                                             name="projectPdf"
+                                            value={this.state.project.pdf}
                                             onChange={(e) => {this.onChangeProjectPdf(e)}}
                                         />
                                     </td>
@@ -554,12 +626,45 @@ export default class SP extends Component {
                                 </tr>
                             </thead>
                             <tbody  id="previousClientsSettingsBody">
-                                <tr id="0">
+                            {clients &&
+                        clients.map((user, index) => (
+                            <tr id={user.id}>
                                     <td>
                                         <input
                                             id="clientName"
                                             type="text"
                                             name="clientName"
+                                            value={user.name}
+
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            id="clientLocation"
+                                            type="text"
+                                            name="clientLocation"
+                                            value={user.date}
+
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            id="clientWebsite"
+                                            type="text"
+                                            name="clientWebsite"
+                                            value={user.pdf}
+
+                                        />
+                                    </td>
+                                </tr>
+                      ))}
+                                <tr>
+                                    <td>
+                                        <input
+                                            id="clientName"
+                                            type="text"
+                                            name="clientName"
+                                            value={this.state.client.name}
                                             onChange={(e) => {this.onChangeClientName(e)}}
                                         />
                                     </td>
@@ -568,6 +673,7 @@ export default class SP extends Component {
                                             id="clientLocation"
                                             type="text"
                                             name="clientLocation"
+                                            value={this.state.client.date}
                                             onChange={(e) => {this.onChangeClientLocation(e)}}
                                         />
                                     </td>
@@ -576,6 +682,7 @@ export default class SP extends Component {
                                             id="clientWebsite"
                                             type="text"
                                             name="clientWebsite"
+                                            value={this.state.client.pdf}
                                             onChange={(e) => {this.onChangeClientWebsite(e)}}
                                         />
                                     </td>
@@ -598,12 +705,45 @@ export default class SP extends Component {
                                 </tr>
                             </thead>
                             <tbody id="qualificationsSettingsBody">
-                                <tr id="0">
+                            {qualifications &&
+                        qualifications.map((user, index) => (
+                            <tr id={user.id}>
+                            <td>
+                                <input
+                                    id="qualificationName"
+                                    type="text"
+                                    name="qualificationName"
+                                    value={user.name}
+
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    id="qualificationDate"
+                                    type="text"
+                                    name="qualificationDate"
+                                    value={user.date}
+
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    id="qualificationPdf"
+                                    type="text"
+                                    name="qualificationPdf"
+                                    value={user.pdf}
+
+                                />
+                            </td>
+                        </tr>
+                      ))}
+                                <tr>
                                     <td>
                                         <input
                                             id="qualificationName"
                                             type="text"
                                             name="qualificationName"
+                                            value={this.state.qualification.name}
                                             onChange={(e) => {this.onChangeQualificationName(e)}}
                                         />
                                     </td>
@@ -612,6 +752,7 @@ export default class SP extends Component {
                                             id="qualificationDate"
                                             type="text"
                                             name="qualificationDate"
+                                            value={this.state.qualification.date}
                                             onChange={(e) => {this.onChangeQualificationDate(e)}}
                                         />
                                     </td>
@@ -620,6 +761,7 @@ export default class SP extends Component {
                                             id="qualificationPdf"
                                             type="text"
                                             name="qualificationPdf"
+                                            value={this.state.qualification.pdf}
                                             onChange={(e) => {this.onChangeQualificationDocument(e)}}
                                         />
                                     </td>

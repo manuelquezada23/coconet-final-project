@@ -18,13 +18,29 @@ export default class SP extends Component {
           username: "",
           email: ""
         },
+        projects: [], 
         message: ""
       };
     }
   
     componentDidMount() {
         this.getTutorial(this.props.match.params.id);
+        this.addCurrentProjects();
     }
+
+    addCurrentProjects() {
+
+      AuthService.get_q(this.props.match.params.id)
+        .then(response => {
+          this.setState({
+            projects: response.data
+          });
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+  }
   
     getTutorial(id) {
         AuthService.get(id)
@@ -44,7 +60,7 @@ export default class SP extends Component {
     }
   
     render() {
-        const { currentTutorial } = this.state;
+        const { currentTutorial, projects } = this.state;
 
         return (
             <React.Fragment>
@@ -68,11 +84,21 @@ export default class SP extends Component {
                     <th>Date</th>
                     <th>Document</th>
                 </tr>
-                <tr>
-                    <td>Qualified Medical Provider</td>
-                    <td>December 2019</td>
-                    <td>pdf</td>
-                </tr>
+                {projects &&
+                        projects.map((user, index) => (
+                            <tr id={user.id}>
+                            <td>
+                                {user.name}
+                            </td>
+                            <td>
+                                {user.date}
+                                   
+                            </td>
+                            <td>
+                                {user.pdf}
+                            </td>
+                        </tr>
+                      ))}
             </table>
         </React.Fragment>
         )

@@ -18,12 +18,14 @@ export default class SP extends Component {
           username: "",
           email: ""
         },
+        projects: [],
         message: ""
       };
     }
   
     componentDidMount() {
         this.getTutorial(this.props.match.params.id);
+        this.addCurrentProjects();
     }
   
     getTutorial(id) {
@@ -39,12 +41,26 @@ export default class SP extends Component {
           });
       }
 
+      addCurrentProjects() {
+
+        AuthService.get_proj(this.props.match.params.id)
+          .then(response => {
+            this.setState({
+              projects: response.data
+            });
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    }
+
     sendToPage(link) {
       window.location.href = link;
     }
   
     render() {
-        const { currentTutorial } = this.state;
+        const { currentTutorial, projects } = this.state;
 
         return (
             <React.Fragment>
@@ -68,11 +84,21 @@ export default class SP extends Component {
                     <th>Date</th>
                     <th>PDF</th>
                 </tr>
-                <tr>
-                    <td>World Trade Center</td>
-                    <td>January 31, 2006</td>
-                    <td>link</td>
-                </tr>
+                {projects &&
+                        projects.map((user, index) => (
+                            <tr id={user.id}>
+                            <td>
+                                {user.name}
+                            </td>
+                            <td>
+                                {user.date}
+                                   
+                            </td>
+                            <td>
+                                {user.pdf}
+                            </td>
+                        </tr>
+                      ))}
             </table>
         </React.Fragment>
         )

@@ -45,7 +45,7 @@ class AuthService {
   }
 
   sp_update(id, data) {
-    return axios.put(API_URL + `sp/${id}/settings-profile/editing`, data);
+    return axios.put(API_URL + `sp/${id}/settings-profile`, data);
   }
 
   update(id, data) {
@@ -54,6 +54,42 @@ class AuthService {
 
   get(id) {
     return axios.get(API_URL + `sp/${id}`);
+  }
+
+  create_proj(data) {
+    return axios.post(API_URL + "project", data);
+  }
+
+  update_proj(id, data) {
+    return axios.put(API_URL + `project/${id}`, data);
+  }
+
+  get_proj(id) {
+    return axios.get(API_URL + `project?owner=${id}`);
+  }
+
+  create_cl(data) {
+    return axios.post(API_URL + "client", data);
+  }
+
+  update_cl(id, data) {
+    return axios.put(API_URL + `client/${id}`, data);
+  }
+
+  get_cl(id) {
+    return axios.get(API_URL + `client?owner=${id}`);
+  }
+
+  create_q(data) {
+    return axios.post(API_URL + "qualification", data);
+  }
+
+  update_q(id, data) {
+    return axios.put(API_URL + `qualification/${id}`, data);
+  }
+
+  get_q(id) {
+    return axios.get(API_URL + `qualification?owner=${id}`);
   }
 
   getlocation(location) {

@@ -38,12 +38,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import com.example.springboot.models.ERole;
 import com.example.springboot.models.Role;
 import com.example.springboot.models.User;
+import com.example.springboot.models.Project;
+import com.example.springboot.models.Client;
+import com.example.springboot.models.Qualification;
 import com.example.springboot.payload.request.LoginRequest;
 import com.example.springboot.payload.request.SignupRequest;
 import com.example.springboot.payload.response.JwtResponse;
 import com.example.springboot.payload.response.MessageResponse;
 import com.example.springboot.repository.RoleRepository;
 import com.example.springboot.repository.UserRepository;
+import com.example.springboot.repository.ProjectRepository;
+import com.example.springboot.repository.ClientRepository;
+import com.example.springboot.repository.QualificationRepository;
 import com.example.springboot.security.jwt.JwtUtils;
 import com.example.springboot.security.services.UserDetailsImpl;
 import org.thymeleaf.util.StringUtils;
@@ -58,6 +64,15 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ProjectRepository projectRepository;
+
+    @Autowired
+    ClientRepository clientRepository;
+
+    @Autowired
+    QualificationRepository qualificationRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -309,13 +324,13 @@ public class AuthController {
     }
 
 
-    @PutMapping("/sp/{id}/settings-profile/editing")
+    @PutMapping("/sp/{id}/settings-profile")
     public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> UserData = userRepository.findById(id);
 
         if (UserData.isPresent()) {
             User _user = UserData.get();
-            //_user.setName(user.getName());
+            _user.setName(user.getName());
             _user.setLocation(user.getLocation());
             _user.setPhone(user.getPhone());
             _user.setWebsite(user.getWebsite());
@@ -345,6 +360,135 @@ public class AuthController {
             return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/project")
+    public ResponseEntity<Project> createProject(@RequestBody Project tutorial) {
+        try {
+            Project _tutorial = projectRepository
+                    .save(new Project(tutorial.getName(), tutorial.getDate(), tutorial.getPdf(), tutorial.getOwner()));
+            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/project/{id}")
+    public ResponseEntity<Project> updateProject(@PathVariable("id") long id, @RequestBody Project project) {
+        Optional<Project> ProjectData = projectRepository.findById(id);
+
+        if (ProjectData.isPresent()) {
+            Project _project = ProjectData.get();
+            _project.setName(project.getName());
+            _project.setDate(project.getDate());
+            _project.setPdf(project.getPdf());
+
+            return new ResponseEntity<>(projectRepository.save(_project), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/project")
+    public ResponseEntity<List<Project>> getProjects(@RequestParam(required = false) Long owner) {
+        try {
+            List<Project> projects = new ArrayList<>();
+            projectRepository.findByOwner(owner).forEach(projects::add);
+
+            if (projects.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(projects, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/client")
+    public ResponseEntity<Client> createclient(@RequestBody Client tutorial) {
+        try {
+            Client _tutorial = clientRepository
+                    .save(new Client(tutorial.getName(), tutorial.getDate(), tutorial.getPdf(), tutorial.getOwner()));
+            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/client/{id}")
+    public ResponseEntity<Client> updateclient(@PathVariable("id") long id, @RequestBody Client client) {
+        Optional<Client> clientData = clientRepository.findById(id);
+
+        if (clientData.isPresent()) {
+            Client _client = clientData.get();
+            _client.setName(client.getName());
+            _client.setDate(client.getDate());
+            _client.setPdf(client.getPdf());
+
+            return new ResponseEntity<>(clientRepository.save(_client), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/client")
+    public ResponseEntity<List<Client>> getclients(@RequestParam(required = false) Long owner) {
+        try {
+            List<Client> clients = new ArrayList<>();
+            clientRepository.findByOwner(owner).forEach(clients::add);
+
+            if (clients.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(clients, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/qualification")
+    public ResponseEntity<Qualification> createqualification(@RequestBody Qualification tutorial) {
+        try {
+            Qualification _tutorial = qualificationRepository
+                    .save(new Qualification(tutorial.getName(), tutorial.getDate(), tutorial.getPdf(), tutorial.getOwner()));
+            return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/qualification/{id}")
+    public ResponseEntity<Qualification> updatequalification(@PathVariable("id") long id, @RequestBody Qualification qualification) {
+        Optional<Qualification> qualificationData = qualificationRepository.findById(id);
+
+        if (qualificationData.isPresent()) {
+            Qualification _qualification = qualificationData.get();
+            _qualification.setName(qualification.getName());
+            _qualification.setDate(qualification.getDate());
+            _qualification.setPdf(qualification.getPdf());
+
+            return new ResponseEntity<>(qualificationRepository.save(_qualification), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/qualification")
+    public ResponseEntity<List<Qualification>> getqualifications(@RequestParam(required = false) Long owner) {
+        try {
+            List<Qualification> qualifications = new ArrayList<>();
+            qualificationRepository.findByOwner(owner).forEach(qualifications::add);
+
+            if (qualifications.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(qualifications, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
