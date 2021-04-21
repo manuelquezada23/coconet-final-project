@@ -6,6 +6,7 @@ import VerifiedBadge from "../images/verified-badge.png"
 import QualifiedBadge from "../images/qualified-badge.png"
 import SearchIcon from "../images/searchIcon.png"
 
+
 export default class SP extends Component {
     constructor(props) {
       super(props);
@@ -240,7 +241,7 @@ export default class SP extends Component {
                         </li>
                       ))}
                     </ul>
-                      
+                    
                       
                   </div>
               </div>

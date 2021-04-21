@@ -3,7 +3,7 @@ import './App.css';
 import LogoImage from "./images/coconet-logo-image.png"
 import SearchIcon from "./images/searchIcon.png"
 import Placeholder from "./images/profile-placeholder.png"
-import AuthService from "./services/auth.service";
+import AuthService from "./services/auth.service"
 
 export default class NavigationBar extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ export default class NavigationBar extends Component {
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                             <div class="dropdown-content">
-                                <a onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>Settings</a>
+                                <a href='/:id/settings-profile'>Settings</a>
                                 <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ export default class NavigationBar extends Component {
                                 <p className="loggedInName">{currentUser.username}</p>
                             </div>
                             <div class="dropdown-content">
-                                <a onClick={() => {this.sendToPage(`/sp/${currentUser.id}/settings-profile`)}}>Settings</a>
+                                <a href='/:id/settings-profile'>Settings</a>
                                 <a style={{cursor: "pointer"}}onClick={() => {this.logOut()}}>Log Out</a>
                             </div>
                         </div>

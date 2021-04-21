@@ -22,15 +22,15 @@ function SPContact() {
             </div>
             <div className="SPAboutIcons">
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={PhoneIcon}></img>
+                        <img className="aboutIcon" src={PhoneIcon} alt="phone icon"></img>
                         <p className="iconDescription">SP Phone</p>
                     </div>
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={EmailIcon}></img>
+                        <img className="aboutIcon" src={EmailIcon} alt="email icon"></img>
                         <p className="iconDescription">SP Email</p>
                     </div>
                     <div className="iconAlignment">
-                        <img className="aboutIcon" src={WebsiteIcon}></img>
+                        <img className="aboutIcon" src={WebsiteIcon} alt="website icon"></img>
                         <p className="iconDescription">SP Website</p>
                     </div>
                 </div> 

@@ -14,6 +14,7 @@ import SPLogIn from "./components/login.component"
 import SPSignUp from "./components/provider.component"
 import SP from "./components/sp.component"
 import spProfile from "./components/spprofile.component"
+
 import userProfile from "./components/user.component"
 import spedit from "./components/spedit.component"
 import edit from "./components/edit.component"
@@ -50,7 +51,7 @@ const Main = () => {
             <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
             <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
-            <Route exact path='/:id/settings-general' component={SettingsGeneral}></Route>
+            <Route exact path='/  :id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/:id/settings-privacy' component={SettingsPrivacy}></Route>
 
             <Route exact path="/about" component={About}></Route>
