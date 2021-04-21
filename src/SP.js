@@ -6,6 +6,21 @@ export default class SP extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeLocation = this.onChangeLocation.bind(this);
+        this.onChangeType = this.onChangeType.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeProjectName = this.onChangeProjectName.bind(this);
+        this.onChangeProjectDate = this.onChangeProjectDate.bind(this);
+        this.onChangeProjectPdf = this.onChangeProjectPdf.bind(this);
+        this.onChangeClientName = this.onChangeClientName.bind(this);
+        this.onChangeClientLocation = this.onChangeClientLocation.bind(this);
+        this.onChangeClientWebsite = this.onChangeClientWebsite.bind(this);
+        this.onChangeQualificationName = this.onChangeQualificationName.bind(this);
+        this.onChangeQualificationDate = this.onChangeQualificationDate.bind(this);
+        this.onChangeQualificationDocument = this.onChangeQualificationDocument.bind(this);
+        this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeWebsite = this.onChangeWebsite.bind(this);
 
         this.projectIndex = 0;
         this.clientIndex = 0;
@@ -15,7 +30,7 @@ export default class SP extends Component {
             {name: ""},
             {location: ""},
             {type: ""},
-            {description: ""},
+            {description: ""}
         ];
 
         this.projects = new Map();
@@ -41,9 +56,9 @@ export default class SP extends Component {
         };
 
         this.contact = [
-            {phoneNumber: "(XXX)XXX-XXXX"},
-            {email: "example@sp.com"},
-            {website: "example.com"}
+            {phoneNumber: ""},
+            {email: ""},
+            {website: ""}
         ];
     }
 
@@ -136,7 +151,6 @@ export default class SP extends Component {
             // console.log('Format is not valid');
     }
 
-
     onChangePhoneNumber(e) {
         if (validator.isMobilePhone(e.target.value)) {
             this.contact[0] = e.target.value;
@@ -162,6 +176,7 @@ export default class SP extends Component {
             // console.log('Format is not valid');
     }
 
+    // Not implemented yet
     addCurrentProjects() {
         this.projects.forEach(project => {
             const newRow = document.getElementById('projectsSettingsBody').appendChild(document.createElement('tr'));
@@ -201,12 +216,14 @@ export default class SP extends Component {
         colPdf.onChange = (e) => {this.onChangeProjectPdf(e)};
     }
 
+    // Not implemented yet
     removeProject(e) {
         e.preventDefault();
         const index = document.getElementById(e.target.id).parentElement.parentElement.id;
         this.projects.remove(index);
     }
 
+    // Not implemented yet
     addCurrentClients() {
         this.clients.forEach(client => {
             const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
@@ -251,12 +268,14 @@ export default class SP extends Component {
         colPdf.onChange = (e) => {this.onChangeClientWebsite(e)};
     }
 
+    // Not implemented yet
     removeClient(e) {
         e.preventDefault();
         const index = document.getElementById(e.target.id).parentElement.parentElement.id;
         this.clients.remove(index);
     }
 
+    // Not implemented yet
     addCurrentQualifications() {
         this.qualifications.forEach(qualification => {
             const newRow = document.getElementById('previousClientsSettingsBody').appendChild(document.createElement('tr'));
@@ -301,6 +320,13 @@ export default class SP extends Component {
         colPdf.onChange = (e) => {this.onChangeQualificationPdf(e)};
     }
 
+    // Not implemented yet
+    removeQualification(e) {
+        e.preventDefault();
+        const index = document.getElementById(e.target.id).parentElement.parentElement.id;
+        this.qualifications.remove(index);
+    }
+
     sendToPage(link) {
         window.location.href = link;
     }
@@ -308,7 +334,7 @@ export default class SP extends Component {
     render() {
         return (
             <React.Fragment>
-                <div id="settingsContent" className='settingsContent'>
+                <div id="spSettingsContent" className='settingsContent'>
                     <h2>About</h2>
                     <form>
                         <table className="aboutForm" id="aboutSettings">

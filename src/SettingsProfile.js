@@ -27,8 +27,8 @@ function SettingsProfile() {
                     </div>
                     {/* if SP*/}
                         <SP/>
-                    {/* else
-                        <User/> */}
+                    {/* else */}
+                        <User.js/>
                 </div>
             </div>
         </React.Fragment>
