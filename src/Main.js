@@ -17,6 +17,7 @@ import spProfile from "./components/spprofile.component"
 import userProfile from "./components/user.component"
 import spedit from "./components/spedit.component"
 import edit from "./components/edit.component"
+import About from "./About.js"
 
 import SettingsGeneral from "./SettingsGeneral.js"
 import SettingsPrivacy from "./SettingsPrivacy.js"
@@ -49,6 +50,8 @@ const Main = () => {
             <Route exact path='/:id/settings-profile/editing' component={edit}></Route>
             <Route exact path='/sp/:id/settings-general' component={SettingsGeneral}></Route>
             <Route exact path='/sp/:id/settings-privacy' component={SettingsPrivacy}></Route>
+
+            <Route exact path="/about" component={About}></Route>
 
             {/* Handling error 404 */}
             <Route component={NotFound}></Route>
