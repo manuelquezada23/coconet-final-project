@@ -16,7 +16,7 @@ First, clone this project into a directory of your choice. Then, run
 
 ### `npm install`
 
-Once you have installed all the node modules, make sure to activate the back end by running:
+Once you have installed all the node modules, make sure to activate the backend by running:
 
 ### `cd spring-boot`
 
